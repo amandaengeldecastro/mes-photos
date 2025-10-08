@@ -13,7 +13,7 @@
         }
 
         header {
-            background-color: #1a252f; /* Cabeçalho escuro */
+            background-color: #1a252f; 
             color: white;
             text-align: center;
             padding: 1rem 0;
@@ -55,20 +55,19 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             object-fit: cover;
-            cursor: pointer; /* Indicar que a imagem é clicável */
+            cursor: pointer; 
         }
 
         footer {
-            background-color: #1a252f; /* Rodapé escuro */
+            background-color: #1a252f; 
             color: white;
             text-align: center;
             padding: 1rem;
             margin-top: 20px;
         }
 
-        /* Estilos de modal */
         .modal {
-            display: none; /* Modal oculto por padrão */
+            display: none; 
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -76,30 +75,30 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
-            justify-content: center; /* Centralizar conteúdo */
-            align-items: center; /* Alinhamento vertical */
+            background-color: rgba(0, 0, 0, 0.8); 
+            justify-content: center; 
+            align-items: center; 
         }
 
         .modal-content {
             margin: auto;
             width: auto;
-            max-width: 90%; /* Limite de largura para imagens */
+            max-width: 90%;
         }
 
         img {
-            max-width: 100%; /* Imagens responsivas no modal */
+            max-width: 100%; 
         }
 
         @media (max-width: 768px) {
             .location-image {
-                width: calc(50% - 10px); /* Imagens em duas colunas para telas menores */
+                width: calc(50% - 10px); 
             }
         }
 
         @media (max-width: 480px) {
             .location-image {
-                width: 100%; /* Imagens em uma coluna para telas muito pequenas */
+                width: 100%; 
             }
         }
     </style>
@@ -113,42 +112,39 @@
     <div class="location-section">
         <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
               <!-- <img src="./images/locations/BR/PR/20250622221751764.jpg" alt="Caioba" class="location-image" title="Caioba - Matinhos"> -->
-                <img src="./images/locations/BR/PR/20250622222612846.jpg" alt="Caioba" class="location-image" title="Caioba - Matinhos">
-                <img src="./images/locations/BR/PR/20250622221836357.jpg" alt="Caioba" class="location-image" title="Caioba - Matinhos">
+                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250622222612846.jpg" alt="Caioba" class="location-image" title="Caioba - Matinhos">
+                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250622221836357.jpg" alt="Caioba" class="location-image" title="Caioba - Matinhos">
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2023 Mapa Fotográfico | Todos os direitos reservados</p>
+        <p>&copy; 2025 Mapa Fotográfico | Todos os direitos reservados</p>
     </footer>
-    <!-- Modal para exibir a imagem ampliada -->
     <div id="myModal" class="modal" onclick="closeModal()">
         <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
         <img class="modal-content" id="img01">
     </div>
 
-      <!-- Modal para exibir a imagem ampliada -->
     <div id="myModal" class="modal" onclick="closeModal()">
         <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
         <img class="modal-content" id="img01">
     </div>
 
     <script>
-        let currentIndex = 0; // Índice da imagem atual
+        let currentIndex = 0; 
 
         function openModal(src) {
             const modal = document.getElementById("myModal");
-            modal.style.display = "flex"; // Muda o estilo para flex
+            modal.style.display = "flex"; 
             document.getElementById("img01").src = src;
 
-            // Definir o índice para a imagem que está sendo aberta
             currentIndex = Array.from(document.querySelectorAll('.location-image')).findIndex(img => img.src === src);
-            document.addEventListener('keydown', handleKeydown); // Adicionar listener para teclas
+            document.addEventListener('keydown', handleKeydown); 
         }
 
         function closeModal() {
-            document.getElementById("myModal").style.display = "none"; // Oculta o modal
-            document.removeEventListener('keydown', handleKeydown); // Remover listener para teclas
+            document.getElementById("myModal").style.display = "none"; 
+            document.removeEventListener('keydown', handleKeydown); 
         }
 
         function handleKeydown(event) {
@@ -156,10 +152,10 @@
             if (event.key === "Escape") {
                 closeModal();
             } else if (event.key === "ArrowRight") {
-                currentIndex = (currentIndex + 1) % images.length; // Ir para a próxima imagem
+                currentIndex = (currentIndex + 1) % images.length; 
                 document.getElementById("img01").src = images[currentIndex].src;
             } else if (event.key === "ArrowLeft") {
-                currentIndex = (currentIndex - 1 + images.length) % images.length; // Voltar para a imagem anterior
+                currentIndex = (currentIndex - 1 + images.length) % images.length; 
                 document.getElementById("img01").src = images[currentIndex].src;
             }
         }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,7 @@
         }
 
         header {
-            background-color: #1a252f; /* Cabeçalho escuro */
+            background-color: #1a252f;
             color: white;
             text-align: center;
             padding: 1rem 0;
@@ -55,20 +56,19 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             object-fit: cover;
-            cursor: pointer; /* Indicar que a imagem é clicável */
+            cursor: pointer;
         }
 
         footer {
-            background-color: #1a252f; /* Rodapé escuro */
+            background-color: #1a252f;
             color: white;
             text-align: center;
             padding: 1rem;
             margin-top: 20px;
         }
 
-        /* Estilos de modal */
         .modal {
-            display: none; /* Modal oculto por padrão */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -76,30 +76,37 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
-            justify-content: center; /* Centralizar conteúdo */
-            align-items: center; /* Alinhamento vertical */
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Fundo escuro semi-transparente */
+            justify-content: center;
+            /* Centralizar conteúdo */
+            align-items: center;
+            /* Alinhamento vertical */
         }
 
         .modal-content {
             margin: auto;
             width: auto;
-            max-width: 90%; /* Limite de largura para imagens */
+            max-width: 90%;
+            /* Limite de largura para imagens */
         }
 
         img {
-            max-width: 100%; /* Imagens responsivas no modal */
+            max-width: 100%;
+            /* Imagens responsivas no modal */
         }
 
         @media (max-width: 768px) {
             .location-image {
-                width: calc(50% - 10px); /* Imagens em duas colunas para telas menores */
+                width: calc(50% - 10px);
+                /* Imagens em duas colunas para telas menores */
             }
         }
 
         @media (max-width: 480px) {
             .location-image {
-                width: 100%; /* Imagens em uma coluna para telas muito pequenas */
+                width: 100%;
+                /* Imagens em uma coluna para telas muito pequenas */
             }
         }
     </style>
@@ -133,11 +140,13 @@
             <img src="./images/locations/BR/PR/FB_IMG_16346560232753365.jpg" alt="Marco das 3 Fronteiras 2018"
                 title=" Marco das Três Fronteiras - Foz do Iguaçu" class="location-image" onclick="openModal(this.src)">
 
-            <!-- <img src="./images/locations/BR/PR/itaipu_2014.jpg" alt="Itaipu" class="location-image" title="Itaipu Binacional - Foz do Iguaçu"> -->
+            <img src="./images/locations/BR/PR/itaipu_2014.jpg" alt="Itaipu" class="location-image"
+                title="Itaipu Binacional - Foz do Iguaçu">
 
             <img src="./images/locations/BR/PR/IMG_3858.JPG" alt="IGU" class="location-image"
                 title="Parque das Aves - Foz do Iguaçu" onclick="openModal(this.src)">
-            <!-- <img src="./images/locations/BR/PR/IMG_3861.JPG" alt="Cataratas" class="location-image" title="Parque das Aves - Foz do Iguaçu"> -->
+            <img src="./images/locations/BR/PR/IMG_3861.JPG" alt="Cataratas" class="location-image"
+                title="Parque das Aves - Foz do Iguaçu">
             <img src="./images/locations/BR/PR/IMG_3863.JPG" alt="IGU" class="location-image"
                 title="Parque das Aves - Foz do Iguaçu" onclick="openModal(this.src)">
             <img src="./images/locations/BR/PR/_DSC0054_parque_das_aves.JPG" alt="IGU" class="location-image"
@@ -149,68 +158,70 @@
             <img src="./images/locations/BR/PR/_DSC0023.NEF_parque_das_aves.jpg" alt="IGU" class="location-image"
                 title="Parque das Aves - Foz do Iguaçu" onclick="openModal(this.src)">
 
-            <!-- <img src="./images/locations/BR/PR/FB_IMG_16346553811625623_halo_solar.jpg" alt="Cataratas" class="location-image"title="Halo Solar - Foz do Iguaçu"> -->
-
-            <img src="./images/locations/BR/PR/pesque_pague_foz.JPG" alt="Cataratas" class="location-image"
+                
+                <img src="./images/locations/BR/PR/pesque_pague_foz.JPG" alt="Cataratas" class="location-image"
                 title="Pesque Pague Triângulo- Foz do Iguaçu" onclick="openModal(this.src)">
-            <img src="./images/locations/BR/PR/DSC_0033_chile.JPG" alt="2023" class="location-image"
+                <img src="./images/locations/BR/PR/DSC_0033_chile.JPG" alt="2023" class="location-image"
                 title="Foz do Iguaçu" onclick="openModal(this.src)">
             <img src="./images/locations/BR/PR/IMG_20230912_082909_319bird_chile.jpg" alt="2023" class="location-image"
-                title="Foz do Iguaçu" onclick="openModal(this.src)">
+            title="Foz do Iguaçu" onclick="openModal(this.src)">
             <img src="./images/locations/BR/PR/IMG-20230910-WA0028_bowling.jpg" alt="2023" class="location-image"
                 title="Cataratas Bowling Center - Foz do Iguaçu" onclick="openModal(this.src)">
             <img src="./images/locations/BR/PR/IMG_20230722_200657_021_mesquita.jpg" alt="2023" class="location-image"
                 title="Mesquita Omar Ibn Al Khattab- Foz do Iguaçu" onclick="openModal(this.src)">
 
-            <img src="./images/locations/BR/PR/FB_IMG_16346559930967976_ju_friends.jpg" alt="Friends"
-                class="location-image" onclick="openModal(this.src)">
-            <img src="./images/locations/BR/PR/FB_IMG_16346561279936270.jpg" alt="Friends" class="location-image"
-                onclick="openModal(this.src)">
-            <img src="./images/locations/BR/PR/IMG_20221012_161906017_HDR_ju_friends.jpg" alt="Friends"
-                class="location-image" onclick="openModal(this.src)">
+             <img src="./images/locations/BR/PR/FB_IMG_16346562918437052_templo_budista.jpg" alt="Templo" title="Templo Budista"
+            class="location-image" onclick="openModal(this.src)">
+              <img src="./images/locations/BR/PR/FB_IMG_16346562471776523.jpg" alt="dog"
+            class="location-image" onclick="openModal(this.src)">
 
+            <img src="./images/locations/BR/PR/FB_IMG_16346559930967976_ju_friends.jpg" alt="Friends"
+            class="location-image" onclick="openModal(this.src)">
+            <img src="./images/locations/BR/PR/FB_IMG_16346561279936270.jpg" alt="Friends" class="location-image"
+            onclick="openModal(this.src)">
+            <img src="./images/locations/BR/PR/IMG_20221012_161906017_HDR_ju_friends.jpg" alt="Friends"
+            class="location-image" onclick="openModal(this.src)">
+            
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346553811625623_halo_solar.jpg"
+                alt="Cataratas" class="location-image" title="Halo Solar - Foz do Iguaçu">
             <img src="./images/locations/BR/PR/IMG_20231215_200344_078_dream_ice_bar.jpg" alt="2023"
-                class="location-image" title="Dream Ice Bar - Foz do Iguaçu" onclick="openModal(this.src)">
+            class="location-image" title="Dream Ice Bar - Foz do Iguaçu" onclick="openModal(this.src)">
             <img src="./images/locations/BR/PR/IMG_20231215_200433_785_dream_ice_bar.jpg" alt="2023"
-                class="location-image" title="Dream Ice Bar - Foz do Iguaçu" onclick="openModal(this.src)">
+            class="location-image" title="Dream Ice Bar - Foz do Iguaçu" onclick="openModal(this.src)">
             <img src="./images/locations/BR/PR/IMG_20231215_200528_529_dream_ice_bar.jpg" alt="2023"
                 class="location-image" title="Dream Ice Bar - Foz do Iguaçu" onclick="openModal(this.src)">
-            <!-- <img src="./images/locations/BR/PR/IMG_20231215_200952_538_dream_ice_bar.jpg" alt="2023" class="location-image"title="Dream Ice Bar - Foz do Iguaçu">
-                <img src="./images/locations/BR/PR/IMG_20231215_201104_001_dream_ice_bar.jpg" alt="2023" class="location-image"title="Dream Ice Bar - Foz do Iguaçu"> -->
+                
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2023 Mapa Fotográfico | Todos os direitos reservados</p>
+        <p>&copy; 2025 Mapa Fotográfico | Todos os direitos reservados</p>
     </footer>
-    <!-- Modal para exibir a imagem ampliada -->
     <div id="myModal" class="modal" onclick="closeModal()">
         <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
         <img class="modal-content" id="img01">
     </div>
 
-      <!-- Modal para exibir a imagem ampliada -->
     <div id="myModal" class="modal" onclick="closeModal()">
         <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
         <img class="modal-content" id="img01">
     </div>
 
     <script>
-        let currentIndex = 0; // Índice da imagem atual
+        let currentIndex = 0;
 
         function openModal(src) {
             const modal = document.getElementById("myModal");
-            modal.style.display = "flex"; // Muda o estilo para flex
+            modal.style.display = "flex";
             document.getElementById("img01").src = src;
 
-            // Definir o índice para a imagem que está sendo aberta
             currentIndex = Array.from(document.querySelectorAll('.location-image')).findIndex(img => img.src === src);
-            document.addEventListener('keydown', handleKeydown); // Adicionar listener para teclas
+            document.addEventListener('keydown', handleKeydown);
         }
 
         function closeModal() {
-            document.getElementById("myModal").style.display = "none"; // Oculta o modal
-            document.removeEventListener('keydown', handleKeydown); // Remover listener para teclas
+            document.getElementById("myModal").style.display = "none";
+            document.removeEventListener('keydown', handleKeydown);
         }
 
         function handleKeydown(event) {
@@ -218,10 +229,10 @@
             if (event.key === "Escape") {
                 closeModal();
             } else if (event.key === "ArrowRight") {
-                currentIndex = (currentIndex + 1) % images.length; // Ir para a próxima imagem
+                currentIndex = (currentIndex + 1) % images.length;
                 document.getElementById("img01").src = images[currentIndex].src;
             } else if (event.key === "ArrowLeft") {
-                currentIndex = (currentIndex - 1 + images.length) % images.length; // Voltar para a imagem anterior
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
                 document.getElementById("img01").src = images[currentIndex].src;
             }
         }

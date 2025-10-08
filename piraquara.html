@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pontal do Paraná</title>
+    <title>Piraquara</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -13,7 +13,7 @@
         }
 
         header {
-            background-color: #1a252f; /* Cabeçalho escuro */
+            background-color: #1a252f; 
             color: white;
             text-align: center;
             padding: 1rem 0;
@@ -55,20 +55,19 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             object-fit: cover;
-            cursor: pointer; /* Indicar que a imagem é clicável */
+            cursor: pointer; 
         }
 
         footer {
-            background-color: #1a252f; /* Rodapé escuro */
+            background-color: #1a252f; 
             color: white;
             text-align: center;
             padding: 1rem;
             margin-top: 20px;
         }
 
-        /* Estilos de modal */
         .modal {
-            display: none; /* Modal oculto por padrão */
+            display: none; 
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -76,30 +75,30 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro semi-transparente */
-            justify-content: center; /* Centralizar conteúdo */
-            align-items: center; /* Alinhamento vertical */
+            background-color: rgba(0, 0, 0, 0.8); 
+            justify-content: center; 
+            align-items: center; 
         }
 
         .modal-content {
             margin: auto;
             width: auto;
-            max-width: 90%; /* Limite de largura para imagens */
+            max-width: 90%;
         }
 
         img {
-            max-width: 100%; /* Imagens responsivas no modal */
+            max-width: 100%; 
         }
 
         @media (max-width: 768px) {
             .location-image {
-                width: calc(50% - 10px); /* Imagens em duas colunas para telas menores */
+                width: calc(50% - 10px); 
             }
         }
 
         @media (max-width: 480px) {
             .location-image {
-                width: 100%; /* Imagens em uma coluna para telas muito pequenas */
+                width: 100%; 
             }
         }
     </style>
@@ -107,47 +106,49 @@
 
 <body>
     <header>
-        <h1>Pontal do Paraná</h1>
+        <h1>Piraquara</h1>
     </header>
 
     <div class="location-section">
         <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-               <img src="./images/locations/BR/PR/20250426164459569_praia_do_leste_pontal.jpg" alt="Pontal do Paraná"  class="location-image" title="Pontal do Paraná">
-               <img src="./images/locations/BR/PR/IMG_20241006_121437_124_praia_de_leste_pontal.jpg" alt="Pontal do Paraná" class="location-image" title="Pontal do Paraná">
+                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251005194525130_piraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Anhanguera">
+                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251005201334364_piraqueara.jpg" alt="Piraquara 20250905" class="location-image" title="Parque das Águas">
+                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_parque_das_aguas_paraquara.JPG" alt="Piraquara 20250905" class="location-image" title="Parque das Águas">
+                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_morro_anhanguera_paraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Anhanguera">
+                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_dog_parque_das_aguas_paraquara.JPG" alt="Piraquara 20250905" class="location-image" title="Parque das Águas">
+                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_lua_morro_anhanguera_paraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Anhanguera">
+                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_dog_rio_parque_das_aguasparaquara.JPG" alt="Piraquara 20250905" class="location-image" title="Anhanguera">
         </div>
     </div>
 
     <footer>
         <p>&copy; 2025 Mapa Fotográfico | Todos os direitos reservados</p>
     </footer>
-    <!-- Modal para exibir a imagem ampliada -->
     <div id="myModal" class="modal" onclick="closeModal()">
         <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
         <img class="modal-content" id="img01">
     </div>
 
-      <!-- Modal para exibir a imagem ampliada -->
     <div id="myModal" class="modal" onclick="closeModal()">
         <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
         <img class="modal-content" id="img01">
     </div>
 
     <script>
-        let currentIndex = 0; // Índice da imagem atual
+        let currentIndex = 0; 
 
         function openModal(src) {
             const modal = document.getElementById("myModal");
-            modal.style.display = "flex"; // Muda o estilo para flex
+            modal.style.display = "flex"; 
             document.getElementById("img01").src = src;
 
-            // Definir o índice para a imagem que está sendo aberta
             currentIndex = Array.from(document.querySelectorAll('.location-image')).findIndex(img => img.src === src);
-            document.addEventListener('keydown', handleKeydown); // Adicionar listener para teclas
+            document.addEventListener('keydown', handleKeydown); 
         }
 
         function closeModal() {
-            document.getElementById("myModal").style.display = "none"; // Oculta o modal
-            document.removeEventListener('keydown', handleKeydown); // Remover listener para teclas
+            document.getElementById("myModal").style.display = "none"; 
+            document.removeEventListener('keydown', handleKeydown); 
         }
 
         function handleKeydown(event) {
@@ -155,10 +156,10 @@
             if (event.key === "Escape") {
                 closeModal();
             } else if (event.key === "ArrowRight") {
-                currentIndex = (currentIndex + 1) % images.length; // Ir para a próxima imagem
+                currentIndex = (currentIndex + 1) % images.length; 
                 document.getElementById("img01").src = images[currentIndex].src;
             } else if (event.key === "ArrowLeft") {
-                currentIndex = (currentIndex - 1 + images.length) % images.length; // Voltar para a imagem anterior
+                currentIndex = (currentIndex - 1 + images.length) % images.length; 
                 document.getElementById("img01").src = images[currentIndex].src;
             }
         }
