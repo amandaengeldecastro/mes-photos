@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amanda Engel de Castro</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .location-section {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #2c3e50;
+            margin: 20px 0;
+            text-align: center;
+            color: #34495e;
+            white-space: nowrap; /* Impede a quebra de linha */
+            overflow: hidden;    /* Esconde conteúdo que ultrapassa o contêiner */
+            text-overflow: ellipsis; /* Adiciona '...' no final do texto cortado */
+            font-size: 1.5em; /* Aumenta o tamanho da fonte */
+        }
+
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #34495e;
+            text-align: center;
+        }
+
+        .location-image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .location-image {
+            width: calc(33.33% - 10px);
+            margin: 5px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="brasil" class="location-section">
+        <h2>Brasil</h2>
+       
+        <div id="brasil" class="location-section">
+            <h3>Paraná (PR)</h3>
+            <div class="location-image-container">
+                <div id="foz"style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Foz do Iguaçu</h4>
+                </div>
+                <img src="/images/locations/BR/PR/FB_IMG_16346563236916431.jpg" alt="Rio Paraná" class="location-image"title=" Rio Paraná- Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/iguazu_falls.jpg" alt="Cataratas" class="location-image" title="Cataratas do Iguaçu - Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/marco_das_três_fronteiras_2014.jpg" alt="Marco das 3 Fronteiras" title=" Marco das Três Fronteiras - Foz do Iguaçu" class="location-image">
+                
+                <img src="/images/locations/BR/PR/FB_IMG_16346562982517122.jpg" alt="2017" class="location-image" title="Gramadão da Vila A">
+                <img src="/images/locations/BR/PR/FB_IMG_16346563168834441.jpg" alt="2017" class="location-image" title="Gramadão da Vila A">
+                <img src="/images/locations/BR/PR/FB_IMG_16346563095353607.jpg" alt="2017" class="location-image" title="Gramadão da Vila A">
+
+                <img src="/images/locations/BR/PR/FB_IMG_16346560315910850.jpg" alt="Marco das 3 Fronteiras 2018" title=" Marco das Três Fronteiras - Foz do Iguaçu" class="location-image">
+                <img src="/images/locations/BR/PR/FB_IMG_16346560381343966.jpg" alt="Marco das 3 Fronteiras" title=" Marco das Três Fronteiras - Foz do Iguaçu" class="location-image">
+                <img src="/images/locations/BR/PR/FB_IMG_16346560232753365.jpg" alt="Marco das 3 Fronteiras 2018" title=" Marco das Três Fronteiras - Foz do Iguaçu" class="location-image">
+                
+                <!-- <img src="/images/locations/BR/PR/itaipu_2014.jpg" alt="Itaipu" class="location-image" title="Itaipu Binacional - Foz do Iguaçu"> -->
+
+                <img src="/images/locations/BR/PR/IMG_3858.JPG" alt="IGU" class="location-image" title="Parque das Aves - Foz do Iguaçu">
+                <!-- <img src="/images/locations/BR/PR/IMG_3861.JPG" alt="Cataratas" class="location-image" title="Parque das Aves - Foz do Iguaçu"> -->
+                <img src="/images/locations/BR/PR/IMG_3863.JPG" alt="IGU" class="location-image" title="Parque das Aves - Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/_DSC0054_parque_das_aves.JPG" alt="IGU" class="location-image"title="Parque das Aves - Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/IMG_3891.JPG" alt="IGU" class="location-image"title="Parque das Aves - Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/_DSC0028-EDIT_parque_das_aves.jpg" alt="IGU" class="location-image"title="Parque das Aves - Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/_DSC0023.NEF_parque_das_aves.jpg" alt="IGU" class="location-image"title="Parque das Aves - Foz do Iguaçu">
+
+                <!-- <img src="/images/locations/BR/PR/FB_IMG_16346553811625623_halo_solar.jpg" alt="Cataratas" class="location-image"title="Halo Solar - Foz do Iguaçu"> -->
+
+                <img src="/images/locations/BR/PR/pesque_pague_foz.JPG" alt="Cataratas" class="location-image"title="Pesque Pague Triângulo- Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/DSC_0033_chile.JPG" alt="2023" class="location-image"title="Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/IMG_20230912_082909_319bird_chile.jpg" alt="2023" class="location-image"title="Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/IMG-20230910-WA0028_bowling.jpg" alt="2023" class="location-image"title="Cataratas Bowling Center - Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/IMG_20230722_200657_021_mesquita.jpg" alt="2023" class="location-image"title="Mesquita Omar Ibn Al Khattab- Foz do Iguaçu">
+
+                <img src="/images/locations/BR/PR/FB_IMG_16346559930967976_ju_friends.jpg" alt="Friends" class="location-image">
+                <img src="/images/locations/BR/PR/FB_IMG_16346561279936270.jpg" alt="Friends" class="location-image">
+                <img src="/images/locations/BR/PR/IMG_20221012_161906017_HDR_ju_friends.jpg" alt="Friends" class="location-image">
+
+                <img src="/images/locations/BR/PR/IMG_20231215_200344_078_dream_ice_bar.jpg" alt="2023" class="location-image"title="Dream Ice Bar - Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/IMG_20231215_200433_785_dream_ice_bar.jpg" alt="2023" class="location-image"title="Dream Ice Bar - Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/IMG_20231215_200528_529_dream_ice_bar.jpg" alt="2023" class="location-image"title="Dream Ice Bar - Foz do Iguaçu">
+                <!-- <img src="/images/locations/BR/PR/IMG_20231215_200952_538_dream_ice_bar.jpg" alt="2023" class="location-image"title="Dream Ice Bar - Foz do Iguaçu">
+                <img src="/images/locations/BR/PR/IMG_20231215_201104_001_dream_ice_bar.jpg" alt="2023" class="location-image"title="Dream Ice Bar - Foz do Iguaçu"> -->
+
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Itaipulândia</h4>
+                </div>
+                <img src="/images/locations/BR/PR/FB_IMG_16346559305628906.jpg" alt="Itacorá" class="location-image" title="Itaipulândia">
+                <img src="/images/locations/BR/PR/FB_IMG_16346559048105753.jpg" alt="Itacorá" class="location-image" title="Itaipulândia">
+                <img src="/images/locations/BR/PR/FB_IMG_16346559142720847.jpg" alt="Itacorá" class="location-image" title="Itaipulândia">
+                <img src="/images/locations/BR/PR/FB_IMG_16346559222031221.jpg" alt="Itacorá" class="location-image" title="Itaipulândia">
+                <img src="/images/locations/BR/PR/FB_IMG_16346556947100382.jpg" alt="Itacorá" class="location-image" title="Itaipulândia">
+                <img src="/images/locations/BR/PR/FB_IMG_16346559397390704.jpg" alt="Itacorá" class="location-image" title="Itaipulândia">
+                <img src="/images/locations/BR/PR/FB_IMG_16346559473436248.jpg" alt="Itacorá" class="location-image" title="Itaipulândia">
+                
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Itapoá</h4>
+                </div>
+                <img src="/images/locations/BR/PR/IMG_20230715_155116_249_itapoa.jpg" alt="2023" class="location-image" title="Itapoa">
+                <img src="/images/locations/BR/PR/IMG_20230715_172023_305_itapoa.jpg" alt="2023" class="location-image" title="Itapoa">
+                <img src="/images/locations/BR/PR/IMG_20230715_130631_670_itapoa.jpg" alt="2023" class="location-image" title="Itapoa">
+                <img src="/images/locations/BR/PR/IMG_20230715_182025_579_itapoa.jpg" alt="2023" class="location-image" title="Itapoa">
+
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Caioba</h4>
+                </div>
+                <!-- <img src="/images/locations/BR/PR/20250622221751764.jpg" alt="Caioba" class="location-image" title="Caioba - Matinhos"> -->
+                <img src="/images/locations/BR/PR/20250622222612846.jpg" alt="Caioba" class="location-image" title="Caioba - Matinhos">
+                <img src="/images/locations/BR/PR/20250622221836357.jpg" alt="Caioba" class="location-image" title="Caioba - Matinhos">
+
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Pontal do Paraná</h4>
+                </div>
+                <img src="/images/locations/BR/PR/20250426164459569_praia_do_leste_pontal.jpg" alt="Pontal do Paraná"  class="location-image" title="Pontal do Paraná">
+                <img src="/images/locations/BR/PR/IMG_20241006_121437_124_praia_de_leste_pontal.jpg" alt="Pontal do Paraná" class="location-image" title="Pontal do Paraná">
+
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">São José dos Pinhais</h4>
+                </div>
+                <img src="/images/locations/BR/PR/20250421063245620_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg" alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
+                <img src="/images/locations/BR/PR/20250421063331685_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg" alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
+                <img src="/images/locations/BR/PR/20250421063357482_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg" alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
+                <img src="/images/locations/BR/PR/20250421063456095_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg" alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
+
+               <div id="cwb" style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Curitiba</h4>
+                </div>
+                <img src="/images/locations/BR/PR/FB_IMG_16346558305611935.jpg" alt="Curitiba " class="location-image" title="Jardim Botânico - Curitiba">
+                <img src="/images/locations/BR/PR/20250421063550040_curitiba_osório.jpg" alt="Curitiba " class="location-image" title="Praça Osório - Curitiba">
+                <img src="/images/locations/BR/PR/20250421063630737_curitiba.jpg" alt="Curitiba" class="location-image" title="Avenida XV - Curitiba">
+                <img src="/images/locations/BR/PR/XV_cwb.jpg" alt="Curitiba" class="location-image" title="Avenida XV - Curitiba">
+                <img src="/images/locations/BR/PR/IMG_20240928_175942_263_cwb_santa_felicidade_durigan_vinicula.jpg" alt="Curitiba" class="location-image" title="Duringan Vinícula | Santa Felicidade - Curitiba">
+                <img src="/images/locations/BR/PR/IMG_20240908_123001_597jardim_botanico.jpg" alt="Curitiba" class="location-image" title="Jardim Botânico - Curitiba">
+                <img src="/images/locations/BR/PR/IMG_20240908_114331_230_jardim_botanico.jpg" alt="Curitiba" class="location-image" title="Jardim Botânico - Curitiba">
+                <img src="/images/locations/BR/PR/IMG_20240706_210238_213_cadore.jpg" alt="Curitiba" class="location-image" title="Cadore - Curitiba">
+                <img src="/images/locations/BR/PR/IMG_20240602_163614_024_bosque_alemao.jpg" alt="Curitiba" class="location-image" title="Bosque Alemão - Curitiba">
+                <img src="/images/locations/BR/PR/IMG_20240602_170001_756_bosque_alemao.jpg" alt="Curitiba" class="location-image" title="Bosque Alemão - Curitiba">
+                <img src="/images/locations/BR/PR/IMG_20240602_170034_190-EDIT_bosque_alemao.jpg" alt="Curitiba" class="location-image" title="Bosque Alemão - Curitiba">
+                <img src="/images/locations/BR/PR/IMG_20240530_170051_117_agua_verde.jpg" alt="Curitiba" class="location-image" title="Feirinha do Água Verde - Curitiba">
+                <img src="/images/locations/BR/PR/IMG_20230713_175043_131-praça_do_japao_cwb.jpg" alt="Curitiba" class="location-image" title="Praça do Japão - Curitiba">
+                <img src="/images/locations/BR/PR/IMG_20240414_120901_802_largo_da_ordem.jpg" alt="Curitiba" class="location-image" title="Feirinha Largo da Ordem - Curitiba">
+                <!-- <img src="/images/locations/BR/PR/IMG_20240414_131712_849museu_municipal_de_arte_poty.jpg" alt="Curitiba" class="location-image" title="Museu Municipal de Arte - Curitiba"> -->
+                <!-- <img src="/images/locations/BR/PR/IMG_20240414_131817_747-museu_municipal_de_arte_poty.jpg" alt="Curitiba" class="location-image" title="Museu Municipal de Arte - Curitiba"> -->
+                <!-- <img src="/images/locations/BR/PR/IMG_20240403_210646_551_monet.jpg" alt="Curitiba" class="location-image" title="Monet"> -->
+                <!-- <img src="/images/locations/BR/PR/IMG_20240414_133246_025_poty.jpg" alt="Curitiba" class="location-image" title="Museu Municipal de Arte - Curitiba"> -->
+                <!-- <img src="/images/locations/BR/PR/IMG_20240403_210535_589_monet.jpg" alt="Curitiba" class="location-image" title="Monet"> -->
+                <img src="/images/locations/BR/PR/IMG_20240403_210739_712_monet.jpg" alt="Curitiba" class="location-image" title="Monet">
+                <img src="/images/locations/BR/PR/IMG_20240324_151104_596_parque_nautico.jpg" alt="Curitiba" class="location-image" title="Parque Nautico">
+                <img src="/images/locations/BR/PR/IMG_20240324_153215_245_parque_nautico.jpg" alt="Curitiba" class="location-image" title="Parque Nautico">
+                <img src="/images/locations/BR/PR/DSC_0010_parque_tangua.JPG" alt="Curitiba" class="location-image" title="Parque Tangua">
+                <img src="/images/locations/BR/PR/DSC_0019_parque_tangua.JPG" alt="Curitiba" class="location-image" title="Parque Tangua">
+                <img src="/images/locations/BR/PR/DSC_0014-EDIT_parque_tangua.jpg" alt="Curitiba" class="location-image" title="Parque Tangua">
+                <img src="/images/locations/BR/PR/IMG_20240218_174627_796_parque_tangua.jpg" alt="Curitiba" class="location-image" title="Parque Tangua">
+                <img src="/images/locations/BR/PR/IMG-20240121-WA0020_zoologico_municipal_de_curitiba.jpg" alt="Curitiba" class="location-image" title="Zoológico Municipal de Curitiba">
+                <img src="/images/locations/BR/PR/IMG-20240121-WA0007-EDIT_zoologico_municipal_de_curitiba.jpg" alt="Curitiba" class="location-image" title="Zoológico Municipal de Curitiba">
+                <img src="/images/locations/BR/PR/IMG-20240121-WA0012-EDIT_zoologico_municipal_de_curitiba.jpg" alt="Curitiba" class="location-image" title="Zoológico Municipal de Curitiba">
+
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Guaratuba</h4>
+                </div>
+                <img src="/images/locations/BR/PR/FB_IMG_16346561541357548.jpg" alt="2017" class="location-image" title="Guaratuba">
+                <img src="/images/locations/BR/PR/FB_IMG_16346562320183697.jpg" alt="2017" class="location-image" title="Guaratuba">
+                <img src="/images/locations/BR/PR/FB_IMG_16346562392432068.jpg" alt="2017" class="location-image" title="Guaratuba">
+                <img src="/images/locations/BR/PR/FB_IMG_16346562244845657.jpg" alt="2017" class="location-image" title="Guaratuba">
+
+                <img src="/images/locations/BR/PR/FB_IMG_16346560000520489.jpg" alt="2019" class="location-image" title="Guaratuba">
+
+
+                <img src="/images/locations/BR/PR/IMG_20240316_143516_778_guaratuba.jpg" alt="Guaratuba 2024" class="location-image" title="Guaratuba">
+                <img src="/images/locations/BR/PR/IMG_20240316_151456_556_guaratuba.jpg" alt="Guaratuba 2024" class="location-image" title="Guaratuba">
+
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Colombo</h4>
+                </div>
+                <img src="/images/locations/BR/PR/IMG_20240922_132956_344_bacaetava.jpg" alt="Colombo" class="location-image" title="Gruta Bacaetava - Colombo">
+                <img src="/images/locations/BR/PR/IMG_20240922_133750_226_bacaetava.jpg" alt="Colombo" class="location-image" title="Gruta Bacaetava - Colombo">
+                
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Palmeira</h4>
+                </div>
+                <img src="/images/locations/BR/PR/DSC_0033_colonia_witmarsum.JPG" alt="Palmeira" class="location-image" title="Colonia Witmarsum - Palmeira">
+                <img src="/images/locations/BR/PR/DSC_0044_colonia_witmarsum.JPG" alt="Palmeira" class="location-image" title="Colonia Witmarsum - Palmeira">
+                <img src="/images/locations/BR/PR/DSC_0070_colonia_witmarsum.JPG" alt="Palmeira" class="location-image" title="Colonia Witmarsum - Palmeira">
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Morretes</h4>
+                </div>
+                <img src="/images/locations/BR/PR/IMG_20240616_131203_509_morretes.jpg" alt="Morretes" class="location-image" title="Morretes">
+                <img src="/images/locations/BR/PR/IMG_20240616_131945_608_morretes.jpg" alt="Morretes"  class="location-image" title="Morretes">
+                <img src="/images/locations/BR/PR/IMG_20240616_125925_440-EDIT_morretes_morretes.jpg" alt="Morretes"  class="location-image" title="Morretes">
+                <img src="/images/locations/BR/PR/IMG_20240616_131927_455-EDIT_morretes.jpg" alt="Morretes" class="location-image" title="Morretes">
+                <img src="/images/locations/BR/PR/IMG_20240616_142810_115-EDIT_morretes.jpg" alt="Morretes" class="location-image" title="Morretes">
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Antonina</h4>
+                </div>
+                <img src="/images/locations/BR/PR/IMG_20240616_143428_944-EDIT_antonina.jpg" alt="Antonina" class="location-image" title="Antonina">
+                <img src="/images/locations/BR/PR/IMG_20240616_145001_378-EDIT_antonina.jpg" alt="Antonina" class="location-image" title="Antonina">
+                <img src="/images/locations/BR/PR/antonina.jpg" alt="Antonina" class="location-image" title="Antonina">
+                
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Santa Terezinha de Itaipu</h4>
+                </div>
+                <img src="/images/locations/BR/PR/IMG_20230514_164147_151-santa_terezinha_de_itaipu.jpg" alt="Santa Terezinha de Itaipu" class="location-image" title="Santa Terezinha de Itaipu">
+                <img src="/images/locations/BR/PR/FB_IMG_16346560670649086.jpg" alt="Santa Terezinha de Itaipu" class="location-image" title="Santa Terezinha de Itaipu">
+                <div style="width: 100%;">
+                    <h4 style="display: block; text-align: center;">Piraquara</h4>
+                </div>
+                <img src="/images/locations/BR/PR/20251005194525130_piraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Piraquara">
+                <img src="/images/locations/BR/PR/20251005201334364_piraqueara.jpg" alt="Piraquara 20250905" class="location-image" title="Piraquara">
+                <img src="/images/locations/BR/PR/20250905_parque_das_aguas_paraquara.JPG" alt="Piraquara 20250905" class="location-image" title="Piraquara">
+                <img src="/images/locations/BR/PR/20250905_morro_anhanguera_paraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Piraquara">
+                <img src="/images/locations/BR/PR/20250905_dog_parque_das_aguas_paraquara.JPG" alt="Piraquara 20250905" class="location-image" title="Piraquara">
+                <img src="/images/locations/BR/PR/20250905_lua_morro_anhanguera_paraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Piraquara">
+                <img src="/images/locations/BR/PR/20250905_dog_rio_parque_das_aguasparaquara.JPG" alt="Piraquara 20250905" class="location-image" title="Piraquara">
+
+            </div>
+        </div>
+
+         <div class="location-section">
+            <h3>Bahia (BA)</h3>
+            <div class="location-image-container">
+                <img src="/images/locations/BR/BA/IMG_3614.JPG" alt="Salvador" class="location-image" title="Praia do Farol da Barra - Salvador">
+                <img src="/images/locations/BR/BA/IMG_3638.JPG" alt="Salvador" class="location-image" title="Praia do Farol da Barra - Salvador">
+                <img src="/images/locations/BR/BA/IMG_3648.JPG" alt="Salvador" class="location-image" title="Praia do Farol da Barra - Salvador">
+                <img src="/images/locations/BR/BA/IMG_3676.JPG" alt="Salvador" class="location-image" title="Pelourinho - Salvador">
+                <img src="/images/locations/BR/BA/IMG_3701.JPG" alt="Salvador" class="location-image" title="Elevador Lacerda - Salvador">
+                <img src="/images/locations/BR/BA/IMG_3771-EDIT.jpg" alt="Salvador" class="location-image" title="Praia do Forte | Projeto Tamar - Salvador">
+                <img src="/images/locations/BR/BA/IMG_3805.JPG" alt="Salvador" class="location-image" title="Praia do Forte | Projeto Tamar - Salvador">
+                <img src="/images/locations/BR/BA/IMG_3822.JPG" alt="Salvador" class="location-image" title="Praia do Forte | Projeto Tamar - Salvador">
+                <img src="/images/locations/BR/BA/FB_IMG_16346567448009057.jpg" alt="Salvador" class="location-image" title="Praia do Forte | Projeto Tamar - Salvador">
+                <img src="/images/locations/BR/BA/FB_IMG_16346567946559370.jpg" alt="Salvador" class="location-image" title="Igreja Nossa Senhora do Bonfim - Salvador">
+            </div>
+        </div>
+
+        <div class="location-section">
+            <h3>Distrito Federal (DF)</h3>
+            <div class="location-image-container">
+                <img src="/images/locations/BR/DF/IMG_3831-EDIT.jpg" alt="Brasília" class="location-image" title="Palácio do Congresso Nacional - Brasília">
+                <img src="/images/locations/BR/DF/IMG_3837-EDIT.jpg" alt="Brasília" class="location-image" title="Palácio do Planalto - Brasília">
+            </div>
+        </div>
+
+        <div class="location-section">
+            <h3>São Paulo (SP)</h3>
+            <div class="location-image-container">
+                <img src="/images/locations/BR/SP/FB_IMG_16346568370881550.jpg" alt="2015" class="location-image" title="Pinacoteca - São Paulo">
+                <img src="/images/locations/BR/SP/FB_IMG_16346568592468921_iguape.jpg" alt="Iguape" class="location-image" title="Iguape">
+                <img src="/images/locations/BR/SP/FB_IMG_16346568452616292.jpg" alt="2015" class="location-image" title="Pinacoteca - São Paulo">
+                <img src="/images/locations/BR/SP/IMG_20221204_141125550-EDIT_campinas.jpg" alt="Campinas" class="location-image" title="Shopping Dom Pedro - Campinas">
+                <img src="/images/locations/BR/SP/IMG_20221204_143842209_BURST000_COVER_TOP-EDIT_campinas.jpg" alt="Campinas" class="location-image" title="Shopping Dom Pedro - Campinas">
+
+
+
+
+                <!-- <img src="/images/locations/BR/SP/" alt="Campinas" class="location-image" title="Shopping Dom Pedro - Campinas">
+                <img src="/images/locations/BR/SP/" alt="Campinas" class="location-image" title="Shopping Dom Pedro - Campinas">
+                <img src="/images/locations/BR/SP/" alt="Campinas" class="location-image" title="Shopping Dom Pedro - Campinas">
+                <img src="/images/locations/BR/SP/" alt="Campinas" class="location-image" title="Shopping Dom Pedro - Campinas">
+                <img src="/images/locations/BR/SP/" alt="Campinas" class="location-image" title="Shopping Dom Pedro - Campinas">
+                <img src="/images/locations/BR/SP/" alt="Campinas" class="location-image" title="Shopping Dom Pedro - Campinas">
+                <img src="/images/locations/BR/SP/" alt="Campinas" class="location-image" title="Shopping Dom Pedro - Campinas">
+                <img src="/images/locations/BR/SP/" alt="Campinas" class="location-image" title="Shopping Dom Pedro - Campinas"> -->
+            </div>
+        </div>
+
+        <div class="location-section">
+            <h3>Rio de Janeiro (RJ)</h3>
+            <div class="location-image-container">
+                <img src="/images/locations/BR/RJ/carlos_drummond_2014.jpg" alt="Carlos Drummond" class="location-image" title="Estátua de Carlos Drummond de Andrade - Copacabana">
+                <img src="/images/locations/BR/RJ/copacabana_2014.jpg" alt="Copacabana" class="location-image" title="Praia de Ipanema">
+                <img src="/images/locations/BR/RJ/cristo_redentor_2014.jpg" alt="Cristo Redentor" class="location-image" title="Cristo Redentor">
+                <img src="/images/locations/BR/RJ/fundacao_oswaldo_cruz_2014.jpg" alt="Fundação Oswaldo Cruz" class="location-image" title="Fundação Oswaldo Cruz - Zona Norte">
+                <img src="/images/locations/BR/RJ/lapa_2014.jpg" alt="Lapa" class="location-image" title="Lapa">
+                <img src="/images/locations/BR/RJ/morro_alemao_2014.jpg" alt="Morro do Alemão" class="location-image" title="Morro do Alemão">
+                <img src="/images/locations/BR/RJ/pao_de_acucao_2014.jpg" alt="Pão de Açúcar" class="location-image" title="Pão de Açucar">
+                <img src="/images/locations/BR/RJ/niteroi_2014.jpg" alt="Niterói" class="location-image" title="Museu de Arte Contemporânea - Niterói">
+            </div>
+        </div>
+
+        <div class="location-section">
+            <h3>Mato Grosso do Sul (MS)</h3>
+            <div class="location-image-container">
+                <img src="/images/locations/BR/MS/horses_mundo_novo_2014.jpg" alt="Mundo Novo" class="location-image" title="Mundo Novo">
+                <img src="/images/locations/BR/MS/mundo_novo_2014.JPG" alt="Mundo Novo" class="location-image" title="Mundo Novo">
+            </div>
+        </div>
+
+
+        <div class="location-section">
+            <h3>Santa Catarina (SC)</h3>
+            <div class="location-image-container">
+                <img src="/images/locations/BR/SC/sombrio_2014.JPG" alt="Sombrio" class="location-image" title="Sombrio">
+
+                <img src="/images/locations/BR/SC/DSC_0005-EDIT.jpg" alt="Garuva 2025" class="location-image" title="Garuva">
+                <img src="/images/locations/BR/SC/DSC_0009.JPG" alt="Garuva 2025" class="location-image" title="Garuva">
+                <img src="/images/locations/BR/SC/DSC_0014.JPG" alt="Garuva 2025" class="location-image" title="Garuva">
+                <img src="/images/locations/BR/SC/DSC_0018.JPG" alt="Garuva 2025" class="location-image" title="Garuva">
+                <img src="/images/locations/BR/SC/DSC_0030.JPG" alt="Garuva 2025" class="location-image" title="Garuva">
+                <img src="/images/locations/BR/SC/DSC_0041.JPG" alt="Garuva 2025" class="location-image" title="Garuva">
+                <img src="/images/locations/BR/SC/IMG_20250101_113818_896_ponte_invertida.jpg" alt="Rio São João | Garuva 2025" class="location-image" title="Garuva">
+
+
+                <img src="/images/locations/BR/SC/DSC_0026.JPG" alt="Barra Velha 2025" class="location-image" title="Barra Velha">
+                <img src="/images/locations/BR/SC/DSC_0044.JPG" alt="Barra Velha 2025" class="location-image" title="Barra Velha">
+                <img src="/images/locations/BR/SC/DSC_0053.JPG" alt="Barra Velha 2025" class="location-image" title="Barra Velha">
+                <img src="/images/locations/BR/SC/DSC_0058.JPG" alt="Barra Velha 2025" class="location-image" title="Barra Velha">
+
+                <img src="/images/locations/BR/SC/20250314180548604_bcw__barra_velha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314180549732_bcw__barra_velha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314180550037_bcw__barra_velha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314180550525_bcw__barra_velha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314180551863_bcw__barra_velha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314180552048_bcw__barra_velha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314180552896_bcw__barra_velha.jpg" alt="Penha | BCW 2025"  class="location-image"title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314180553732_bcw__barra_velha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314180557494_bcw__barra_velha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314180558291_bcw__barra_velha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314180600056_bcw__barra_velha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314180601477_praia_da_paciencia.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314181013701_bcw__barra_velha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314182605069_penha.jpg" alt="Penha | BCW 2025" class="location-image" title="Beto Carreiro - Penha">
+                <img src="/images/locations/BR/SC/20250314182422583_bcw_penha.jpg" alt="Penha | BCW 2025"  class="location-image" title="Beto Carreiro - Penha">
+
+                <img src="/images/locations/BR/SC/20250316134153665_pomerode.jpg" alt="Pomerode 2025" class="location-image" title="Pomerode">
+                <img src="/images/locations/BR/SC/20250316134154075_pomerode.jpg" alt="Pomerode 2025" class="location-image" title="Pomerode">
+                <img src="/images/locations/BR/SC/20250316134154484_pomerode.jpg" alt="Pomerode 2025" class="location-image" title="Pomerode">
+                <img src="/images/locations/BR/SC/20250316134154969_pomerode.jpg" alt="Pomerode 2025" class="location-image" title="Pomerode">
+                <img src="/images/locations/BR/SC/20250320144411393_pomerode.jpg" alt="Pomerode 2025" class="location-image" title="Pomerode">
+
+                <img src="/images/locations/BR/SC/IMG-20240422-WA0022_ponta_de_baixo_são_josé.jpg" alt="2024" class="location-image" title="Ponta de Baixo - São José">
+
+                <img src="/images/locations/BR/SC/IMG_20240422_110252_134_ponte_hercilio_luz_florianópolis.jpg" alt=" 2024" class="location-image" title="Ponte Hercílio Luz - Florianópolis">
+                <img src="/images/locations/BR/SC/IMG_20240425_230804_749_praia_da_pedra_grande_florianópolis.jpg" alt="2024" class="location-image" title="Praia da Pedra Grande - Florianópolis">
+
+                <img src="/images/locations/BR/SC/IMG_20240424_064508_447_palhoça.jpg" alt="2024" class="location-image" title="Palhoça">
+
+            </div>
+        </div>
+
+        <div class="location-section">
+            <h3>Rio Grande do Sul (RS)</h3>
+            <div class="location-image-container">
+                <img src="/images/locations/BR/RS/praia_da_guarita_torres_2013.jpg" alt="Torres" class="location-image">
+                <img src="/images/locations/BR/RS/parque_da_guarita_torres_2013.jpg" alt="Cambará do Sul"
+                    class="location-image">
+                <img src="/images/locations/BR/RS/paque_nacional_aparados_da_serra_praia_grande_2014.jpg"
+                    alt="Cambará do Sul" class="location-image">
+                <img src="/images/locations/BR/RS/canion_itaimbezinho_praia_grande_cambará_do_sul_2014.JPG"
+                    alt="Cambará do Sul" class="location-image">
+                <img src="/images/locations/BR/RS/mario_quintana_porto_alegre_2015.jpg" alt="Porto Alegre"
+                    class="location-image">
+                <img src="/images/locations/BR/RS/porto_alegre_2015.jpg" alt="Porto Alegre" class="location-image">
+            </div>
+        </div>
+    </div>
+
+    <div id="paraguai" class="location-section">
+        <h2>Paraguai</h2>
+        <div class="location-image-container">
+            <img src="/images/locations/PY/FB_IMG_16346559559106495.jpg" alt="Ciudad del Este" class="location-image" title="Ciudad del Este">
+            <img src="/images/locations/PY/FB_IMG_16346559636604008.jpg" alt="Ciudad del Este" class="location-image" title="Ciudad del Este">
+            <img src="/images/locations/PY/FB_IMG_16346559715019594.jpg" alt="Ciudad del Este" class="location-image" title="Ciudad del Este">
+            <img src="/images/locations/PY/FB_IMG_16346559785178190.jpg" alt="Ciudad del Este" class="location-image" title="Ciudad del Este">
+
+            <img src="/images/locations/PY/palácio_deLos_lopes_asunción_2013.jpg" alt="Asunción" class="location-image">
+            <img src="/images/locations/PY/panteón_nacional_deLos_héroes_asunción_2013.jpg" alt="Asunción"  class="location-image">
+            <img src="/images/locations/PY/saltos_del_monday_ciudad_del_este_2013.jpg" alt="Presidente Franco"
+                class="location-image">
+        </div>
+    </div>
+
+    <div id="argentina" class="location-section">
+        <h2>Argentina</h2>
+        <div class="location-image-container">
+            <img src="/images/locations/AR/posadas_2014.jpg" alt="Posadas" class="location-image" title="Posadas">
+
+            <img src="/images/locations/AR/fuerza_bruta_car_ba_2014.jpg" alt="Buenas Aires" class="location-image" title="Buenas Aires">
+            <img src="/images/locations/AR/fuerza_bruta_ba_2014.jpg" alt="Buenas Aires" class="location-image" title="Buenas Aires">
+            <img src="/images/locations/AR/planetario_2014.jpg" alt="Buenas Aires" class="location-image" title="Buenas Aires">
+            <img src="/images/locations/AR/el_caminito_2014.jpg" alt="Buenas Aires" class="location-image" title="Buenas Aires">
+            <img src="/images/locations/AR/plaza_2014.jpg" alt="Buenas Aires" class="location-image" title="Buenas Aires">
+            <img src="/images/locations/AR/floralis_2014.jpg" alt="Buenas Aires" class="location-image" title="Buenas Aires">
+
+            <img src="/images/locations/AR/garganta_del_diablo_puert_iguaze.jpg" alt="Puerto Iguazu" class="location-image" title="Puerto Iguazú">
+
+            <img src="/images/locations/AR/IMG_20231006_215913_517_puerto_iguazu.jpg" alt="Puerto Iguazu" class="location-image" title="Hito de Las 3 Fronteras - Puerto Iguazú">
+            <img src="/images/locations/AR/IMG_20231006_222340_896-EDIT_puerto_iguazu.jpg" alt="Puerto Iguazu" class="location-image" title="Puerto Iguazú">
+
+        </div>
+    </div>
+
+    <div id="uruguai" class="location-section">
+        <h2>Uruguai</h2>
+        <div class="location-image-container">
+            <img src="/images/locations/UY/coche_colonia_del_sacramento.jpg" alt="Colonia del sacramento"
+                class="location-image">
+            <img src="/images/locations/UY/colonia_del_sacramento_2014.jpg" alt="Colonia del sacramento"
+                class="location-image">
+            <img src="/images/locations/UY/puert_colonia_del_sacramento.jpg" alt="Colonia del sacramento"
+                class="location-image">
+            <img src="/images/locations/UY/cs_2014.jpg" alt="Montevideo" class="location-image">
+            <img src="/images/locations/UY/manos_punta_del_este_2014.jpg" alt="Punta del Este" class="location-image">
+        </div>
+    </div>
+
+    <div id="colombia" class="location-section">
+        <h2>Colombia</h2>
+        <div class="location-image-container">
+            <img src="/images/locations/CO/IMG_3952.JPG" alt="Bogotá" class="location-image">
+            <img src="/images/locations/CO/IMG_3962.JPG" alt="Bogotá" class="location-image">
+            <img src="/images/locations/CO/IMG_3970.JPG" alt="Bogotá" class="location-image">
+            <img src="/images/locations/CO/IMG_3989.JPG" alt="Bogotá" class="location-image">
+        </div>
+    </div>
+
+   <div id="venezuela" class="location-section">
+        <h2>Venezuela</h2>
+        <div class="location-image-container">
+            <img src="/images/locations/VE/IMG_4021.JPG" alt="2016" class="location-image">
+            <img src="/images/locations/VE/IMG_4148.JPG" alt="Venezuela" class="location-image">
+            <!-- <img src="/images/locations/VE/FB_IMG_16346565342795642.jpg" alt="Venezuela" class="location-image"> -->
+            <img src="/images/locations/VE/FB_IMG_16346565524746483.jpg" alt="Venezuela" class="location-image">
+            <img src="/images/locations/VE/FB_IMG_16346566177407150.jpg" alt="Venezuela" class="location-image" title="Cayo los pescadores">
+            <img src="/images/locations/VE/FB_IMG_16346566256023768.jpg" alt="Venezuela" class="location-image">
+            <img src="/images/locations/VE/FB_IMG_16346566437446677.jpg" alt="Venezuela" class="location-image" title="San Antonio - Tatira">
+            <!-- <img src="/images/locations/VE/FB_IMG_16346566558094647.jpg" alt="Venezuela" class="location-image" title="San Antonio - Tatira"> -->
+            <img src="/images/locations/VE/PANO_20151228_162205.jpg" alt="Venezuela" class="location-image" title="Caracas">
+            <img src="/images/locations/VE/FB_IMG_16346565210839960.jpg" alt="Venezuela" class="location-image" title="Santa Elena de Uairén - Bolivar">
+            <img src="/images/locations/VE/FB_IMG_16346566804667358.jpg" alt="Venezuela" class="location-image" title="Caracas">
+            <img src="/images/locations/VE/FB_IMG_16346555086919480.jpg" alt="Venezuela" class="location-image" title="Santa Elena de Uairén - Bolivar">
+            <img src="/images/locations/VE/FB_IMG_16346564772851130.jpg" alt="Venezuela" class="location-image" title="Santa Elena de Uairén - Bolivar">
+            <img src="/images/locations/VE/FB_IMG_16346564919831579.jpg" alt="Venezuela" class="location-image" title="Santa Elena de Uairén - Bolivar">
+            <img src="/images/locations/VE/FB_IMG_16346565058898847.jpg" alt="Venezuela" class="location-image" title="Santa Elena de Uairén - Bolivar">
+            <img src="/images/locations/VE/FB_IMG_16346565141471194.jpg" alt="Venezuela" class="location-image" title="Santa Elena de Uairén - Bolivar">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Mapa Fotográfico | Todos os direitos reservados</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const map = L.map('map').setView([-25.3, -55.0], 5);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19
+            }).addTo(map);
+
+             const locations = [
+                { coords: [-25.5478, -54.5882], title: "Foz do Iguaçu, Brasil", link: "#foz" },
+                // { coords: [-25.2637, -57.5759], title: "Assunção, Paraguai", link: "#paraguai" },
+                // { coords: [-28.0775, -48.6300], title: "Sombrio, Brasil", link: "#brasil" },
+                // { coords: [-29.3326, -49.7321], title: "Torres, Brasil", link: "#brasil" },
+                // { coords: [-30.0346, -51.2195], title: "Porto Alegre, Brasil", link: "#brasil" },
+                // { coords: [-22.9711, -43.1822], title: "Rio de Janeiro, Brasil", link: "#brasil" },
+                // { coords: [-20.4428, -54.4516], title: "Campo Grande, Brasil", link: "#brasil" },
+                // { coords: [-34.9011, -56.1645], title: "Montevidéu, Uruguai", link: "#uruguai" },
+                // { coords: [-34.5884, -58.3734], title: "Buenos Aires, Argentina", link: "#argentina" },
+                // { coords: [-25.0, -57.0], title: "Ciudad del Este, Paraguai", link: "#paraguai" },
+                // { coords: [4.6109, -74.0818], title: "Bogotá, Colômbia", link: "#colombia" }, 
+                // { coords: [10.4916, -66.9036], title: "Santa Elena de Uairén, Venezuela", link: "#venezuela" },
+                // { coords: [-34.8705, -56.1659], title: "Rosario, Uruguai", link: "#uruguai" },
+
+                // { coords: [2.8129, -60.6740], title: "Boa Vista, Brasil", link: "#brasil" }, // RR
+                // { coords: [-3.1190, -60.0217], title: "Manaus, Brasil", link: "#brasil" }, // AM
+                // { coords: [-12.9711, -38.5108], title: "Salvador, Brasil", link: "#brasil" }, // BA
+                // { coords: [-15.7801, -47.9292], title: "Brasília, Brasil", link: "#brasil" }, // DF
+                // { coords: [-23.0294, -54.1827], title: "Mundo Novo, Brasil", link: "#brasil" }, // MS
+                // { coords: [-22.8831, -43.1039], title: "Niterói, Brasil", link: "#brasil" }, // RJ (Niterói)
+                // { coords: [-23.5505, -46.6333], title: "São Paulo, Brasil", link: "#brasil" }, // SP
+                // { coords: [-24.0485, -47.5783], title: "Iguape, Brasil", link: "#brasil" }, // SP
+                // { coords: [-25.0088, -47.8530], title: "Ilha Comprida, Brasil", link: "#brasil" }, // SP
+                // { coords: [-22.8489, -47.0592], title: "Campinas, Brasil", link: "#brasil" }, // SP
+                // { coords: [-22.9627, -47.0251], title: "Holambra, Brasil", link: "#brasil" }, // SP
+                // { coords: [-24.2212, -54.5489], title: "Toledo, Brasil", link: "#brasil" }, // PR
+                // { coords: [-23.7696, -53.2055], title: "Umuarama, Brasil", link: "#brasil" }, // PR
+                { coords: [-25.4284, -49.2733], title: "Curitiba, Brasil", link: "#cwb" }, // PR
+                // { coords: [-25.4063, -48.5862], title: "Castro, Brasil", link: "#brasil" }, // PR
+                // { coords: [-26.8231, -48.5539], title: "Caiobá, Brasil", link: "#brasil" }, // PR
+                // { coords: [-25.8739, -48.5925], title: "Guaratuba, Brasil", link: "#brasil" }, // PR
+                // { coords: [-25.5149, -48.7011], title: "Morretes, Brasil", link: "#brasil" }, // PR
+                // { coords: [-25.2579, -48.9102], title: "Antonina, Brasil", link: "#brasil" }, // PR
+                // { coords: [-26.1407, -48.8719], title: "Garuva, Brasil", link: "#brasil" }, // PR
+                // { coords: [-25.6272, -49.2513], title: "Pontal do Paraná, Brasil", link: "#brasil" }, // PR
+                // { coords: [-25.5290, -49.3882], title: "Palmeiras (Colônia Witmarsum), Brasil", link: "#brasil" }, // PR
+                // { coords: [-25.2994, -49.1829], title: "Colombo (Gruta Bacaetava), Brasil", link: "#brasil" }, // PR
+                // { coords: [-26.1407, -48.8719], title: "Bombinhas, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.3324, -48.6730], title: "Mariscal, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.8884, -48.6649], title: "Itapoá, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.2993, -48.6629], title: "São Francisco do Sul, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.3042, -48.8456], title: "Joinville, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.3237, -48.6462], title: "Penha, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.8320, -49.1141], title: "Pomerode, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.2345, -48.6352], title: "Barra Velha, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.3937, -48.7121], title: "Rio Negrinho, Brasil", link: "#brasil" }, // SC
+                // { coords: [-29.3310, -50.2318], title: "Osório, Brasil", link: "#brasil" }, // RS
+                // { coords: [-29.3210, -49.7309], title: "Torres, Brasil", link: "#brasil" }, // RS
+
+                // { coords: [-25.5401, -54.5807], title: "Presidente Franco, Paraguai", link: "#paraguai" },
+                // { coords: [-25.5833, -54.4871], title: "Hernandarias, Paraguai", link: "#paraguai" },
+                // { coords: [-25.4861, -54.5495], title: "Saltos del Monday, Paraguai", link: "#paraguai" },
+                // { coords: [-25.3102, -57.6502], title: "San Cristóbal, Paraguai", link: "#paraguai" },
+                
+                // { coords: [-25.7606, -54.5854], title: "Puerto Iguazú, Argentina", link: "#argentina" },
+                // { coords: [-54.8074, -25.6459], title: "Santa Cruz de La Sierra, Argentina", link: "#argentina" },
+                // { coords: [-54.6351, -27.3656], title: "Posadas, Argentina", link: "#argentina" },
+                
+                // { coords: [-34.7050, -57.2251], title: "Colônia del Sacramento, Uruguai", link: "#uruguai" },
+                // { coords: [-34.9011, -56.1645], title: "Montevideo, Uruguai", link: "#uruguai" },
+                // { coords: [-34.9466, -55.1983], title: "Punta Ballena, Uruguai", link: "#uruguai" },
+                // { coords: [-34.9667, -54.9568], title: "Punta del Este, Uruguai", link: "#uruguai" },
+
+                // { coords: [-10.4722, -74.1189], title: "Caracas, Venezuela", link: "#venezuela" },
+                // { coords: [7.7631, -72.4045], title: "San Cristóbal, Venezuela", link: "#venezuela" },
+                // { coords: [8.5500, -70.0444], title: "Guasdualito, Venezuela", link: "#venezuela" },
+                // { coords: [9.6261, -72.0480], title: "San Antonio, Venezuela", link: "#venezuela" },
+                // { coords: [10.2260, -63.6710], title: "Cayo Muerto, Venezuela", link: "#venezuela" },
+                // { coords: [11.1487, -69.3259], title: "Falcón, Venezuela", link: "#venezuela" },
+                // { coords: [10.9140, -62.5280], title: "Cayo Sal, Venezuela", link: "#venezuela" },
+                // { coords: [10.4916, -66.9036], title: "Santa Elena de Uairén, Venezuela", link: "#venezuela" },
+                // { coords: [8.9700, -62.6320], title: "Puerto Ordaz, Venezuela", link: "#venezuela" },
+                // { coords: [5.9000, -62.3444], title: "La Gran Sabana, Venezuela", link: "#venezuela" },
+
+            ];
+
+            locations.forEach(location => {
+                const marker = L.marker(location.coords).addTo(map);
+                marker.bindPopup(`<b>${location.title}</b><br><a href="${location.link}">Ver mais</a>`);
+            });
+        });
+    </script>
+</body>
+
+</html>
