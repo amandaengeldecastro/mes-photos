@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rio de Janeiro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Rio de Janeiro</h1>
+    </header>
+
+    <div class="location-section">
+        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/RJ/carlos_drummond_2014.jpg"
+                alt="Carlos Drummond" class="location-image" title="Estátua de Carlos Drummond de Andrade - Copacabana">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/RJ/copacabana_2014.jpg" alt="Copacabana"
+                class="location-image" title="Praia de Ipanema">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/RJ/cristo_redentor_2014.jpg"
+                alt="Cristo Redentor" class="location-image" title="Cristo Redentor">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/RJ/fundacao_oswaldo_cruz_2014.jpg"
+                alt="Fundação Oswaldo Cruz" class="location-image" title="Fundação Oswaldo Cruz - Zona Norte">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/RJ/lapa_2014.jpg" alt="Lapa"
+                class="location-image" title="Lapa">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/RJ/morro_alemao_2014.jpg"
+                alt="Morro do Alemão" class="location-image" title="Morro do Alemão">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/RJ/pao_de_acucao_2014.jpg" alt="Pão de Açúcar"
+                class="location-image" title="Pão de Açucar">
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mapa Fotográfico | Todos os direitos reservados</p>
+    </footer>
+    <!-- Modal para exibir a imagem ampliada -->
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

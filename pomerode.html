@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>SC</h1>
+    </header>
+
+    <div class="location-section">
+        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/20250316134153665_pomerode.jpg"
+                alt="Pomerode 2025" class="location-image" title="Pomerode">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/20250316134154075_pomerode.jpg"
+                alt="Pomerode 2025" class="location-image" title="Pomerode">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/20250316134154484_pomerode.jpg"
+                alt="Pomerode 2025" class="location-image" title="Pomerode">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/20250316134154969_pomerode.jpg"
+                alt="Pomerode 2025" class="location-image" title="Pomerode">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/20250320144411393_pomerode.jpg"
+                alt="Pomerode 2025" class="location-image" title="Pomerode">
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mapa Fotográfico | Todos os direitos reservados</p>
+    </footer>
+    <!-- Modal para exibir a imagem ampliada -->
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
