@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morretes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Morretes</h1>
+    </header>
+
+    <div class="location-section">
+        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240616_131203_509_morretes.jpg" alt="Morretes" class="location-image" title="Morretes">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240616_131945_608_morretes.jpg" alt="Morretes"  class="location-image" title="Morretes">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240616_125925_440-EDIT_morretes_morretes.jpg" alt="Morretes"  class="location-image" title="Morretes">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240616_131927_455-EDIT_morretes.jpg" alt="Morretes" class="location-image" title="Morretes">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240616_142810_115-EDIT_morretes.jpg" alt="Morretes" class="location-image" title="Morretes">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mapa Fotográfico | Todos os direitos reservados</p>
+    </footer>
+    <!-- Modal para exibir a imagem ampliada -->
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

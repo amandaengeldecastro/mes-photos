@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guaratuba</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Guaratuba</h1>
+    </header>
+
+    <div class="location-section">
+        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346561541357548.jpg" alt="2017"
+                class="location-image" title="Guaratuba">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346562320183697.jpg" alt="2017"
+                class="location-image" title="Guaratuba">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346562392432068.jpg" alt="2017"
+                class="location-image" title="Guaratuba">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346562244845657.jpg" alt="2017"
+                class="location-image" title="Guaratuba">
+
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346560000520489.jpg" alt="2019"
+                class="location-image" title="Guaratuba">
+
+
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240316_143516_778_guaratuba.jpg"
+                alt="Guaratuba 2024" class="location-image" title="Guaratuba">
+            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240316_151456_556_guaratuba.jpg"
+                alt="Guaratuba 2024" class="location-image" title="Guaratuba">
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mapa Fotográfico | Todos os direitos reservados</p>
+    </footer>
+    <!-- Modal para exibir a imagem ampliada -->
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -31,7 +31,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const map = L.map('map').setView([-25.5, -48.5], 8);
+            const map = L.map('map').setView([-25.0, -54.0], 5);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -43,10 +43,89 @@
                 { coords: [-25.4284, -49.2733], title: "Curitiba - PR, Brasil", link: "curitiba.html" },
                 { coords: [-25.1514, -54.1351], title: "Itaipulândia - PR, Brasil", link: "itaipulandia.html" },
                 { coords: [-25.8231, -48.5221], title: "Matinhos - PR, Brasil", link: "matinhos.html" },
-                { coords: [-25.6739, -48.5118], title: "Pontal do Paraná - PR, Brasil", link: "pontal.html" },
-                { coords: [-25.4420, -49.0628], title: "Piraquara - PR, Brasil", link: "piraquara.html" }, 
-                           { coords: [-25.5272, -49.1922], title: "São José dos Pinhais - PR, Brasil", link: "saojosedospinhais.html" }, 
-                { coords: [-26.1158, -48.6112], title: "Itapoá - SC, Brasil", link: "itapoa.html" }
+                { coords: [-25.4420, -49.0628], title: "Piraquara - PR, Brasil", link: "piraquara.html" },
+                { coords: [-25.5272, -49.1922], title: "São José dos Pinhais - PR, Brasil", link: "saojosedospinhais.html" },
+                { coords: [-25.6439, -48.5108], title: "Pontal do Paraná - PR, Brasil", link: "pontal.html" },
+                { coords: [-25.87, -48.56], title: "Guaratuba - PR, Brasil", link: "guaratuba.html" },
+                { coords: [-26.0250, -48.8519], title: "Garuva - SC, Brasil", link: "garuva.html" },
+                { coords: [-26.1158, -48.6112], title: "Itapoá - SC, Brasil", link: "itapoa.html" },
+                { coords: [-25.2994, -49.1829], title: "Colombo  - PR, Brasil", link: "#colombo.html" },
+                { coords: [-25.5290, -49.3882], title: "Palmeira - PR, Brasil", link: "#palmeira.html" },
+                { coords: [-25.2579, -48.9102], title: "Antonina - PR, Brasil", link: "#antonina.html" },
+                { coords: [], title: "Santa Terezinha de Itaipu - PR, Brasil", link: "#terezinha.html" },
+                { coords: [-25.5149, -48.7011], title: "Morretes - PR, Brasil", link: "#morretes.html" },
+                { coords: [-12.9711, -38.5108], title: "Salvador - BA, Brasil", link: "#salvador.html" },
+                { coords: [-15.7801, -47.9292], title: "Brasília - DF, Brasil", link: "#brasilia.html" }
+
+
+                
+                // { coords: [-25.2637, -57.5759], title: "Assunção, Paraguai", link: "#paraguai" },
+                // { coords: [-28.0775, -48.6300], title: "Sombrio, Brasil", link: "#brasil" },
+                // { coords: [-29.3326, -49.7321], title: "Torres, Brasil", link: "#brasil" },
+                // { coords: [-30.0346, -51.2195], title: "Porto Alegre, Brasil", link: "#brasil" },
+                // { coords: [-22.9711, -43.1822], title: "Rio de Janeiro, Brasil", link: "#brasil" },
+                // { coords: [-20.4428, -54.4516], title: "Campo Grande, Brasil", link: "#brasil" },
+                // { coords: [-34.9011, -56.1645], title: "Montevidéu, Uruguai", link: "#uruguai" },
+                // { coords: [-34.5884, -58.3734], title: "Buenos Aires, Argentina", link: "#argentina" },
+                // { coords: [-25.0, -57.0], title: "Ciudad del Este, Paraguai", link: "#paraguai" },
+                // { coords: [4.6109, -74.0818], title: "Bogotá, Colômbia", link: "#colombia" }, 
+                // { coords: [10.4916, -66.9036], title: "Santa Elena de Uairén, Venezuela", link: "#venezuela" },
+                // { coords: [-34.8705, -56.1659], title: "Rosario, Uruguai", link: "#uruguai" },
+
+                // { coords: [2.8129, -60.6740], title: "Boa Vista, Brasil", link: "#brasil" }, // RR
+                // { coords: [-3.1190, -60.0217], title: "Manaus, Brasil", link: "#brasil" }, // AM
+                // { coords: [-12.9711, -38.5108], title: "Salvador, Brasil", link: "#brasil" }, // BA
+                // { coords: [-23.0294, -54.1827], title: "Mundo Novo, Brasil", link: "#brasil" }, // MS
+                // { coords: [-22.8831, -43.1039], title: "Niterói, Brasil", link: "#brasil" }, // RJ (Niterói)
+                // { coords: [-23.5505, -46.6333], title: "São Paulo, Brasil", link: "#brasil" }, // SP
+                // { coords: [-24.0485, -47.5783], title: "Iguape, Brasil", link: "#brasil" }, // SP
+                // { coords: [-25.0088, -47.8530], title: "Ilha Comprida, Brasil", link: "#brasil" }, // SP
+                // { coords: [-22.8489, -47.0592], title: "Campinas, Brasil", link: "#brasil" }, // SP
+                // { coords: [-22.9627, -47.0251], title: "Holambra, Brasil", link: "#brasil" }, // SP
+                // { coords: [-24.2212, -54.5489], title: "Toledo, Brasil", link: "#brasil" }, // PR
+                // { coords: [-23.7696, -53.2055], title: "Umuarama, Brasil", link: "#brasil" }, // PR
+                // { coords: [-25.4063, -48.5862], title: "Castro, Brasil", link: "#brasil" }, // PR
+                // { coords: [-26.8231, -48.5539], title: "Caiobá, Brasil", link: "#brasil" }, // PR
+                // { coords: [-25.8739, -48.5925], title: "Guaratuba, Brasil", link: "#brasil" }, // PR
+                // { coords: [-26.1407, -48.8719], title: "Garuva, Brasil", link: "#brasil" }, // PR
+                // { coords: [-25.6272, -49.2513], title: "Pontal do Paraná, Brasil", link: "#brasil" }, // PR
+                // { coords: [-26.1407, -48.8719], title: "Bombinhas, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.3324, -48.6730], title: "Mariscal, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.8884, -48.6649], title: "Itapoá, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.2993, -48.6629], title: "São Francisco do Sul, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.3042, -48.8456], title: "Joinville, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.3237, -48.6462], title: "Penha, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.8320, -49.1141], title: "Pomerode, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.2345, -48.6352], title: "Barra Velha, Brasil", link: "#brasil" }, // SC
+                // { coords: [-26.3937, -48.7121], title: "Rio Negrinho, Brasil", link: "#brasil" }, // SC
+                // { coords: [-29.3310, -50.2318], title: "Osório, Brasil", link: "#brasil" }, // RS
+                // { coords: [-29.3210, -49.7309], title: "Torres, Brasil", link: "#brasil" }, // RS
+
+                // { coords: [-25.5401, -54.5807], title: "Presidente Franco, Paraguai", link: "#paraguai" },
+                // { coords: [-25.5833, -54.4871], title: "Hernandarias, Paraguai", link: "#paraguai" },
+                // { coords: [-25.4861, -54.5495], title: "Saltos del Monday, Paraguai", link: "#paraguai" },
+                // { coords: [-25.3102, -57.6502], title: "San Cristóbal, Paraguai", link: "#paraguai" },
+
+                // { coords: [-25.7606, -54.5854], title: "Puerto Iguazú, Argentina", link: "#argentina" },
+                // { coords: [-54.8074, -25.6459], title: "Santa Cruz de La Sierra, Argentina", link: "#argentina" },
+                // { coords: [-54.6351, -27.3656], title: "Posadas, Argentina", link: "#argentina" },
+
+                // { coords: [-34.7050, -57.2251], title: "Colônia del Sacramento, Uruguai", link: "#uruguai" },
+                // { coords: [-34.9011, -56.1645], title: "Montevideo, Uruguai", link: "#uruguai" },
+                // { coords: [-34.9466, -55.1983], title: "Punta Ballena, Uruguai", link: "#uruguai" },
+                // { coords: [-34.9667, -54.9568], title: "Punta del Este, Uruguai", link: "#uruguai" },
+
+                // { coords: [-10.4722, -74.1189], title: "Caracas, Venezuela", link: "#venezuela" },
+                // { coords: [7.7631, -72.4045], title: "San Cristóbal, Venezuela", link: "#venezuela" },
+                // { coords: [8.5500, -70.0444], title: "Guasdualito, Venezuela", link: "#venezuela" },
+                // { coords: [9.6261, -72.0480], title: "San Antonio, Venezuela", link: "#venezuela" },
+                // { coords: [10.2260, -63.6710], title: "Cayo Muerto, Venezuela", link: "#venezuela" },
+                // { coords: [11.1487, -69.3259], title: "Falcón, Venezuela", link: "#venezuela" },
+                // { coords: [10.9140, -62.5280], title: "Cayo Sal, Venezuela", link: "#venezuela" },
+                // { coords: [10.4916, -66.9036], title: "Santa Elena de Uairén, Venezuela", link: "#venezuela" },
+                // { coords: [8.9700, -62.6320], title: "Puerto Ordaz, Venezuela", link: "#venezuela" },
+                // { coords: [5.9000, -62.3444], title: "La Gran Sabana, Venezuela", link: "#venezuela" },
+
             ];
 
             locations.forEach(location => {
@@ -55,8 +134,6 @@
             });
         });
     </script>
-
-
 
 </body>
 
