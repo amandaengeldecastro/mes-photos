@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciudad Del Este</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Ciudad Del Este</h1>
+    </header>
+
+    <div class="location-section">
+        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
+            <img onclick="openModal(this.src)" src="./images/locations/PY/FB_IMG_16346559559106495.jpg"
+                alt="Ciudad del Este" class="location-image" title="Ciudad del Este">
+            <img onclick="openModal(this.src)" src="./images/locations/PY/FB_IMG_16346559636604008.jpg"
+                alt="Ciudad del Este" class="location-image" title="Ciudad del Este">
+            <img onclick="openModal(this.src)" src="./images/locations/PY/FB_IMG_16346559715019594.jpg"
+                alt="Ciudad del Este" class="location-image" title="Ciudad del Este">
+            <img onclick="openModal(this.src)" src="./images/locations/PY/FB_IMG_16346559785178190.jpg"
+                alt="Ciudad del Este" class="location-image" title="Ciudad del Este">
+
+
+            <img onclick="openModal(this.src)" src="./images/locations/PY/saltos_del_monday_ciudad_del_este_2013.jpg"
+                alt="Presidente Franco" class="location-image">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mapa Fotográfico | Todos os direitos reservados</p>
+    </footer>
+    <!-- Modal para exibir a imagem ampliada -->
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

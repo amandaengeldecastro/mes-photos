@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bogotá</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Bogotá</h1>
+    </header>
+
+    <div class="location-section">
+        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
+            <div class="location-image-container">
+                <img onclick="openModal(this.src)" src="./images/locations/CO/IMG_3952.JPG" alt="Bogotá"
+                    class="location-image">
+                <img onclick="openModal(this.src)" src="./images/locations/CO/IMG_3962.JPG" alt="Bogotá"
+                    class="location-image">
+                <img onclick="openModal(this.src)" src="./images/locations/CO/IMG_3970.JPG" alt="Bogotá"
+                    class="location-image">
+                <img onclick="openModal(this.src)" src="./images/locations/CO/IMG_3989.JPG" alt="Bogotá"
+                    class="location-image">
+            </div>
+        </div>
+
+            <footer>
+                <p>&copy; 2025 Mapa Fotográfico | Todos os direitos reservados</p>
+            </footer>
+            <!-- Modal para exibir a imagem ampliada -->
+            <div id="myModal" class="modal" onclick="closeModal()">
+                <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
+                <img class="modal-content" id="img01">
+            </div>
+            <script src="script.js"></script>
+        </body>
+
+        </html>
