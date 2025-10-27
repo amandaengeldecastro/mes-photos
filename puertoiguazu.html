@@ -1,21 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Argentina</title>
+    <title>Puerto Iguazú</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
-        <h1>Argentina</h1>
+        <h1>Puerto Iguazú</h1>
     </header>
 
     <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <div class="location-image-container">
             <img onclick="openModal(this.src)" src="./images/locations/AR/garganta_del_diablo_puert_iguaze.jpg"
                 alt="Puerto Iguazu" class="location-image" title="Puerto Iguazú">
 
@@ -24,20 +23,19 @@
             <img onclick="openModal(this.src)"
                 src="./images/locations/AR/IMG_20231006_222340_896-EDIT_puerto_iguazu.jpg" alt="Puerto Iguazu"
                 class="location-image" title="Puerto Iguazú">
-
         </div>
     </div>
 
-   <!-- Modal para exibir a imagem ampliada -->
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> <!-- seta esquerda -->
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> <!-- seta direita -->
-        </span>
+    
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
+            </span>
+        </div>
     </div>
-</div>
 
     <script src="script.js"></script>
 </body>

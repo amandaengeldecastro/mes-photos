@@ -1,93 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seja bem-vindo à minha página!</title>
+    <title>Amanda Engel de Castro</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Estilo responsivo para o mapa */
+        #map {
+            height: 100vh; /* Mapa ocupa 100% da altura da viewport */
+            width: 100%;   /* 100% da largura disponível */
         }
 
-        body,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: "Lato", sans-serif;
-        }
-
+        /* Estilo básico para o body */
         body {
-            background-color: #f4f4f4;
-        }
-
-        .bgimg-home {
-            background-image: url('./images/locations/BR/PR/iguazu_falls.jpg');
-            height: 100vh;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            opacity: 0.8;
-        }
-
-        .w3-bar .w3-button {
-            opacity: 0.8;
-            /* Semi-transparent navbar */
-        }
-
-        .w3-bar .w3-button:hover {
-            opacity: 1;
-            /* Opacidade total no hover */
+            margin: 0; /* Remove margens */
+            padding: 0; /* Remove preenchimento */
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            overflow: hidden; /* Evita rolagem da página */
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Navbar -->
-    <div class="w3-top">
-        <div class="w3-bar w3-black" id="myNavbar">
-            <a href="index.html" class="w3-bar-item w3-button">HOME</a>
-            <a href="mapa.html" class="w3-bar-item w3-button">MAPA</a>
-            <!-- <a href="https://www.linkedin.com/in/seu-perfil" target="_blank" class="w3-bar-item w3-button">LINKEDIN</a> -->
-        </div>
-    </div>
-
-    <!-- First Background Image (Home) -->
-    <div class="bgimg-home">
-        <div class="w3-display-middle">
-            <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">Seja bem-vindo à minha página!</span>
-        </div>
-    </div>
-
-
-   
-
-    <!-- Contact Section -->
-    <!-- <div class="w3-row w3-center">
-        <div class="w3-col m12 w3-container">
-            <p>
-                Você pode se conectar comigo diretamente no <a href="https://br.linkedin.com/in/amandaengeldecastro">
-                    LinkedIn</a>
-            </p>
-        </div>
-    </div> -->
-
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="map.js"></script>
 </body>
-
 </html>

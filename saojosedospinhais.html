@@ -13,36 +13,54 @@
         <h1>São José dos Pinhais</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <img onclick="openModal(this.src)"
-                src="./images/locations/BR/PR/20250421063245620_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg"
-                alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
-            <img onclick="openModal(this.src)"
-                src="./images/locations/BR/PR/20250421063331685_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg"
-                alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
-            <img onclick="openModal(this.src)"
-                src="./images/locations/BR/PR/20250421063357482_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg"
-                alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
-            <img onclick="openModal(this.src)"
-                src="./images/locations/BR/PR/20250421063456095_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg"
-                alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
+    <div class="timeline">
 
-        </div>
-    </div>
+        <div class="timeline-year" id="year-2025">
+            <h2>2025</h2>
+            <div class="timeline-event">
+                <h3>[Setembro]</h3>
+                <div class="timeline-images">
+                     <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG-20250822-WA0012_ensaio.jpg"
+                        alt="SJP" class="location-image">
+                     <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG-20250822-WA0014_ensaio.jpg"
+                        alt="SJP" class="location-image">
+                </div>
+                <div class="timeline-event">
+                <h3>[Abril]</h3>
+                <div class="timeline-images">
 
-   <!-- Modal para exibir a imagem ampliada -->
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> <!-- seta esquerda -->
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> <!-- seta direita -->
-        </span>
-    </div>
-</div>
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/20250421063245620_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg"
+                        alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/20250421063331685_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg"
+                        alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/20250421063357482_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg"
+                        alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/20250421063456095_camimnho_do_vinho_sao_jose_dos_pinhas_2025.jpg"
+                        alt="SJP" class="location-image" title="Caminho do Vinho - São José dos Pinhais">
 
-    <script src="script.js"></script>
+                </div>
+            </div>
+
+
+            <div id="myModal" class="modal" onclick="closeModal()">
+                <div class="modal-content">
+                    <span class="navigation">
+                        <button class="arrow" onclick="prevImage(); event.stopPropagation();"
+                            aria-label="Anterior">&#10094;</button>
+                        <img id="img01" class="modal-image" />
+                        <button class="arrow" onclick="nextImage(); event.stopPropagation();"
+                            aria-label="Próximo">&#10095;</button>
+                    </span>
+                </div>
+            </div>
+
+            <script src="script.js"></script>
 </body>
 
 </html>

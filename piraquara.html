@@ -11,29 +11,40 @@
     <header>
         <h1>Piraquara</h1>
     </header>
+    
+    <div class="timeline">
+        <!-- Ano 2025 -->
+        <div class="timeline-year" id="year-2025">
+            <h2>2025</h2>
+            <div class="timeline-event">
+                <h3>[Outubro]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251005201334364_piraqueara.jpg" alt="Piraquara 20250905" class="location-image" title="Parque das Águas - [05.10.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_parque_das_aguas_paraquara.JPG" alt="Piraquara 20250905" class="location-image" title="Parque das Águas - [05.10.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_dog_rio_parque_das_aguasparaquara.JPG" alt="Piraquara 20250905" class="location-image" title="Anhanguera - [05.10.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251005194600437-EDIT_ahanguera_piraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Anhanguera - [05.10.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_morro_anhanguera_paraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Anhanguera - [05.10.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_lua_morro_anhanguera_paraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Anhanguera - [05.10.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251005194525130_piraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Anhanguera - [05.10.2025]">
+                    <!-- <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_dog_parque_das_aguas_paraquara.JPG" alt="Piraquara 20250905" class="location-image" title="Parque das Águas - [05.10.2025]"> -->
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251005194525130_piraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Anhanguera">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251005201334364_piraqueara.jpg" alt="Piraquara 20250905" class="location-image" title="Parque das Águas">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_parque_das_aguas_paraquara.JPG" alt="Piraquara 20250905" class="location-image" title="Parque das Águas">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_morro_anhanguera_paraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Anhanguera">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_dog_parque_das_aguas_paraquara.JPG" alt="Piraquara 20250905" class="location-image" title="Parque das Águas">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_lua_morro_anhanguera_paraquara.jpg" alt="Piraquara 20250905" class="location-image" title="Anhanguera">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250905_dog_rio_parque_das_aguasparaquara.JPG" alt="Piraquara 20250905" class="location-image" title="Anhanguera">
+                </div>
+            </div>  
+        </div>
+/    </div>
+
+    
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button>
+            </span>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Mapa Fotográfico | Todos os direitos reservados</p>
-    </footer>
-    <div id="myModal" class="modal" onclick="closeModal()">
-        <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
-        <img class="modal-content" id="img01">
-    </div>
-
-        <script src="script.js"></script>
-
+    <!-- Referência ao arquivo JavaScript externo -->
+    <script src="script.js"></script>
 </body>
-
 </html>

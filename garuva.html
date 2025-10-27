@@ -13,39 +13,53 @@
         <h1>Garuva</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0005-EDIT.jpg" alt="Garuva 2025"
-                class="location-image" title="Garuva">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0009.JPG" alt="Garuva 2025"
-                class="location-image" title="Garuva">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0014.JPG" alt="Garuva 2025"
-                class="location-image" title="Garuva">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0018.JPG" alt="Garuva 2025"
-                class="location-image" title="Garuva">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0030.JPG" alt="Garuva 2025"
-                class="location-image" title="Garuva">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0041.JPG" alt="Garuva 2025"
-                class="location-image" title="Garuva">
-            <img onclick="openModal(this.src)"
-                src="./images/locations/BR/SC/IMG_20250101_113818_896_ponte_invertida.jpg"
-                alt="Rio São João | Garuva 2025" class="location-image" title="Garuva">
+    <div class="timeline">
+        <!-- Ano 2025 -->
+        <div class="timeline-year" id="year-2025">
+            <h2>2025</h2>
+            <div class="timeline-event">
+                <h3>[Setembro]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0005-EDIT.jpg"
+                        alt="Garuva 2025" class="location-image" title="[13-14.09.2025] Palmital">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0009.JPG" alt="Garuva 2025"
+                        class="location-image" title="[13-14.09.2025] Garuva">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0014.JPG" alt="Garuva 2025"
+                        class="location-image" title="[13-14.09.2025] Garuva">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0018.JPG" alt="Garuva 2025"
+                        class="location-image" title="[13-14.09.2025] Garuva">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0030.JPG" alt="Garuva 2025"
+                        class="location-image" title="[13-14.09.2025] Garuva">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0041.JPG" alt="Garuva 2025"
+                        class="location-image" title="[13-14.09.2025] Garuva">
+                </div>
 
-        </div>
-    </div>
+                <div class="timeline-event">
+                <h3>[Janeiro]</h3>
+                <div class="timeline-images">
+                   
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/SC/IMG_20250101_113818_896_ponte_invertida.jpg"
+                        alt="Rio São João | Garuva 2025" class="location-image" title="[01.01.2025] Ponte Invertida ">
 
-   <!-- Modal para exibir a imagem ampliada -->
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> <!-- seta esquerda -->
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> <!-- seta direita -->
-        </span>
-    </div>
-</div>
+                </div>
 
-    <script src="script.js"></script>
+            </div>
+
+            
+            <div id="myModal" class="modal" onclick="closeModal()">
+                <div class="modal-content">
+                    <span class="navigation">
+                        <button class="arrow" onclick="prevImage(); event.stopPropagation();"
+                            aria-label="Anterior">&#10094;</button> 
+                        <img id="img01" class="modal-image" />
+                        <button class="arrow" onclick="nextImage(); event.stopPropagation();"
+                            aria-label="Próximo">&#10095;</button> 
+                    </span>
+                </div>
+            </div>
+
+            <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,82 +13,128 @@
         <h1>Curitiba</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346558305611935.jpg" alt="Curitiba " class="location-image" title="Jardim Botânico - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250421063550040_curitiba_osório.jpg" alt="Curitiba " class="location-image" title="Praça Osório - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250421063630737_curitiba.jpg" alt="Curitiba" class="location-image" title="Avenida XV - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/XV_cwb.jpg" alt="Curitiba" class="location-image" title="Avenida XV - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240928_175942_263_cwb_santa_felicidade_durigan_vinicula.jpg" alt="Curitiba" class="location-image" title="Duringan Vinícula | Santa Felicidade - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240908_123001_597jardim_botanico.jpg" alt="Curitiba" class="location-image" title="Jardim Botânico - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240908_114331_230_jardim_botanico.jpg" alt="Curitiba" class="location-image" title="Jardim Botânico - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240706_210238_213_cadore.jpg" alt="Curitiba" class="location-image" title="Cadore - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240602_163614_024_bosque_alemao.jpg" alt="Curitiba" class="location-image" title="Bosque Alemão - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240602_170001_756_bosque_alemao.jpg" alt="Curitiba" class="location-image" title="Bosque Alemão - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240602_170034_190-EDIT_bosque_alemao.jpg" alt="Curitiba" class="location-image" title="Bosque Alemão - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240530_170051_117_agua_verde.jpg" alt="Curitiba" class="location-image" title="Feirinha do Água Verde - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20230713_175043_131-praça_do_japao_cwb.jpg" alt="Curitiba" class="location-image" title="Praça do Japão - Curitiba">
-                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240414_120901_802_largo_da_ordem.jpg" alt="Curitiba" class="location-image" title="Feirinha Largo da Ordem - Curitiba">
-                <img onclick="openModal(this.src)"src="./images/locations/BR/PR/IMG_20240324_151104_596_parque_nautico.jpg" alt="Curitiba" class="location-image" title="Parque Nautico">
-                <img onclick="openModal(this.src)"src="./images/locations/BR/PR/IMG_20240324_153215_245_parque_nautico.jpg" alt="Curitiba" class="location-image" title="Parque Nautico">
-                <img onclick="openModal(this.src)"src="./images/locations/BR/PR/DSC_0010_parque_tangua.JPG" alt="Curitiba" class="location-image" title="Parque Tangua">
-                <img onclick="openModal(this.src)"src="./images/locations/BR/PR/DSC_0019_parque_tangua.JPG" alt="Curitiba" class="location-image" title="Parque Tangua">
-                <img onclick="openModal(this.src)"src="./images/locations/BR/PR/DSC_0014-EDIT_parque_tangua.jpg" alt="Curitiba" class="location-image" title="Parque Tangua">
-                <img onclick="openModal(this.src)"src="./images/locations/BR/PR/IMG_20240218_174627_796_parque_tangua.jpg" alt="Curitiba" class="location-image" title="Parque Tangua">
-                <img onclick="openModal(this.src)"src="./images/locations/BR/PR/IMG-20240121-WA0020_zoologico_municipal_de_curitiba.jpg" alt="Curitiba" class="location-image" title="Zoológico Municipal de Curitiba">
-                <img onclick="openModal(this.src)"src="./images/locations/BR/PR/IMG-20240121-WA0007-EDIT_zoologico_municipal_de_curitiba.jpg" alt="Curitiba" class="location-image" title="Zoológico Municipal de Curitiba">                
-                <img onclick="openModal(this.src)"src="./images/locations/BR/PR/IMG_20240403_210739_712_monet.jpg" alt="Curitiba" class="location-image" title="Monet">
-                <!-- <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240414_131712_849museu_municipal_de_arte_poty.jpg" alt="Curitiba" class="location-image" title="Museu Municipal de Arte - Curitiba">
+    <div class="timeline">
+
+        <div class="timeline-year" id="year-2025">
+            <h2>2025</h2>
+            <div class="timeline-event">
+                <h3>[Outubro] Museu Oscar Niemeyer</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/20251026163708243_mon_curitiba.jpg" alt="Curitiba"
+                        class="location-image" title="Museu Oscar Niemeyer - [26.10.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251026163835031_mon_curitiba.jpg" alt="Curitiba" class="location-image"  title="[26.10.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251026191553219_mon_curitiba.jpg" alt="Curitiba" class="location-image"  title="[26.10.2025]">
+                </div>
+            </div>  
+             <div class="timeline-event">
+                <h3>[Setembro] </h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/balonismo_parque_barigui.JPG" alt="Curitiba" class="location-image"  title="[07.09.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/DSC_0034_balonismo_barigui.jpg" alt="Curitiba" class="location-image"  title="[07.09.2025]">
+                </div>
+            </div>  
+             <div class="timeline-event">
+                <h3>[Agosto] </h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250810155021292_paella.jpg" alt="Curitiba" class="location-image"  title="[10.08.2025]">
+                </div>
+            </div>  
+        </div>
+
+    
+
+        <!-- Imagens sem data identificável -->
+        <div class="timeline-year" id="undated">
+            <h2></h2>
+            <div class="timeline-event">
+                <h3></h3>
+                <div class="timeline-images">
+
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346558305611935.jpg"
+                        alt="Curitiba " class="location-image" title="Jardim Botânico - Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/20250421063550040_curitiba_osório.jpg" alt="Curitiba "
+                        class="location-image" title="Praça Osório - Curitiba">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250421063630737_curitiba.jpg"
+                        alt="Curitiba" class="location-image" title="Avenida XV - Curitiba">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/XV_cwb.jpg" alt="Curitiba"
+                        class="location-image" title="Avenida XV - Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20240928_175942_263_cwb_santa_felicidade_durigan_vinicula.jpg"
+                        alt="Curitiba" class="location-image" title="Duringan Vinícula | Santa Felicidade - Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20240908_123001_597jardim_botanico.jpg" alt="Curitiba"
+                        class="location-image" title="Jardim Botânico - Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20240908_114331_230_jardim_botanico.jpg" alt="Curitiba"
+                        class="location-image" title="Jardim Botânico - Curitiba">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240706_210238_213_cadore.jpg"
+                        alt="Curitiba" class="location-image" title="Cadore - Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20240602_163614_024_bosque_alemao.jpg" alt="Curitiba"
+                        class="location-image" title="Bosque Alemão - Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20240602_170001_756_bosque_alemao.jpg" alt="Curitiba"
+                        class="location-image" title="Bosque Alemão - Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20240602_170034_190-EDIT_bosque_alemao.jpg" alt="Curitiba"
+                        class="location-image" title="Bosque Alemão - Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20240530_170051_117_agua_verde.jpg" alt="Curitiba"
+                        class="location-image" title="Feirinha do Água Verde - Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20230713_175043_131-praça_do_japao_cwb.jpg" alt="Curitiba"
+                        class="location-image" title="Praça do Japão - Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20240414_120901_802_largo_da_ordem.jpg" alt="Curitiba"
+                        class="location-image" title="Feirinha Largo da Ordem - Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20240324_151104_596_parque_nautico.jpg" alt="Curitiba"
+                        class="location-image" title="Parque Nautico">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20240324_153215_245_parque_nautico.jpg" alt="Curitiba"
+                        class="location-image" title="Parque Nautico">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/DSC_0010_parque_tangua.JPG"
+                        alt="Curitiba" class="location-image" title="Parque Tangua">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/DSC_0019_parque_tangua.JPG"
+                        alt="Curitiba" class="location-image" title="Parque Tangua">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/DSC_0014-EDIT_parque_tangua.jpg"
+                        alt="Curitiba" class="location-image" title="Parque Tangua">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20240218_174627_796_parque_tangua.jpg" alt="Curitiba"
+                        class="location-image" title="Parque Tangua">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG-20240121-WA0020_zoologico_municipal_de_curitiba.jpg"
+                        alt="Curitiba" class="location-image" title="Zoológico Municipal de Curitiba">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG-20240121-WA0007-EDIT_zoologico_municipal_de_curitiba.jpg"
+                        alt="Curitiba" class="location-image" title="Zoológico Municipal de Curitiba">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240403_210739_712_monet.jpg"
+                        alt="Curitiba" class="location-image" title="Monet">
+                    <!-- <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240414_131712_849museu_municipal_de_arte_poty.jpg" alt="Curitiba" class="location-image" title="Museu Municipal de Arte - Curitiba">
                 <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240414_131817_747-museu_municipal_de_arte_poty.jpg" alt="Curitiba" class="location-image" title="Museu Municipal de Arte - Curitiba">
                 <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240403_210646_551_monet.jpg" alt="Curitiba" class="location-image" title="Monet">
                 <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240414_133246_025_poty.jpg" alt="Curitiba" class="location-image" title="Museu Municipal de Arte - Curitiba">
                 <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240403_210535_589_monet.jpg" alt="Curitiba" class="location-image" title="Monet"> -->
+
+                </div>
             </div>
+        </div>
     </div>
 
-   <!-- Modal para exibir a imagem ampliada -->
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> <!-- seta esquerda -->
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> <!-- seta direita -->
-        </span>
+    
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();"
+                    aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();"
+                    aria-label="Próximo">&#10095;</button>
+            </span>
+        </div>
     </div>
-</div>
-
-
-    <script>
-        let currentIndex = 0; // Índice da imagem atual
-
-        function openModal(src) {
-            const modal = document.getElementById("myModal");
-            modal.style.display = "flex"; // Muda o estilo para flex
-            document.getElementById("img01").src = src;
-
-            // Definir o índice para a imagem que está sendo aberta
-            currentIndex = Array.from(document.querySelectorAll('.location-image')).findIndex(img => img.src === src);
-            document.addEventListener('keydown', handleKeydown); // Adicionar listener para teclas
-        }
-
-        function closeModal() {
-            document.getElementById("myModal").style.display = "none"; // Oculta o modal
-            document.removeEventListener('keydown', handleKeydown); // Remover listener para teclas
-        }
-
-        function handleKeydown(event) {
-            const images = document.querySelectorAll('.location-image');
-            if (event.key === "Escape") {
-                closeModal();
-            } else if (event.key === "ArrowRight") {
-                currentIndex = (currentIndex + 1) % images.length; // Ir para a próxima imagem
-                document.getElementById("img01").src = images[currentIndex].src;
-            } else if (event.key === "ArrowLeft") {
-                currentIndex = (currentIndex - 1 + images.length) % images.length; // Voltar para a imagem anterior
-                document.getElementById("img01").src = images[currentIndex].src;
-            }
-        }
-    </script>
 </body>
 
 </html>
