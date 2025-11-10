@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almirante Tamandaré</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Almirante Tamandaré</h1>
+    </header>
+    <div class="timeline">
+
+        <div class="timeline-year" id="year-2025">
+            <h2>2025</h2>
+            <div class="timeline-event">
+                <h3>[Novembro]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251108140628065_almirante_tamandare_evissima.jpg" alt="Almirante Tamandaré" class="location-image" title="Chacara Evíssima [08.11.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251108140723166_almirante_tamandare_evissima.jpg" alt="Almirante Tamandaré" class="location-image" title="Chacara Evíssima [08.11.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251108162003412_almirante_tamandare_evissima.jpg" alt="Almirante Tamandaré" class="location-image" title="Chacara Evíssima [08.11.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251108162111805_almirante_tamandare_evissima.jpg" alt="Almirante Tamandaré" class="location-image" title="Chacara Evíssima [08.11.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251108162253198_almirante_tamandare_evissima.jpg" alt="Almirante Tamandaré" class="location-image" title="Chacara Evíssima [08.11.2025]">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251108195044841_almirante_tamandare_evissima.jpg" alt="Almirante Tamandaré" class="location-image" title="Chacara Evíssima [08.11.2025]">
+                </div>
+            </div>
+        </div>
+        <div id="myModal" class="modal" onclick="closeModal()">
+            <div class="modal-content">
+                <span class="navigation">
+                    <button class="arrow" onclick="prevImage(); event.stopPropagation();"
+                        aria-label="Anterior">&#10094;</button>
+                    <img id="img01" class="modal-image" />
+                    <button class="arrow" onclick="nextImage(); event.stopPropagation();"
+                        aria-label="Próximo">&#10095;</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

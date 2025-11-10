@@ -68,18 +68,24 @@
     <div class="maintenance-banner">Em manutenção</div>
     <div id="map"></div>
     <div class="info-box">
-        <ul id="city-list">
-            <li><strong>[Novembro - 2025]</strong> <a href="guaratuba.html">Guaratuba - PR</a></li>
-            <li><strong>[Outubro - 2025]</strong> <a href="piraquara.html">Piraquara - PR</a></li>
-            <li><strong>[Setembro - 2025]</strong> <a href="garuva.html">Garuva - SC</a></li>
-        </ul>
+        <div>
+            <strong>[Novembro - 2025]</strong><br>
+            <a href="guaratuba.html">Guaratuba - PR</a><br>
+            <a href="almirantetamandare.html">Almirante Tamandaré - PR</a><br><br>
+
+            <strong>[Outubro - 2025]</strong><br>
+            <a href="piraquara.html">Piraquara - PR</a><br><br>
+
+            <strong>[Setembro - 2025]</strong><br>
+            <a href="garuva.html">Garuva - SC</a><br>
+        </div>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="map.js"></script>
     <script>
         let infoBoxVisible = true;
         function toggleInfoBox() {
-            const cityList = document.getElementById('city-list');
+            const cityList = document.querySelector('.info-box div');
             const button = document.querySelector('.toggle-button');
             if (infoBoxVisible) {
                 cityList.style.display = 'none';

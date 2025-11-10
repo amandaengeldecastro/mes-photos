@@ -14,6 +14,7 @@ const locations = [
     { coords: [-25.2579, -48.9102], title: "Antonina - PR", country: "Brasil", link: "antonina.html" },
     { coords: [-25.4472, -54.3872], title: "Santa Terezinha de Itaipu - PR", country: "Brasil", link: "terezinha.html" },
     { coords: [-25.5149, -48.7011], title: "Morretes - PR", country: "Brasil", link: "morretes.html" },
+    { coords: [-25.3292, -49.1288], title: "Almirante Tamandaré - PR", country: "Brasil", link: "almirantetamandare.html" },
     
     // Brasil - Outros Estados
     { coords: [-12.9711, -38.5108], title: "Salvador - BA", country: "Brasil", link: "salvador.html" },
