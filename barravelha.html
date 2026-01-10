@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SC</title>
+    <title>Barra Velha</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
-        <h1>SC</h1>
+        <h1>Barra Velha</h1>
     </header>
 
     <div class="timeline">
@@ -20,37 +19,29 @@
             <div class="timeline-event">
                 <h3>[Julho]</h3>
                 <div class="timeline-images">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0026.JPG" alt="Barra Velha 2025"
-                class="location-image" title="Barra Velha">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0044.JPG" alt="Barra Velha 2025"
-                class="location-image" title="Barra Velha">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0053.JPG" alt="Barra Velha 2025"
-                class="location-image" title="Barra Velha">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0058.JPG" alt="Barra Velha 2025"
-                class="location-image" title="Barra Velha">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0016hotel_flamboyant.JPG" alt="Barra Velha 2025"
-                class="location-image" title="Hotel Flamboyany - Barra Velha">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0020_barra_velha.jpg" alt="Barra Velha 2025"
-                class="location-image" title="Barra Velha">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0032barra_velha.jpg" alt="Barra Velha 2025"
-                class="location-image" title="Barra Velha">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0051_barra_velha.jpg" alt="Barra Velha 2025"
-                class="location-image" title="Barra Velha">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0026.JPG" alt="Barra Velha 2025" class="location-image" title="Barra Velha">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0044.JPG" alt="Barra Velha 2025" class="location-image" title="Barra Velha">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0053.JPG" alt="Barra Velha 2025" class="location-image" title="Barra Velha">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0058.JPG" alt="Barra Velha 2025" class="location-image" title="Barra Velha">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0016hotel_flamboyant.JPG" alt="Hotel Flamboyant - Barra Velha" class="location-image" title="Hotel Flamboyant - Barra Velha">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0020_barra_velha.jpg" alt="Barra Velha 2025" class="location-image" title="Barra Velha">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0032barra_velha.jpg" alt="Barra Velha 2025" class="location-image" title="Barra Velha">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/DSC_0051_barra_velha.jpg" alt="Barra Velha 2025" class="location-image" title="Barra Velha">
+                </div>
+            </div>
         </div>
     </div>
 
-   
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
-        </span>
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button>
+            </span>
+        </div>
     </div>
-</div>
 
     <script src="script.js"></script>
 </body>
-
 </html>

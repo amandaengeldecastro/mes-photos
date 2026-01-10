@@ -1,61 +1,42 @@
 let currentIndex = 0;
-let scale = 1; // Fator de escala inicial
+let scale = 1;
 
 function openModal(src) {
     const modal = document.getElementById("myModal");
-    modal.style.display = "flex"; 
     const img = document.getElementById("img01");
+    const images = document.querySelectorAll('.location-image');
+    const navigation = document.querySelector('.navigation');
+
+    modal.style.display = "flex"; // Exibe o modal
     img.src = src;
 
-    // Atualiza o índice da imagem atual
-    currentIndex = Array.from(document.querySelectorAll('.location-image')).findIndex(imgElement => imgElement.src === src);
-    
-    // Reseta a escala quando abrir nova imagem
-    scale = 1;
-    img.style.transform = `scale(${scale})`;
-    
-    // Ajusta a imagem para se enquadrar na tela
-    img.style.maxWidth = '90%'; 
-    img.style.maxHeight = '90%'; 
-    img.style.objectFit = 'contain'; // Sempre manter a imagem inteira visível
+    currentIndex = Array.from(images).findIndex(image => image.src === src);
+    setScale(1);
+    img.style.objectFit = 'contain';
 
-    // Calcula a proporção da imagem
-    img.onload = function() {
-        const modalWidth = modal.clientWidth;
-        const modalHeight = modal.clientHeight;
-        const imgRatio = img.naturalWidth / img.naturalHeight;
-        const modalRatio = modalWidth / modalHeight;
-
-        // Define object-fit dinamicamente
-        if (imgRatio > modalRatio) {
-            img.style.objectFit = 'contain'; 
-        } else {
-            img.style.objectFit = 'contain'; // Mudei para 'contain' para sempre mostrar a imagem inteira
-        }
+    img.onload = () => {
+        adjustImageSize(modal, img);
     };
 
-    // Remove listener anterior (se existir) e adiciona novo
-    img.removeEventListener('wheel', handleWheel);
+    navigation.style.display = 'flex'; // Exibe as setas de navegação
+
     img.addEventListener('wheel', handleWheel);
-    
-    document.addEventListener('keydown', handleKeydown); 
+    document.addEventListener('keydown', handleKeydown);
 }
 
 function closeModal() {
-    document.getElementById("myModal").style.display = "none"; 
-    document.removeEventListener('keydown', handleKeydown); 
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none"; // Oculta o modal
+
+    const navigation = document.querySelector('.navigation');
+    navigation.style.display = 'none'; // Oculta as setas de navegação
+
     const img = document.getElementById("img01");
-    
-    // Remove o event listener de wheel
     img.removeEventListener('wheel', handleWheel);
-    
-    // Reseta a escala
-    img.style.transform = `scale(1)`; 
-    scale = 1; 
 }
 
+
 function handleKeydown(event) {
-    const images = document.querySelectorAll('.location-image');
     if (event.key === "Escape") {
         closeModal();
     } else if (event.key === "ArrowRight") {
@@ -67,39 +48,46 @@ function handleKeydown(event) {
 
 function prevImage() {
     const images = document.querySelectorAll('.location-image');
-    currentIndex = (currentIndex - 1 + images.length) % images.length; 
-    
-    // Reseta a escala ao mudar de imagem
-    scale = 1;
-    const img = document.getElementById("img01");
-    img.src = images[currentIndex].src;
-    img.style.transform = `scale(${scale})`;
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImageSrc();
 }
 
 function nextImage() {
     const images = document.querySelectorAll('.location-image');
-    currentIndex = (currentIndex + 1) % images.length; 
-    
-    // Reseta a escala ao mudar de imagem
-    scale = 1;
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImageSrc();
+}
+
+function updateImageSrc() {
     const img = document.getElementById("img01");
-    img.src = images[currentIndex].src;
-    img.style.transform = `scale(${scale})`;
+    img.src = document.querySelectorAll('.location-image')[currentIndex].src;
+    setScale(1);
 }
 
 function handleWheel(event) {
-    event.preventDefault(); // Evita a rolagem da página ao usar a roda do mouse
+    event.preventDefault();
+    scale *= (event.deltaY < 0) ? 1.1 : 0.9;
+    scale = Math.min(Math.max(0.5, scale), 5);
     const img = document.getElementById("img01");
-    
-    // Ajusta a escala do zoom com base na direção da roda do mouse
-    if (event.deltaY < 0) {
-        scale *= 1.1; // Zoom in
-    } else {
-        scale /= 1.1; // Zoom out
-    }
-    
-    // Limita a escalabilidade
-    scale = Math.min(Math.max(0.5, scale), 5); // Escala entre 0.5x e 5x (permiti zoom out maior)
-    img.style.transform = `scale(${scale})`; 
-    img.style.transformOrigin = 'center center'; // Zoom centralizado
+    img.style.transform = `scale(${scale})`;
+    img.style.transformOrigin = 'center center';
+}
+
+function setScale(value) {
+    scale = value;
+    const img = document.getElementById("img01");
+    img.style.transform = `scale(${scale})`;
+}
+
+function adjustImageSize(modal, img) {
+    const modalWidth = modal.clientWidth;
+    const modalHeight = modal.clientHeight;
+    const imgRatio = img.naturalWidth / img.naturalHeight;
+    const modalRatio = modalWidth / modalHeight;
+
+    img.style.objectFit = (imgRatio > modalRatio) ? 'contain' : 'contain';
+
+    // Centraliza a imagem no modal
+    img.style.maxWidth = '90%'; // Ajusta a largura máxima para 90% do modal
+    img.style.maxHeight = '90%'; // Ajusta a altura máxima para 90% do modal
 }

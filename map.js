@@ -1,4 +1,3 @@
-// Dados dos locais organizados
 const locations = [
     // Brasil - Paraná
     { coords: [-25.5478, -54.5882], title: "Foz do Iguaçu - PR", country: "Brasil", link: "fozdoiguacu.html" },
@@ -17,6 +16,8 @@ const locations = [
     { coords: [-25.3292, -49.1288], title: "Almirante Tamandaré - PR", country: "Brasil", link: "almirantetamandare.html" },
     
     // Brasil - Outros Estados
+    { coords: [-29.0476, -50.1431], title: "Cambará do Sul - RS", country: "Brasil", link: "cambara.html" }, 
+    { coords: [-29.3333, -49.7333], title: "Torres - RS", country: "Brasil", link: "torres.html" }, // 
     { coords: [-12.9711, -38.5108], title: "Salvador - BA", country: "Brasil", link: "salvador.html" },
     { coords: [-24.7080, -47.5553], title: "Iguape - SP", country: "Brasil", link: "iguape.html" },
     { coords: [-23.5505, -46.6333], title: "São Paulo - SP", country: "Brasil", link: "saopaulo.html" },
@@ -39,6 +40,7 @@ const locations = [
     
     // América do Sul - Outros Países
     { coords: [-25.5082, -54.6201], title: "Ciudad del Este", country: "Paraguai", link: "cde.html" },
+    { coords: [-25.3462, -57.5759], title: "Presidente Franco - PY", country: "Paraguai", link: "presidentefranco.html" }, 
     { coords: [-25.2637, -57.5759], title: "Asunción", country: "Paraguai", link: "asuncion.html" },
     { coords: [-25.5969, -54.5752], title: "Puerto Iguazú", country: "Argentina", link: "puertoiguazu.html" },
     { coords: [-34.6037, -58.3816], title: "Buenos Aires", country: "Argentina", link: "ba.html" },

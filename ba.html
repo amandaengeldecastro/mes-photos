@@ -1,48 +1,54 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buenos Aires</title>
+    <title>Posadas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
-        <h1>Buenos Aires</h1>
+        <h1>Posadas</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
+    <div class="timeline">
+        <div class="timeline-year" id="year-2025">
+            <h2>2014</h2>
+            <div class="timeline-event">
+                <h3>[Dezembro]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/AR/fuerza_bruta_car_ba_2014.jpg"
+                        alt="Buenas Aires" class="location-image" title="Fuerza Bruta - Hard Rock Café">
+                    <img onclick="openModal(this.src)" src="./images/locations/AR/fuerza_bruta_ba_2014.jpg"
+                        alt="Buenas Aires" class="location-image" title="Fuerza Bruta - Hard Rock Café">
+                    <img onclick="openModal(this.src)" src="./images/locations/AR/planetario_2014.jpg"
+                        alt="Buenas Aires" class="location-image" title="Planetário">
+                    <img onclick="openModal(this.src)" src="./images/locations/AR/el_caminito_2014.jpg"
+                        alt="Buenas Aires" class="location-image" title="El Caminito">
+                    <img onclick="openModal(this.src)" src="./images/locations/AR/plaza_2014.jpg" alt="Buenas Aires"
+                        class="location-image" title="Buenas Aires">
+                    <img onclick="openModal(this.src)" src="./images/locations/AR/floralis_2014.jpg" alt="Buenas Aires"
+                        class="location-image" title="Buenas Aires">
 
-            <img onclick="openModal(this.src)" src="./images/locations/AR/fuerza_bruta_car_ba_2014.jpg"
-                alt="Buenas Aires" class="location-image" title="Fuerza Bruta - Hard Rock Café">
-            <img onclick="openModal(this.src)" src="./images/locations/AR/fuerza_bruta_ba_2014.jpg" alt="Buenas Aires"
-                class="location-image" title="Fuerza Bruta - Hard Rock Café">
-            <img onclick="openModal(this.src)" src="./images/locations/AR/planetario_2014.jpg" alt="Buenas Aires"
-                class="location-image" title="Planetário">
-            <img onclick="openModal(this.src)" src="./images/locations/AR/el_caminito_2014.jpg" alt="Buenas Aires"
-                class="location-image" title="El Caminito">
-            <img onclick="openModal(this.src)" src="./images/locations/AR/plaza_2014.jpg" alt="Buenas Aires"
-                class="location-image" title="Buenas Aires">
-            <img onclick="openModal(this.src)" src="./images/locations/AR/floralis_2014.jpg" alt="Buenas Aires"
-                class="location-image" title="Buenas Aires">
 
+                </div>
+            </div>
         </div>
     </div>
 
-   
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
-        </span>
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();"
+                    aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();"
+                    aria-label="Próximo">&#10095;</button>
+            </span>
+        </div>
     </div>
-</div>
 
     <script src="script.js"></script>
 </body>

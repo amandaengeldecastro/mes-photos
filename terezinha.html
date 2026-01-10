@@ -13,29 +13,35 @@
         <h1>Santa Terezinha de Itaipu</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <img onclick="openModal(this.src)"
-                src="./images/locations/BR/PR/IMG_20230514_164147_151-santa_terezinha_de_itaipu.jpg"
-                alt="Santa Terezinha de Itaipu" class="location-image" title="Santa Terezinha de Itaipu">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346560670649086.jpg"
-                alt="Santa Terezinha de Itaipu" class="location-image" title="Santa Terezinha de Itaipu">
+    <div class="timeline">
+        <div class="timeline-year" id="year-2025">
+            <!-- <h2>2016</h2> -->
+            <div class="timeline-event">
+                <!-- <h3>[Janeiro]</h3> -->
+                <div class="timeline-images">
 
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/PR/IMG_20230514_164147_151-santa_terezinha_de_itaipu.jpg"
+                        alt="Santa Terezinha de Itaipu" class="location-image" title="Santa Terezinha de Itaipu">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346560670649086.jpg"
+                        alt="Santa Terezinha de Itaipu" class="location-image" title="Santa Terezinha de Itaipu">
+
+                </div>
+            </div>
         </div>
     </div>
 
-   
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
-        </span>
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+
+
+
+            </span>
+        </div>
     </div>
-</div>
 
     <script src="script.js"></script>
 </body>
 
-</html>
+</html

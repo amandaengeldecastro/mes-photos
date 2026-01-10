@@ -11,27 +11,31 @@
         <h1>Pontal do Paraná</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-               <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250426164459569_praia_do_leste_pontal.jpg" alt="Pontal do Paraná"  class="location-image" title="Pontal do Paraná">
-               <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20241006_121437_124_praia_de_leste_pontal.jpg" alt="Pontal do Paraná" class="location-image" title="Pontal do Paraná">
+    <div class="timeline">
+        <!-- Ano 2025 -->
+        <div class="timeline-year" id="year-2025">
+            <h2>2025</h2>
+            
+            <div class="timeline-event">
+                <h3>[Abril]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250426164459569_praia_do_leste_pontal.jpg" alt="Pontal do Paraná" class="location-image" title="Praia do Leste - Pontal do Paraná">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20241006_121437_124_praia_de_leste_pontal.jpg" alt="Pontal do Paraná" class="location-image" title="Praia de Leste - Pontal do Paraná">
+                </div>
+            </div>
         </div>
     </div>
 
-   
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
-        </span>
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
+            </span>
+        </div>
     </div>
-</div>
 
-
-       <script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
-
 </html>

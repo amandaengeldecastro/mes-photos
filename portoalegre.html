@@ -13,35 +13,35 @@
         <h1>Porto Alegre</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <!-- <img onclick="openModal(this.src)" src="./images/locations/BR/RS/praia_da_guarita_torres_2013.jpg"
-                alt="Torres" class="location-image">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/RS/parque_da_guarita_torres_2013.jpg"
-                alt="Cambará do Sul" class="location-image">
-            <img onclick="openModal(this.src)"
-                src="./images/locations/BR/RS/paque_nacional_aparados_da_serra_praia_grande_2014.jpg"
-                alt="Cambará do Sul" class="location-image">
-            <img onclick="openModal(this.src)"
-                src="./images/locations/BR/RS/canion_itaimbezinho_praia_grande_cambará_do_sul_2014.JPG"
-                alt="Cambará do Sul" class="location-image"> -->
-            <img onclick="openModal(this.src)" src="./images/locations/BR/RS/mario_quintana_porto_alegre_2015.jpg"
-                alt="Porto Alegre" class="location-image">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/RS/porto_alegre_2015.jpg" alt="Porto Alegre"
-                class="location-image">
+    <div class="timeline">
+        <div class="timeline-year" id="year-2025">
+            <h2>2014</h2>
+            <div class="timeline-event">
+                <h3>[Dezembro]</h3>
+                <div class="timeline-images">
+
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/RS/mario_quintana_porto_alegre_2015.jpg" alt="Porto Alegre"
+                        class="location-image">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/RS/porto_alegre_2015.jpg"
+                        alt="Porto Alegre" class="location-image">
+
+                </div>
+            </div>
         </div>
     </div>
 
-   
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
-        </span>
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();"
+                    aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();"
+                    aria-label="Próximo">&#10095;</button>
+            </span>
+        </div>
     </div>
-</div>
 
     <script src="script.js"></script>
 </body>

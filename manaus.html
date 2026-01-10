@@ -13,27 +13,60 @@
         <h1>Manaus</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/AM/FB_IMG_16346564225032399_manaus.jpg" alt="Manaus" class="location-image">          
-            <img onclick="openModal(this.src)" src="./images/locations/BR/AM/FB_IMG_16346564362535622_manaus.jpg" alt="Manaus" class="location-image">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/AM/FB_IMG_16346564506248948_manaus.jpg" alt="Manaus" class="location-image">
+    <div class="timeline">
+        <div class="timeline-year" id="year-2025">
+            <h2>2016</h2>
+            <div class="timeline-event">
+                <h3>[Janeiro]</h3>
+                <div class="timeline-images">
 
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/AM/FB_IMG_16346564225032399_manaus.jpg" alt="Manaus"
+                        class="location-image">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/AM/FB_IMG_16346564362535622_manaus.jpg" alt="Manaus"
+                        class="location-image">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/AM/FB_IMG_16346564506248948_manaus.jpg" alt="Manaus"
+                        class="location-image">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/AM/2017-03-21 02.51.28 1.jpg" alt="Manaus"
+                        class="location-image">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/AM/IMG_4458.JPG" alt="Manaus"
+                        class="location-image">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/AM/IMG_4557.JPG" alt="Manaus"
+                        class="location-image">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/AM/IMG_4622.JPG" alt="Manaus"
+                        class="location-image">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/AM/IMG_4642.JPG" alt="Manaus"
+                        class="location-image">
+                    <img onclick="openModal(this.src)"
+                        src="./images/locations/BR/AM/IMG_4643.JPG" alt="Manaus"
+                        class="location-image">
+
+                </div>
+            </div>
         </div>
     </div>
 
-   
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
-        </span>
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();"
+                    aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();"
+                    aria-label="Próximo">&#10095;</button>
+                
+            </span>
+        </div>
     </div>
-</div>
 
     <script src="script.js"></script>
 </body>
 
-</html>
+</html

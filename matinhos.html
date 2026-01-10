@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,24 +12,31 @@
         <h1>Matinhos</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <!-- <img src="./images/locations/BR/PR/20250622221751764.jpg" alt="Caioba" class="location-image" title="Caioba - Matinhos"> -->
-            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250622222612846.jpg" alt="Caioba"
-                class="location-image" title="Caioba - Matinhos">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250622221836357.jpg" alt="Caioba"
-                class="location-image" title="Caioba - Matinhos">
+    <div class="timeline">
+        <!-- Ano 2025 -->
+        <div class="timeline-year" id="year-2025">
+            <h2>2025</h2>
+            
+            <div class="timeline-event">
+                <h3>[Junho]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250622222612846.jpg" alt="Caioba" class="location-image" title="Caioba - Matinhos">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250622221836357.jpg" alt="Caioba" class="location-image" title="Caioba - Matinhos">
+                </div>
+            </div>
         </div>
     </div>
 
- 
     <div id="myModal" class="modal" onclick="closeModal()">
-        <span class="close" style="color:white; padding: 10px; cursor:pointer;">&times;</span>
-        <img class="modal-content" id="img01">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button>
+            </span>
+        </div>
     </div>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>

@@ -13,27 +13,37 @@
         <h1>San Antonio</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <img onclick="openModal(this.src)" src="./images/locations/VE/FB_IMG_16346566437446677.jpg" alt="Venezuela"
-                class="location-image" title="San Antonio - Tatira">
-            <img onclick="openModal(this.src)" src="./images/locations/VE/FB_IMG_16346566558094647.jpg" alt="Venezuela" class="location-image" title="San Antonio - Tatira">
+    <div class="timeline">
+        <div class="timeline-year" id="year-2025">
+            <h2>2016</h2>
+            <div class="timeline-event">
+                <h3>[Janeiro]</h3>
+                <div class="timeline-images">
+                    <div class="location-image-container"
+                        style="display: flex; flex-wrap: wrap; justify-content: center;">
+                        <img onclick="openModal(this.src)" src="./images/locations/VE/FB_IMG_16346566437446677.jpg"
+                            alt="Venezuela" class="location-image" title="San Antonio - Tatira">
+                        <img onclick="openModal(this.src)" src="./images/locations/VE/FB_IMG_16346566558094647.jpg"
+                            alt="Venezuela" class="location-image" title="San Antonio - Tatira">
 
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-   
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
-        </span>
-    </div>
-</div>
+        <div id="myModal" class="modal" onclick="closeModal()">
+            <div class="modal-content">
+                <span class="navigation">
+                    <button class="arrow" onclick="prevImage(); event.stopPropagation();"
+                        aria-label="Anterior">&#10094;</button>
+                    <img id="img01" class="modal-image" />
+                    <button class="arrow" onclick="nextImage(); event.stopPropagation();"
+                        aria-label="Próximo">&#10095;</button>
+                </span>
+            </div>
+        </div>
 
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
 
-</html>
+</html
