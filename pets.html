@@ -50,12 +50,39 @@
             margin-top: 80px;
         }
         
-        @media (max-width: 768px) {
-            .nav {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-        }
+    @media (max-width: 768px) {
+      .nav {
+        gap: 1rem;
+        padding: 0 1rem;
+        flex-wrap: nowrap;
+      }
+      
+      .nav-item {
+        padding: 0.4rem 0.8rem;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav {
+        gap: 0.5rem;
+        padding: 0 0.5rem;
+      }
+      
+      .nav-item {
+        padding: 0.3rem 0.6rem;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .nav-item {
+        padding: 0.3rem 0.4rem;
+        font-size: 12px;
+      }
+    }
+        
     </style>
 </head>
 
