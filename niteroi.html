@@ -13,25 +13,28 @@
         <h1>Niterói</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/RJ/niteroi_2014.jpg" alt="Niterói"
-                class="location-image" title="Museu de Arte Contemporânea - Niterói">
+    <div class="timeline">
+        <div class="timeline-year" id="year-em-desenvolvimento">
+            <h2>Em desenvolvimento</h2>
+            <div class="timeline-event">
+                <h3>[Em desenvolvimento]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/RJ/niteroi_2014.jpg" alt="Niterói" class="location-image" title="Museu de Arte Contemporânea - Niterói">
+                </div>
+            </div>
         </div>
     </div>
 
-   
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
-        </span>
+    <script src="script.js"></script>
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button>
+            </span>
+        </div>
     </div>
-</div>
-
-    </script src="script.js">
 </body>
 
 </html>

@@ -4,34 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SC</title>
+    <title>Sombrio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
-        <h1>SC</h1>
+        <h1>Sombrio</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/SC/sombrio_2014.JPG" alt="Sombrio"
-                class="location-image" title="Sombrio">
+    <div class="timeline">
+        <div class="timeline-year" id="year-em-desenvolvimento">
+            <h2>Em desenvolvimento</h2>
+            <div class="timeline-event">
+                <h3>[Em desenvolvimento]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/sombrio_2014.JPG" alt="Sombrio" class="location-image" title="Sombrio">
+                </div>
+            </div>
         </div>
     </div>
 
-   
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
-        </span>
+    <script src="script.js"></script>
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button>
+            </span>
+        </div>
     </div>
-</div>
-
-    </script src="script.js">
 </body>
 
 </html>

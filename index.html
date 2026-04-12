@@ -1,191 +1,139 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amanda Engel de Castro</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Estilo responsivo para o mapa */
-        #map {
-            height: 100vh;
-            /* Mapa ocupa 100% da altura da viewport */
-            width: 100%;
-            /* 100% da largura disponível */
-        }
-
-        /* Estilo básico para o body */
-        body {
-            margin: 0;
-            /* Remove margens */
-            padding: 0;
-            /* Remove preenchimento */
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            overflow: hidden;
-            /* Evita rolagem da página */
-        }
-
-        /* Estilo para a faixa de manutenção */
-        .maintenance-banner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            font-size: 20px;
-            z-index: 1000;
-            /* Garante que esteja acima de outros elementos */
-        }
-
-        /* Estilo para o quadro de informativo */
-        .info-box {
-            position: absolute;
-            top: 10%;
-            left: 10px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            width: 200px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            /* Garante que esteja acima de outros elementos */
-            max-height: 80vh;
-            /* Limita a altura máxima para 80% da altura da viewport */
-            overflow-y: auto;
-            /* Adiciona rolagem vertical */
-        }
-
-        /* Estilo para o botão de minimizar/maximizar */
-        .toggle-button {
-            cursor: pointer;
-            font-size: 14px;
-            margin-bottom: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            display: block;
-            /* Garante que o botão ocupe a linha */
-        }
-    </style>
-
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amanda Engel de Castro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { margin: 0; overflow: hidden; }
+    #map  { height: 100vh; width: 100%; }
+  </style>
 </head>
+<body class="map-body">
 
-<body>
-    <div class="maintenance-banner">Em manutenção</div>
-    <div id="map"></div>
-    <div class="info-box">
-        <button class="toggle-button" onclick="toggleInfoBox()">Minimizar</button>
-        <div class="city-list">
-            <!-- <strong>[Cidade Atual]</strong><br>
-            <a href="curitiba.html">Curitiba - PR</a><br>
-            <strong>[Cidade Natal]</strong><br>
-            <a href="fozdoiguacu.html">Foz do Iguaçu - PR</a><br><br> -->
+  <div class="maintenance-banner">Em construção</div>
 
-            <strong>[Novembro - 2025]</strong><br>
-            <a href="guaratuba.html">Guaratuba - PR</a><br>
-            <a href="almirantetamandare.html">Almirante Tamandaré - PR</a><br><br>
-
-            <strong>[Outubro - 2025]</strong><br>
-            <a href="piraquara.html">Piraquara - PR</a><br><br>
-
-            <strong>[Setembro - 2025]</strong><br>
-            <a href="garuva.html">Garuva - SC</a><br><br>
-
-            <strong>[Julho - 2025]</strong><br>
-            <a href="barravelha.html">Barra Velha - SC</a><br><br>
-
-            <strong>[Junho - 2025]</strong><br>
-            <a href="matinhos.html">Matinhos - PR</a><br><br>
-
-            <strong>[Abril - 2025]</strong><br>
-            <a href="pontal.html">Pontal - PR</a><br>
-            <a href="saojosedospinhais.html">Sao José dos Pinhais - PR</a><br><br>
-
-            <strong>[Março - 2025]</strong><br>
-            <a href="penha.html">Penha - PR</a><br>
-            <a href="pomerode.html">Pomerode - PR</a><br><br>
-
-            <strong>[Maio - 2018]</strong><br>
-            <a href="terezinha.html">Santa Terezinha de Itaipu - PR</a><br><br>
-
-             <strong>[Maio - 2017]</strong><br>
-            <a href="guaratuba.html">Guaratuba - PR</a><br><br>
-
-            <strong>[Janeiro - 2016]</strong><br>
-            <a href="caracas.html">Caracas - VE</a><br>
-            <a href="guasdualito.html">Guasdualito - VE</a><br>
-            <a href="santaelenadeuairen.html">Santa Helena de Uairen - VE</a><br>
-            <a href="tatira.html">Tatira - VE</a><br>
-            <a href="vezenuela.html">Caribe - VE</a><br>
-            <a href="manaus.html">Manaus - AM</a><br><br>
-
-
-            <strong>[Dezembro - 2015]</strong><br>
-            <a href="bogota.html">Bogotá - CO</a><br><br>
-
-            <strong>[Setembro - 2015]</strong><br>
-            <a href="salvador.html">Salvador - BA</a><br>
-            <a href="brasilia.html">Brasília - DF</a><br><br>
-
-
-            <strong>[Fevereiro - 2015]</strong><br>
-            <a href="saopaulo.html">São Paulo - SP</a><br><br>
-            <a href="iguape.html">Iguape - SP</a><br><br>
-            
-            <strong>[Dezembro - 2014]</strong><br>
-            <a href="ba.html">Buenos Aires - ARG</a><br>
-            <a href="coloniadelsacramento.html">Colonia Del Sacramento - UY</a><br>
-            <a href="montevideo.html">Montevideo - UY</a><br>
-            <a href="puntadeleste.html">Punta Del Este - UY</a><br>
-            <a href="portoalegre.html">Porto Alegre - RS</a><br><br>
-
-            <strong>[Setembro - 2014]</strong><br>
-            <a href="posadas.html">Posadas - ARG</a><br><br>
-
-            <strong>[Maio - 2014]</strong><br>
-            <a href="rio.html">Rio de Janeiro - RJ</a><br>
-            <a href="posadas.html">Niterói - RJ</a><br><br>
-
-            <strong>[Março - 2014]</strong><br>
-            <a href="mundonovo.html">Novo Mundo - MS</a><br><br>
-
-            <strong>[Janeiro - 2014]</strong><br>
-            <a href="cambara.html">Cambará do Sul - RS</a><br><br>
-
-            <strong>[Dezembro - 2013]</strong><br>
-            <a href="presidentefranco.html">Presidente Franco - PY</a><br>
-            <a href="torres.html">Torres - RS</a><br><br>
-
-             <strong>[Outubro - 2013]</strong><br>
-            <a href="asuncion.html">Asunción - PY</a><br>
-
-        </div>
+  <!-- Side Panel -->
+  <div class="info-box" id="infoBox">
+    <div class="info-box-header">
+      <span class="info-box-title">Timeline</span>
+      <button class="toggle-button" id="toggleBtn" onclick="toggleInfoBox()">Recolher</button>
     </div>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="map.js"></script>
-    <script>
-        let infoBoxVisible = true;
-        function toggleInfoBox() {
-            const cityList = document.querySelector('.city-list');
-            const button = document.querySelector('.toggle-button');
+    <div class="city-list" id="cityList">
 
-            if (infoBoxVisible) {
-                cityList.style.display = 'none';
-                button.innerText = 'Maximizar';
-            } else {
-                cityList.style.display = 'block';
-                button.innerText = 'Minimizar';
-            }
-            infoBoxVisible = !infoBoxVisible;
-        }
-    </script>
+      <div class="city-list-group">
+        <span class="city-list-group-label">Novembro 2025</span>
+        <a href="guaratuba.html">Guaratuba — PR</a>
+        <a href="almirantetamandare.html">Almirante Tamandaré — PR</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Outubro 2025</span>
+        <a href="piraquara.html">Piraquara — PR</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Setembro 2025</span>
+        <a href="garuva.html">Garuva — SC</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Julho 2025</span>
+        <a href="barravelha.html">Barra Velha — SC</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Junho 2025</span>
+        <a href="matinhos.html">Matinhos — PR</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Abril 2025</span>
+        <a href="pontal.html">Pontal — PR</a>
+        <a href="saojosedospinhais.html">São José dos Pinhais — PR</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Março 2025</span>
+        <a href="penha.html">Penha — SC</a>
+        <a href="pomerode.html">Pomerode — SC</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Maio 2018</span>
+        <a href="terezinha.html">Sta. Terezinha de Itaipu — PR</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Janeiro 2016</span>
+        <a href="caracas.html">Caracas — VE</a>
+        <a href="guasdualito.html">Guasdualito — VE</a>
+        <a href="santaelenadeuairen.html">Sta. Elena de Uairén — VE</a>
+        <a href="manaus.html">Manaus — AM</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Dezembro 2015</span>
+        <a href="bogota.html">Bogotá — CO</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Setembro 2015</span>
+        <a href="salvador.html">Salvador — BA</a>
+        <a href="brasilia.html">Brasília — DF</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Fevereiro 2015</span>
+        <a href="saopaulo.html">São Paulo — SP</a>
+        <a href="iguape.html">Iguape — SP</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Dezembro 2014</span>
+        <a href="ba.html">Buenos Aires — ARG</a>
+        <a href="coloniadelsacramento.html">Colonia del Sacramento — UY</a>
+        <a href="montevideo.html">Montevideo — UY</a>
+        <a href="puntadeleste.html">Punta del Este — UY</a>
+        <a href="portoalegre.html">Porto Alegre — RS</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Maio 2014</span>
+        <a href="rio.html">Rio de Janeiro — RJ</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Janeiro 2014</span>
+        <a href="cambara.html">Cambará do Sul — RS</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Outubro 2013</span>
+        <a href="asuncion.html">Asunción — PY</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="map.js"></script>
+  <script>
+    let infoBoxVisible = true;
+    function toggleInfoBox() {
+      const list = document.getElementById('cityList');
+      const btn  = document.getElementById('toggleBtn');
+      infoBoxVisible = !infoBoxVisible;
+      list.style.display = infoBoxVisible ? '' : 'none';
+      btn.textContent   = infoBoxVisible ? 'Recolher' : 'Expandir';
+    }
+  </script>
+</body>
+</html>

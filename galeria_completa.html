@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Galeria Completa de Fotos</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para a galeria completa */
+        .city-section {
+            margin-bottom: 60px;
+            border-top: 1px solid #ddd;
+            padding-top: 30px;
+        }
+        
+        .city-header {
+            background-color: #000;
+            color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .city-header h2 {
+            margin: 0;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .city-content {
+            display: block;
+            transition: max-height 0.3s ease;
+        }
+        
+        .filter-container {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        .filter-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .filter-btn:hover {
+            background-color: #333;
+        }
+        
+        .filter-btn.active {
+            background-color: #007bff;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #000;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 999;
+        }
+        
+        .back-to-top.visible {
+            opacity: 0.7;
+        }
+        
+        .back-to-top:hover {
+            opacity: 1;
+        }
+        
+        .jump-to-city {
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .jump-to-city a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .jump-to-city a:hover {
+            background-color: #f9f9f9;
+        }
+        
+        /* Ajustes para o layout da galeria */
+        .timeline {
+            max-width: 1400px;
+        }
+        
+        .timeline-images {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="toggleMenu()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+            <a href="index.html" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+            <a href="#filtros" class="w3-bar-item w3-button w3-padding-large w3-hide-small">FILTROS</a>
+            <a href="#cidades" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CIDADES</a>
+            <div class="w3-dropdown-hover w3-hide-small">
+                <button class="w3-padding-large w3-button" title="Mais">MAIS <i class="fa fa-caret-down"></i></button>     
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <a href="index.html#mapa" class="w3-bar-item w3-button">Mapa</a>
+                    <a href="#" class="w3-bar-item w3-button">Sobre</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar em telas pequenas -->
+    <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+        <a href="#filtros" class="w3-bar-item w3-button w3-padding-large" onclick="toggleMenu()">FILTROS</a>
+        <a href="#cidades" class="w3-bar-item w3-button w3-padding-large" onclick="toggleMenu()">CIDADES</a>
+        <a href="index.html#mapa" class="w3-bar-item w3-button w3-padding-large" onclick="toggleMenu()">MAPA</a>
+    </div>
+
+    <!-- Conteúdo da página -->
+    <div class="w3-content" style="max-width:2000px;margin-top:46px">
+        
+        <!-- Cabeçalho da galeria -->
+        <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px">
+            <h1 class="w3-wide">GALERIA COMPLETA</h1>
+            <p class="w3-opacity"><i>Todas as fotografias organizadas por cidade e data</i></p>
+        </div>
+        
+        <!-- Seção de filtros -->
+        <div class="w3-container w3-content" style="max-width:1400px" id="filtros">
+            <div class="filter-container">
+                <h3>Filtrar Fotos</h3>
+                <input type="text" class="filter-input" id="searchInput" placeholder="Buscar por cidade, país, ano ou local...">
+                
+                <div class="filter-options">
+                    <h4>Filtrar por:</h4>
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="2025">2025</button>
+                    <button class="filter-btn" data-filter="2024">2024</button>
+                    <button class="filter-btn" data-filter="2023">2023</button>
+                    <button class="filter-btn" data-filter="BR">Brasil</button>
+                    <button class="filter-btn" data-filter="AR">Argentina</button>
+                    <button class="filter-btn" data-filter="UY">Uruguai</button>
+                    <button class="filter-btn" data-filter="PY">Paraguai</button>
+                    <button class="filter-btn" data-filter="VE">Venezuela</button>
+                </div>
+            </div>
+            
+            <div class="jump-to-city" id="cidades">
+                <h3 style="padding: 10px 15px; background-color: #f1f1f1; margin: 0;">Ir para cidade:</h3>
+                <!-- Links para cidades serão gerados dinamicamente pelo JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Galeria de fotos por cidade -->
+        <div class="timeline">
+            
+            <!-- CURITIBA -->
+            <div class="city-section" id="curitiba" data-city="Curitiba" data-country="BR" data-tags="Paraná Brasil">
+                <div class="city-header">
+                    <h2>Curitiba - PR</h2>
+                    <button class="toggle-btn" onclick="toggleCityContent(this)">−</button>
+                </div>
+                
+                <div class="city-content">
+                    <div class="timeline-year" id="curitiba-2025" data-year="2025">
+                        <h2>2025</h2>
+                        
+                        <div class="timeline-event">
+                            <h3>[Outubro] Museu Oscar Niemeyer</h3>
+                            <div class="timeline-images">
+                                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251026163708243_mon_curitiba.jpg"
+                                    alt="Curitiba" class="location-image w3-hover-opacity" title="Museu Oscar Niemeyer - [26.10.2025]">
+                                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251026163835031_mon_curitiba.jpg"
+                                    alt="Curitiba" class="location-image w3-hover-opacity" title="[26.10.2025]">
+                                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20251026191553219_mon_curitiba.jpg"
+                                    alt="Curitiba" class="location-image w3-hover-opacity" title="[26.10.2025]">
+                            </div>
+                        </div>
+
+                        <div class="timeline-event">
+                            <h3>[Setembro] Parque Barigui</h3>
+                            <div class="timeline-images">
+                                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/balonismo_parque_barigui.JPG"
+                                    alt="Curitiba" class="location-image w3-hover-opacity" title="[07.09.2025]">
+                                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/DSC_0034_balonismo_barigui.jpg"
+                                    alt="Curitiba" class="location-image w3-hover-opacity" title="[07.09.2025]">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Outras fotos de Curitiba sem data específica -->
+                    <div class="timeline-year" id="curitiba-outros">
+                        <h2>Outros momentos</h2>
+                        <div class="timeline-event">
+                            <div class="timeline-images">
+                                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346558305611935.jpg"
+                                    alt="Curitiba" class="location-image w3-hover-opacity" title="Jardim Botânico - Curitiba">
+                                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/20250421063550040_curitiba_osório.jpg"
+                                    alt="Curitiba" class="location-image w3-hover-opacity" title="Praça Osório - Curitiba">
+                                <!-- Adicione mais imagens conforme necessário -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FOZ DO IGUAÇU -->
+            <div class="city-section" id="fozdoiguacu" data-city="Foz do Iguaçu" data-country="BR" data-tags="Paraná Brasil">
+                <div class="city-header">
+                    <h2>Foz do Iguaçu - PR</h2>
+                    <button class="toggle-btn" onclick="toggleCityContent(this)">−</button>
+                </div>
+                
+                <div class="city-content">
+                    <div class="timeline-year" id="foz-2025" data-year="2025">
+                        <h2>2025</h2>
+                        
+                        <div class="timeline-event">
+                            <h3>[Janeiro] Cataratas do Iguaçu</h3>
+                            <div class="timeline-images">
+                                <!-- Substitua pelos caminhos reais das suas imagens -->
+                                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/exemplo_cataratas1.jpg"
+                                    alt="Foz do Iguaçu" class="location-image w3-hover-opacity" title="Cataratas do Iguaçu - [15.01.2025]">
+                                <img onclick="openModal(this.src)" src="./images/locations/BR/PR/exemplo_cataratas2.jpg"
+                                    alt="Foz do Iguaçu" class="location-image w3-hover-opacity" title="[15.01.2025]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BUENOS AIRES -->
+            <div class="city-section" id="buenosaires" data-city="Buenos Aires" data-country="AR" data-tags="Argentina">
+                <div class="city-header">
+                    <h2>Buenos Aires - Argentina</h2>
+                    <button class="toggle-btn" onclick="toggleCityContent(this)">−</button>
+                </div>
+                
+                <div class="city-content">
+                    <div class="timeline-year" id="ba-2014" data-year="2014">
+                        <h2>2014</h2>
+                        
+                        <div class="timeline-event">
+                            <h3>[Dezembro] Centro da Cidade</h3>
+                            <div class="timeline-images">
+                                <!-- Substitua pelos caminhos reais das suas imagens -->
+                                <img onclick="openModal(this.src)" src="./images/locations/AR/exemplo_ba1.jpg"
+                                    alt="Buenos Aires" class="location-image w3-hover-opacity" title="Buenos Aires - [12.2014]">
+                                <img onclick="openModal(this.src)" src="./images/locations/AR/exemplo_ba2.jpg"
+                                    alt="Buenos Aires" class="location-image w3-hover-opacity" title="[12.2014]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Adicione mais cidades seguindo o mesmo padrão -->
+            
+        </div>
+    </div>
+
+    <!-- Botão Voltar ao Topo -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <p class="w3-medium">Criado por [Seu Nome]</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Script específico para a galeria completa
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gerar links para cidades
+            generateCityLinks();
+            
+            // Configurar filtros
+            setupFilters();
+            
+            // Configurar botão voltar ao topo
+            setupBackToTop();
+        });
+        
+        function generateCityLinks() {
+            const citySections = document.querySelectorAll('.city-section');
+            const jumpToCity = document.getElementById('cidades');
+            
+            // Limpar conteúdo existente
+            jumpToCity.innerHTML = '<h3 style="padding: 10px 15px; background-color: #f1f1f1; margin: 0;">Ir para cidade:</h3>';
+            
+            // Criar array de objetos com informações das cidades
+            const cities = Array.from(citySections).map(section => {
+                return {
+                    id: section.id,
+                    name: section.dataset.city,
+                    country: section.dataset.country
+                };
+            });
+            
+            // Ordenar cidades alfabeticamente
+            cities.sort((a, b) => a.name.localeCompare(b.name));
+            
+            // Criar links
+            cities.forEach(city => {
+                const link = document.createElement('a');
+                link.href = `#${city.id}`;
+                link.textContent = `${city.name} (${city.country})`;
+                jumpToCity.appendChild(link);
+            });
+        }
+        
+        function setupFilters() {
+            const searchInput = document.getElementById('searchInput');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            // Filtro por texto
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                filterGallery(searchTerm, getCurrentActiveFilter());
+            });
+            
+            // Filtro por botões
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover classe ativa de todos os botões
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Adicionar classe ativa ao botão clicado
+                    this.classList.add('active');
+                    
+                    // Aplicar filtro
+                    const filterValue = this.dataset.filter;
+                    filterGallery(searchInput.value.toLowerCase(), filterValue);
+                });
+            });
+        }
+        
+        function getCurrentActiveFilter() {
+            const activeButton = document.querySelector('.filter-btn.active');
+            return activeButton ? activeButton.dataset.filter : 'all';
+        }
+        
+        function filterGallery(searchTerm, filterValue) {
+            const citySections = document.querySelectorAll('.city-section');
+            
+            citySections.forEach(section => {
+                const cityName = section.dataset.city.toLowerCase();
+                const cityTags = section.dataset.tags.toLowerCase();
+                const cityCountry = section.dataset.country.toLowerCase();
+                
+                // Verificar se corresponde ao termo de busca
+                const matchesSearch = searchTerm === '' || 
+                                     cityName.includes(searchTerm) || 
+                                     cityTags.includes(searchTerm) ||
+                                     cityCountry.includes(searchTerm);
+                
+                // Verificar se corresponde ao filtro de botão
+                let matchesFilter = filterValue === 'all';
+                
+                if (!matchesFilter) {
+                    // Verificar filtro de país
+                    if (filterValue === 'BR' || filterValue === 'AR' || filterValue === 'UY' || 
+                        filterValue === 'PY' || filterValue === 'VE') {
+                        matchesFilter = section.dataset.country === filterValue;
+                    } 
+                    // Verificar filtro de ano
+                    else if (filterValue === '2025' || filterValue === '2024' || filterValue === '2023') {
+                        const yearElements = section.querySelectorAll(`[data-year="${filterValue}"]`);
+                        matchesFilter = yearElements.length > 0;
+                    }
+                }
+                
+                // Mostrar ou ocultar seção com base nos filtros
+                if (matchesSearch && matchesFilter) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+        
+        function toggleCityContent(button) {
+            const citySection = button.closest('.city-section');
+            const cityContent = citySection.querySelector('.city-content');
+            
+            if (button.textContent === '−') {
+                cityContent.style.display = 'none';
+                button.textContent = '+';
+            } else {
+                cityContent.style.display = 'block';
+                button.textContent = '−';
+            }
+        }
+        
+        function setupBackToTop() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+</body>
+</html>

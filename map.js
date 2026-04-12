@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div>
                 <h3>${location.title}</h3>
                 <p><em>${location.country}</em></p>
-                <a href="${location.link}" target="_blank">Ver detalhes →</a>
+                <a href="#" onclick="navigateToPage('${location.link}'); return false;">Ver detalhes →</a>
             </div>
         `;
         
@@ -106,3 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const group = new L.featureGroup(locations.map(loc => L.marker(loc.coords)));
     map.fitBounds(group.getBounds().pad(0.1));
 });
+
+// Função para navegar sem abrir nova aba
+function navigateToPage(url) {
+    window.location.href = url;
+}

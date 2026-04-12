@@ -4,36 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City</title>
+    <title>Colombo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
-        <h1>City</h1>
+        <h1>Colombo</h1>
     </header>
 
-    <div class="location-section">
-        <div class="location-image-container" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240922_132956_344_bacaetava.jpg"
-                alt="Colombo" class="location-image" title="Gruta Bacaetava - Colombo">
-            <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240922_133750_226_bacaetava.jpg"
-                alt="Colombo" class="location-image" title="Gruta Bacaetava - Colombo">
+    <div class="timeline">
+        <div class="timeline-year" id="year-em-desenvolvimento">
+            <h2>Em desenvolvimento</h2>
+            <div class="timeline-event">
+                <h3>[Em desenvolvimento]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240922_132956_344_bacaetava.jpg" alt="Colombo" class="location-image" title="Gruta Bacaetava - Colombo">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20240922_133750_226_bacaetava.jpg" alt="Colombo" class="location-image" title="Gruta Bacaetava - Colombo">
+                </div>
+            </div>
         </div>
     </div>
 
-   
-<div id="myModal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <span class="navigation">
-            <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button> 
-            <img id="img01" class="modal-image" />
-            <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button> 
-        </span>
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button>
+            </span>
+        </div>
     </div>
-</div>
 
-    </script src="script.js">
+    <script src="script.js"></script>
 </body>
 
 </html>
