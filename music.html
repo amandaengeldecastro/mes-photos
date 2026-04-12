@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .nav-header {
+            background: #000;
+            padding: 1rem 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .nav-item {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-family: "DM Sans", sans-serif;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .timeline {
+            margin-top: 80px;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            margin-bottom: 15px;
+        }
+        
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-header">
+        <nav class="nav">
+            <a href="home.html" class="nav-item">HOME</a>
+            <a href="maps.html" class="nav-item">MAPS</a>
+            <a href="music.html" class="nav-item active">MUSIC</a>
+            <a href="pets.html" class="nav-item">PETS</a>
+        </nav>
+    </div>
+
+    <header>
+        <h1>Music</h1>
+    </header>
+
+    <div class="timeline">
+        <div class="timeline-year" id="year-violet">
+            <h2>Violet</h2>
+            <div class="timeline-event">
+                <div class="video-grid">
+                    <div class="video-container">
+                        <video controls>
+                            <source src="./images/music/violet.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-year" id="year-banda-osiris">
+            <h2>Banda Osíris</h2>
+            <div class="timeline-event">
+                <div class="video-grid">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/2_llcn_kgVY" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dUhaVTSwOVw" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/HoVQ4CekR5g" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/JzaWkP4Vt9g" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/D6eSVhCMJd4" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/brrGCou4WZo" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/6pB7Al942FY" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/bujxpBLOB6I" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/s9ZA5BdieU0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/XBb40GbfmK4" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/juD2m01fluc" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-year" id="year-orquestra">
+            <h2>Orquestra de Violões Sonarte</h2>
+            <div class="timeline-event">
+                <div class="video-grid">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/rZnjKLGg2zM" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-year" id="year-musical">
+            <h2>Musical Nuestra America</h2>
+            <div class="timeline-event">
+                <div class="video-grid">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/v4f88ig5HVY" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-year" id="year-tremzinho">
+            <h2>Tremzinho do Caipira</h2>
+            <div class="timeline-event">
+                <div class="video-grid">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/NXjLWtVYxKQ" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button>
+            </span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

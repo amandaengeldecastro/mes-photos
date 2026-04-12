@@ -1,12 +1,10 @@
 let currentIndex = 0;
 let scale = 1;
-let imageCache = new Map(); // Cache para imagens pré-carregadas
+let imageCache = new Map();
 
-// Função para pré-carregar imagens
 function preloadImages() {
     const images = document.querySelectorAll('.location-image');
     images.forEach((img, index) => {
-        // Pré-carrega apenas as primeiras 5 imagens para não sobrecarregar
         if (index < 5) {
             const preloadImg = new Image();
             preloadImg.src = img.src || img.dataset.src;
@@ -33,7 +31,6 @@ function setupLazyLoading() {
 
         images.forEach(img => imageObserver.observe(img));
     } else {
-        // Fallback para navegadores sem suporte
         images.forEach(img => {
             img.src = img.dataset.src;
             img.classList.remove('lazy');
@@ -49,11 +46,9 @@ function openModal(src) {
 
     modal.style.display = "flex";
     
-    // Verifica se a imagem está no cache
     if (imageCache.has(src)) {
         img.src = src;
     } else {
-        // Carrega a imagem real
         const realImg = new Image();
         realImg.onload = () => {
             img.src = src;
@@ -67,7 +62,6 @@ function openModal(src) {
     setScale(1);
     img.style.objectFit = 'contain';
 
-    // Pré-carrega imagens adjacentes
     preloadAdjacentImages(currentIndex, images);
 
     navigation.style.display = 'flex';
@@ -76,7 +70,6 @@ function openModal(src) {
     document.addEventListener('keydown', handleKeydown);
 }
 
-// Pré-carrega imagens adjacentes para navegação mais rápida
 function preloadAdjacentImages(currentIndex, images) {
     const preloadIndexes = [
         currentIndex - 1 >= 0 ? currentIndex - 1 : images.length - 1,
@@ -132,7 +125,6 @@ function updateImageSrc() {
     const images = document.querySelectorAll('.location-image');
     const newSrc = images[currentIndex].src || images[currentIndex].dataset.src;
     
-    // Verifica se a imagem está no cache
     if (imageCache.has(newSrc)) {
         img.src = newSrc;
     } else {
@@ -146,7 +138,6 @@ function updateImageSrc() {
     
     setScale(1);
     
-    // Pré-carrega próximas imagens
     preloadAdjacentImages(currentIndex, images);
 }
 
@@ -176,7 +167,6 @@ function adjustImageSize(modal, img) {
     img.style.maxHeight = '90%';
 }
 
-// Inicializa otimizações quando a página carrega
 document.addEventListener('DOMContentLoaded', () => {
     preloadImages();
     setupLazyLoading();

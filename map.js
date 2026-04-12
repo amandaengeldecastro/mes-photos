@@ -1,5 +1,4 @@
 const locations = [
-    // Brasil - Paraná
     { coords: [-25.5478, -54.5882], title: "Foz do Iguaçu - PR", country: "Brasil", link: "fozdoiguacu.html" },
     { coords: [-25.4284, -49.2733], title: "Curitiba - PR", country: "Brasil", link: "curitiba.html" },
     { coords: [-24.9969, -54.3049], title: "Itaipulândia - PR", country: "Brasil", link: "itaipulandia.html" },
@@ -15,9 +14,8 @@ const locations = [
     { coords: [-25.5149, -48.7011], title: "Morretes - PR", country: "Brasil", link: "morretes.html" },
     { coords: [-25.3292, -49.1288], title: "Almirante Tamandaré - PR", country: "Brasil", link: "almirantetamandare.html" },
     
-    // Brasil - Outros Estados
     { coords: [-29.0476, -50.1431], title: "Cambará do Sul - RS", country: "Brasil", link: "cambara.html" }, 
-    { coords: [-29.3333, -49.7333], title: "Torres - RS", country: "Brasil", link: "torres.html" }, // 
+    { coords: [-29.3333, -49.7333], title: "Torres - RS", country: "Brasil", link: "torres.html" },
     { coords: [-12.9711, -38.5108], title: "Salvador - BA", country: "Brasil", link: "salvador.html" },
     { coords: [-24.7080, -47.5553], title: "Iguape - SP", country: "Brasil", link: "iguape.html" },
     { coords: [-23.5505, -46.6333], title: "São Paulo - SP", country: "Brasil", link: "saopaulo.html" },
@@ -38,7 +36,6 @@ const locations = [
     { coords: [-26.1158, -48.6112], title: "Itapoá - SC", country: "Brasil", link: "itapoa.html" },
     { coords: [-3.1190, -60.0217], title: "Manaus - AM", country: "Brasil", link: "manaus.html" },
     
-    // América do Sul - Outros Países
     { coords: [-25.5082, -54.6201], title: "Ciudad del Este", country: "Paraguai", link: "cde.html" },
     { coords: [-25.3462, -57.5759], title: "Presidente Franco - PY", country: "Paraguai", link: "presidentefranco.html" }, 
     { coords: [-25.2637, -57.5759], title: "Asunción", country: "Paraguai", link: "asuncion.html" },
@@ -55,39 +52,21 @@ const locations = [
     { coords: [7.6333, -70.2100], title: "Guasdualito", country: "Venezuela", link: "guasdualito.html" }
 ];
 
-// Inicialização do mapa
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializa o mapa centralizado na América do Sul
     const map = L.map('map', {
         center: [-15.0, -55.0],
         zoom: 4,
-        zoomControl: true,
-        attributionControl: true
+        zoomControl: false,
+        attributionControl: false
     });
 
-    // Adiciona diferentes camadas de mapa
-    const openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    const tileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '',
         maxZoom: 19
     });
 
-    const cartoDB = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        maxZoom: 19
-    });
+    tileLayer.addTo(map);
 
-    // Adiciona a camada padrão
-    openStreetMap.addTo(map);
-
-    // Controle de camadas
-    const baseMaps = {
-        "OpenStreetMap": openStreetMap,
-        "CartoDB Light": cartoDB
-    };
-
-    L.control.layers(baseMaps).addTo(map);
-
-    // Adiciona marcadores para cada local
     locations.forEach(location => {
         const marker = L.marker(location.coords).addTo(map);
         
@@ -102,12 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
         marker.bindPopup(popupContent);
     });
 
-    // Ajusta o zoom para mostrar todos os marcadores
     const group = new L.featureGroup(locations.map(loc => L.marker(loc.coords)));
     map.fitBounds(group.getBounds().pad(0.1));
 });
 
-// Função para navegar sem abrir nova aba
 function navigateToPage(url) {
     window.location.href = url;
 }

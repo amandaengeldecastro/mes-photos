@@ -8,7 +8,7 @@
 body {
     font-family: "Lato", sans-serif;
     background-color: #f4f4f4;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Evita scroll horizontal */
     line-height: 1.6;
 }
 
@@ -25,15 +25,61 @@ header h1 {
     font-size: 2rem;
 }
 
+/* Navbar - Estilo W3.CSS */
+.w3-top {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
+.w3-bar {
+    width: 100%;
+    overflow: hidden;
+}
+
+.w3-black {
+    background-color: #000 !important;
+}
+
+.w3-bar-item {
+    padding: 8px 16px;
+    float: left;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0;
+    color: white;
+    text-decoration: none;
+}
+
+.w3-button {
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.w3-button:hover {
+    color: #000 !important;
+    background-color: #ccc !important;
+}
+
 /* Timeline Container */
 .timeline {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    margin-top: 46px;
+    margin-top: 46px; /* Espaço para a navbar */
 }
 
-/* Timeline Year */
+/* Timeline Year - Forçando cor preta */
 .timeline-year {
     margin-bottom: 40px;
     border-left: 4px solid #000 !important;
@@ -59,7 +105,7 @@ header h1 {
     color: #000 !important;
 }
 
-/* Container das imagens responsivo */
+/* Container das imagens responsivo - Estilo W3.CSS */
 .timeline-images {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -67,7 +113,7 @@ header h1 {
     margin-top: 15px;
 }
 
-/* Imagens responsivas */
+/* Imagens responsivas - Estilo W3.CSS */
 .location-image {
     width: 100%;
     height: 250px;
@@ -81,7 +127,7 @@ header h1 {
     opacity: 0.7;
 }
 
-/* Modal */
+/* Modal - Estilo W3.CSS */
 .modal {
     display: none;
     position: fixed;
@@ -157,7 +203,164 @@ header h1 {
     color: #bbb;
 }
 
+/* Descrição da imagem */
+.caption-container {
+    text-align: center;
+    background-color: black;
+    padding: 16px;
+    color: white;
+}
+
+/* Miniaturas */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    margin-top: 8px;
+}
+
+.column {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+}
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.column img:hover {
+    opacity: 1;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .timeline-images {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .column {
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .timeline {
+        padding: 10px;
+    }
+    
+    .timeline-year {
+        padding-left: 15px;
+    }
+    
+    .location-image {
+        height: 200px;
+    }
+    
+    .modal-content {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-images {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .location-image {
+        height: 150px;
+    }
+    
+    .column {
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Classes adicionais do W3.CSS */
+.w3-content {
+    max-width: 980px;
+    margin: auto;
+}
+
+.w3-container {
+    padding: 0.01em 16px;
+}
+
+.w3-center {
+    text-align: center;
+}
+
+.w3-padding-64 {
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
+.w3-wide {
+    letter-spacing: 4px;
+}
+
+.w3-opacity {
+    opacity: 0.6;
+}
+
+.w3-justify {
+    text-align: justify;
+}
+
+.w3-padding-32 {
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.w3-row-padding {
+    padding: 0 8px;
+}
+
+.w3-row-padding > .w3-col {
+    padding: 0 8px;
+}
+
+.w3-third {
+    float: left;
+    width: 33.33333%;
+}
+
+.w3-margin-bottom {
+    margin-bottom: 16px;
+}
+
+.w3-round {
+    border-radius: 4px;
+}
+
+.w3-hover-opacity:hover {
+    opacity: 0.6;
+}
+
+.w3-card {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+/* Limpa floats */
+.w3-row:after, .w3-row-padding:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 /* ===== ESTILOS PARA O MAPA ===== */
+
+/* Estilos para o corpo da página do mapa */
 .map-body {
     margin: 0;
     overflow: hidden;
@@ -167,6 +370,21 @@ header h1 {
 #map {
     height: 100vh;
     width: 100%;
+}
+
+/* Banner de manutenção - Estilo discreto */
+.maintenance-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 12px;
+    z-index: 1001;
+    font-weight: 400;
 }
 
 /* Painel lateral */
@@ -222,6 +440,7 @@ header h1 {
     background: #ffffff;
 }
 
+/* Scrollbar melhorada */
 .city-list::-webkit-scrollbar {
     width: 6px;
 }
@@ -278,34 +497,8 @@ header h1 {
     padding-left: 15px;
 }
 
-/* Responsividade */
-@media (max-width: 992px) {
-    .timeline-images {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
-}
-
+/* Responsividade para o mapa */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
-    
-    .timeline {
-        padding: 10px;
-    }
-    
-    .timeline-year {
-        padding-left: 15px;
-    }
-    
-    .location-image {
-        height: 200px;
-    }
-    
-    .modal-content {
-        width: 90%;
-    }
-    
     .info-box {
         width: calc(100% - 40px);
         left: 20px;
@@ -315,14 +508,6 @@ header h1 {
 }
 
 @media (max-width: 480px) {
-    .timeline-images {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-    
-    .location-image {
-        height: 150px;
-    }
-    
     .info-box {
         width: calc(100% - 20px);
         left: 10px;
@@ -343,7 +528,122 @@ header h1 {
     }
 }
 
+/* Estilos para popups do Leaflet */
+.leaflet-popup-content-wrapper {
+    border-radius: 4px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-popup-content {
+    margin: 15px;
+    font-family: "DM Sans", sans-serif;
+}
+
+.leaflet-popup-content h3 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #212529;
+}
+
+.leaflet-popup-content p {
+    margin: 0 0 10px 0;
+    color: #6c757d;
+    font-size: 13px;
+}
+
+.leaflet-popup-content a {
+    color: #34495e;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.leaflet-popup-content a:hover {
+    color: #2c3e50;
+    text-decoration: underline;
+}
+
+/* Loading state para lazy loading */
+.location-image.lazy {
+    background: #f8f9fa;
+}
+
+.timeline .timeline-year,
+div.timeline div.timeline-year,
+body .timeline .timeline-year {
+    border-left: 4px solid #000000 !important;
+    border-left-color: #000000 !important;
+}
+
+.timeline .timeline-year:not(.force-blue) {
+    border-left: 4px solid #000000 !important;
+}
+
+.timeline-year {
+    border-left: 4px solid black !important;
+    border-left: 4px solid #000 !important;
+    border-left: 4px solid rgb(0, 0, 0) !important;
+}
+
+[class*="timeline-year"] {
+    border-left-color: #000000 !important;
+}
+
+.timeline-year h2,
+.timeline .timeline-year h2,
+div.timeline div.timeline-year h2 {
+    color: #000000 !important;
+}
+
+.timeline-event h3,
+.timeline .timeline-event h3,
+div.timeline div.timeline-event h3 {
+    color: #000000 !important;
+}
+
+.timeline-year:not(.keep-blue) {
+    border-left-color: #000000 !important;
+}
+
+.w3-border-blue,
+.w3-leftbar-blue,
+.timeline .w3-border-blue,
+.timeline .w3-leftbar-blue {
+    border-left-color: #000000 !important;
+}
+
+.timeline-year:hover,
+.timeline-year:focus,
+.timeline-year:active {
+    border-left-color: #000000 !important;
+}
+
+#year-2025,
+#year-2024,
+#year-2023,
+#year-em-desenvolvimento,
+#undated {
+    border-left: 4px solid #000000 !important;
+}
+
+.timeline-year[style*="border"] {
+    border-left: 4px solid #000000 !important;
+}
+
+.timeline-year {
+    border-left-width: 4px !important;
+    border-left-style: solid !important;
+    border-left-color: #000000 !important;
+}
+
+.filter-btn.active {
+    background-color: #000000 !important;
+}
+
 /* ===== CORREÇÕES PARA MODAL NO CELULAR ===== */
+
+/* Melhorar modal em dispositivos móveis */
 @media (max-width: 768px) {
     .modal {
         padding-top: 20px;
@@ -359,8 +659,6 @@ header h1 {
         padding: 0 10px;
         height: 100%;
         align-items: center;
-        z-index: 1002;
-        pointer-events: none;
     }
     
     .arrow {
@@ -373,8 +671,6 @@ header h1 {
         display: flex;
         align-items: center;
         justify-content: center;
-        pointer-events: all;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 }
 
@@ -404,5 +700,18 @@ header h1 {
         top: 10px;
         right: 15px;
         font-size: 30px;
+    }
+}
+
+/* Garantir que as flechas fiquem sempre visíveis */
+@media (max-width: 768px) {
+    .navigation {
+        z-index: 1002;
+        pointer-events: none;
+    }
+    
+    .arrow {
+        pointer-events: all;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 }

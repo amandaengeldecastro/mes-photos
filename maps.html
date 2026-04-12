@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .nav-header {
+      background: #000;
+      padding: 1rem 0;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1002;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .nav-item {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      font-family: "DM Sans", sans-serif;
+    }
+    
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-item.active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    #map { 
+      height: 100vh; 
+      width: 100%; 
+      padding-top: 80px;
+    }
+    
+    .info-box {
+      top: 100px;
+    }
+    
+    
+    /* CORREÇÃO CABEÇALHO TIMELINE - FORÇAR COR PRETA */
+    .info-box-header {
+      background: #000000 !important;
+    }
+    
+    
+    
+    
+    @media (max-width: 768px) {
+      .nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="map-body">
+  <div class="nav-header">
+    <nav class="nav">
+      <a href="home.html" class="nav-item">HOME</a>
+      <a href="maps.html" class="nav-item active">MAPS</a>
+      <a href="music.html" class="nav-item">MUSIC</a>
+      <a href="pets.html" class="nav-item">PETS</a>
+    </nav>
+  </div>
+
+  <div class="info-box" id="infoBox">
+    <div class="info-box-header">
+      <span class="info-box-title">Timeline</span>
+      <button class="toggle-button" id="toggleBtn" onclick="toggleInfoBox()">-</button>
+    </div>
+    <div class="city-list" id="cityList">
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">2025</span>
+        <a href="guaratuba.html">Guaratuba — PR</a>
+        <a href="almirantetamandare.html">Almirante Tamandaré — PR</a>
+        <a href="piraquara.html">Piraquara — PR</a>
+        <a href="curitiba.html">Curitiba — PR</a>
+        <a href="garuva.html">Garuva — SC</a>
+        <a href="barravelha.html">Barra Velha — SC</a>
+        <a href="matinhos.html">Matinhos — PR</a>
+        <a href="pontal.html">Pontal — PR</a>
+        <a href="saojosedospinhais.html">São José dos Pinhais — PR</a>
+        <a href="penha.html">Penha — SC</a>
+        <a href="pomerode.html">Pomerode — SC</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">2024</span>
+        <a href="colombo.html">Colombo — PR</a>
+        <a href="palmeira.html">Palmeira — PR</a>
+        <a href="morretes.html">Morretes — PR</a>
+        <a href="antonina.html">Antonina — PR</a>
+        <a href="florianopolis.html">Florianópolis — SC</a>
+        <a href="saojose.html">São José — SC</a>
+        <a href="palhoca.html">Palhoça — SC</a>
+        <a href="guaratuba.html">Guaratuba — PR</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">2023</span>
+        <a href="puertoiguazu.html">Puerto Iguazú — ARG</a>
+        <a href="itapoa.html">Itapoá — SC</a>
+        <a href="fozdoiguacu.html">Foz do Iguaçu — PR</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">2022</span>
+        <a href="campinas.html">Campinas — SP</a>
+        <a href="fozdoiguacu.html">Foz do Iguaçu — PR</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">2019</span>
+        <a href="itaipulandia.html">Itaipulândia — PR</a>
+        <a href="cde.html">Ciudad del Este — PY</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">2018</span>
+        <a href="terezinha.html">Sta. Terezinha de Itaipu — PR</a>
+        <a href="fozdoiguacu.html">Foz do Iguaçu — PR</a>
+        <a href="guaratuba.html">Guaratuba — PR</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">2017</span>
+        <a href="fozdoiguacu.html">Foz do Iguaçu — PR</a>
+        <a href="guaratuba.html">Guaratuba — PR</a>
+        <a href="manaus.html">Manaus — AM</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">2016</span>
+        <a href="caracas.html">Caracas — VE</a>
+        <a href="guasdualito.html">Guasdualito — VE</a>
+        <a href="santaelenadeuairen.html">Sta. Elena de Uairén — VE</a>
+        <a href="manaus.html">Manaus — AM</a>
+        <a href="tatira.html">Tátira — VE</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">2015</span>
+        <a href="bogota.html">Bogotá — CO</a>
+        <a href="salvador.html">Salvador — BA</a>
+        <a href="brasilia.html">Brasília — DF</a>
+        <a href="saopaulo.html">São Paulo — SP</a>
+        <a href="iguape.html">Iguape — SP</a>
+        <a href="portoalegre.html">Porto Alegre — RS</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">2014</span>
+        <a href="ba.html">Buenos Aires — ARG</a>
+        <a href="coloniadelsacramento.html">Colonia del Sacramento — UY</a>
+        <a href="montevideo.html">Montevideo — UY</a>
+        <a href="puntadeleste.html">Punta del Este — UY</a>
+        <a href="portoalegre.html">Porto Alegre — RS</a>
+        <a href="rio.html">Rio de Janeiro — RJ</a>
+        <a href="niteroi.html">Niterói — RJ</a>
+        <a href="cambara.html">Cambará do Sul — RS</a>
+        <a href="sombrio.html">Sombrio — SC</a>
+        <a href="mundonovo.html">Mundo Novo — MS</a>
+        <a href="fozdoiguacu.html">Foz do Iguaçu — PR</a>
+        <a href="posadas.html">Posadas — ARG</a>
+      </div>
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">2013</span>
+        <a href="torres.html">Torres — RS</a>
+        <a href="asuncion.html">Asunción — PY</a>
+        <a href="presidentefranco.html">Presidente Franco — PY</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="map.js"></script>
+  <script>
+    (function() {
+      var infoBoxVisible = true;
+      
+      window.toggleInfoBox = function() {
+        const list = document.getElementById('cityList');
+        const btn = document.getElementById('toggleBtn');
+        infoBoxVisible = !infoBoxVisible;
+        list.style.display = infoBoxVisible ? '' : 'none';
+        btn.textContent = infoBoxVisible ? '-' : '+';
+      };
+    })();
+  </script>
+</body>
+</html>
