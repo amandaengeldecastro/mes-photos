@@ -1,49 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>San Antonio</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo adicional para garantir que as imagens fiquem lado a lado */
+        .location-image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px; /* Espaçamento entre as imagens */
+            justify-content: center;
+        }
+        
+        .location-image-container .location-image {
+            flex: 0 0 calc(50% - 16px); /* Cada imagem ocupa metade do espaço menos o gap */
+            max-width: 400px; /* Largura máxima para cada imagem */
+            height: auto; /* Altura automática para manter a proporção original */
+            object-fit: contain; /* Mostra a imagem inteira sem recortar */
+            max-height: 300px; /* Altura máxima para evitar imagens muito grandes */
+        }
+        
+        /* Para telas menores, as imagens ficam uma abaixo da outra */
+        @media (max-width: 768px) {
+            .location-image-container .location-image {
+                flex: 0 0 100%;
+            }
+        }
+    </style>
 </head>
-
 <body>
     <header>
         <h1>San Antonio</h1>
     </header>
-
+    
     <div class="timeline">
-        <div class="timeline-year" id="year-2025">
+        <div class="timeline-year" id="year-2016">
             <h2>2016</h2>
             <div class="timeline-event">
                 <h3>[Janeiro]</h3>
                 <div class="timeline-images">
-                    <div class="location-image-container"
-                        style="display: flex; flex-wrap: wrap; justify-content: center;">
+                    <div class="location-image-container">
                         <img onclick="openModal(this.src)" src="./images/locations/VE/FB_IMG_16346566437446677.jpg"
                             alt="Venezuela" class="location-image" title="San Antonio - Tatira">
                         <img onclick="openModal(this.src)" src="./images/locations/VE/FB_IMG_16346566558094647.jpg"
                             alt="Venezuela" class="location-image" title="San Antonio - Tatira">
-
                     </div>
                 </div>
             </div>
         </div>
-
-        <div id="myModal" class="modal" onclick="closeModal()">
-            <div class="modal-content">
-                <span class="navigation">
-                    <button class="arrow" onclick="prevImage(); event.stopPropagation();"
-                        aria-label="Anterior">&#10094;</button>
-                    <img id="img01" class="modal-image" />
-                    <button class="arrow" onclick="nextImage(); event.stopPropagation();"
-                        aria-label="Próximo">&#10095;</button>
-                </span>
-            </div>
+    </div>
+    
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();"
+                    aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();"
+                    aria-label="Próximo">&#10095;</button>
+            </span>
         </div>
-
-        <script src="script.js"></script>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
-
-</html
+</html>

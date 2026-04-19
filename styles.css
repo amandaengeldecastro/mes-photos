@@ -12,7 +12,6 @@ body {
     line-height: 1.6;
 }
 
-/* Header */
 header {
     background-color: #000;
     color: white;
@@ -25,7 +24,6 @@ header h1 {
     font-size: 2rem;
 }
 
-/* Timeline Container */
 .timeline {
     max-width: 1200px;
     margin: 0 auto;
@@ -33,7 +31,6 @@ header h1 {
     margin-top: 46px;
 }
 
-/* Timeline Year */
 .timeline-year {
     margin-bottom: 40px;
     border-left: 4px solid #000 !important;
@@ -47,7 +44,6 @@ header h1 {
     margin-bottom: 20px;
 }
 
-/* Timeline Events */
 .timeline-event {
     margin-bottom: 30px;
 }
@@ -59,7 +55,6 @@ header h1 {
     color: #000 !important;
 }
 
-/* Container das imagens responsivo */
 .timeline-images {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -67,11 +62,11 @@ header h1 {
     margin-top: 15px;
 }
 
-/* Imagens responsivas */
 .location-image {
     width: 100%;
-    height: 250px;
-    object-fit: cover;
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
     cursor: pointer;
     transition: opacity 0.3s ease;
     border: none;
@@ -81,7 +76,21 @@ header h1 {
     opacity: 0.7;
 }
 
-/* Modal */
+.location-image-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.location-image-container .location-image {
+    flex: 0 0 calc(50% - 16px);
+    max-width: 400px;
+    height: auto;
+    object-fit: contain;
+    max-height: 300px;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -91,27 +100,61 @@ header h1 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
-    overflow: auto;
-    padding-top: 60px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-content {
     position: relative;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: zoom 0.3s;
+}
+
+.modal-image {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
     margin: auto;
     display: block;
-    width: 80%;
-    max-width: 1000px;
-    animation: zoom 0.6s;
+}
+
+.navigation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+}
+
+.arrow {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    transition: 0.3s;
+    pointer-events: auto;
+    z-index: 1002;
+    margin: 0 10px;
+}
+
+.arrow:hover {
+    background: rgba(0, 0, 0, 0.6);
 }
 
 @keyframes zoom {
     from {transform: scale(0)}
     to {transform: scale(1)}
-}
-
-.modal-image {
-    width: 100%;
-    height: auto;
 }
 
 .close {
@@ -132,32 +175,6 @@ header h1 {
     cursor: pointer;
 }
 
-.navigation {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 0 20px;
-}
-
-.arrow {
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 10px;
-    transition: 0.3s;
-}
-
-.arrow:hover {
-    color: #bbb;
-}
-
-/* ===== ESTILOS PARA O MAPA ===== */
 .map-body {
     margin: 0;
     overflow: hidden;
@@ -169,7 +186,6 @@ header h1 {
     width: 100%;
 }
 
-/* Painel lateral */
 .info-box {
     position: fixed;
     top: 40px;
@@ -278,7 +294,6 @@ header h1 {
     padding-left: 15px;
 }
 
-/* Responsividade */
 @media (max-width: 992px) {
     .timeline-images {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -299,11 +314,11 @@ header h1 {
     }
     
     .location-image {
-        height: 200px;
+        height: auto;
     }
     
     .modal-content {
-        width: 90%;
+        width: 95%;
     }
     
     .info-box {
@@ -311,6 +326,21 @@ header h1 {
         left: 20px;
         right: 20px;
         max-width: none;
+    }
+    
+    .modal-image {
+        max-width: 95%;
+        max-height: 80vh;
+    }
+    
+    .arrow {
+        font-size: 24px;
+        padding: 12px;
+    }
+    
+    .location-image-container .location-image {
+        flex: 0 0 100%;
+        max-width: 100%;
     }
 }
 
@@ -320,7 +350,7 @@ header h1 {
     }
     
     .location-image {
-        height: 150px;
+        height: auto;
     }
     
     .info-box {
@@ -343,24 +373,44 @@ header h1 {
     }
 }
 
-/* ===== CORREÇÕES PARA MODAL NO CELULAR ===== */
 @media (max-width: 768px) {
     .modal {
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 0;
+        padding-bottom: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
     }
     
     .modal-content {
         width: 95%;
-        margin: 10px auto;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        max-height: 100vh;
+    }
+    
+    .modal-image {
+        max-width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
     }
     
     .navigation {
-        padding: 0 10px;
+        width: 100%;
+        padding: 0;
         height: 100%;
         align-items: center;
         z-index: 1002;
         pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: none;
+        display: flex;
+        justify-content: space-between;
     }
     
     .arrow {
@@ -375,22 +425,28 @@ header h1 {
         justify-content: center;
         pointer-events: all;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        margin: 0 10px;
+        z-index: 1003;
     }
 }
 
 @media (max-width: 480px) {
     .modal {
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding: 0;
     }
     
     .modal-content {
-        width: 98%;
-        margin: 5px auto;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    
+    .modal-image {
+        max-height: 85vh;
     }
     
     .navigation {
-        padding: 0 5px;
+        padding: 0;
     }
     
     .arrow {
@@ -398,6 +454,7 @@ header h1 {
         padding: 12px 6px;
         min-width: 35px;
         min-height: 35px;
+        margin: 0 5px;
     }
     
     .close {

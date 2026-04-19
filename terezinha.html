@@ -1,47 +1,71 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Santa Terezinha de Itaipu</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <header>
         <h1>Santa Terezinha de Itaipu</h1>
     </header>
-
     <div class="timeline">
         <div class="timeline-year" id="year-2025">
-            <!-- <h2>2016</h2> -->
+            <h2>2023</h2>
             <div class="timeline-event">
-                <!-- <h3>[Janeiro]</h3> -->
+                <h3>[Maio]</h3>
                 <div class="timeline-images">
-
                     <img onclick="openModal(this.src)"
                         src="./images/locations/BR/PR/IMG_20230514_164147_151-santa_terezinha_de_itaipu.jpg"
                         alt="Santa Terezinha de Itaipu" class="location-image" title="Santa Terezinha de Itaipu">
+                </div>
+            </div>
+        </div>
+        <div class="timeline-year" id="year-2018">
+            <h2>2018</h2>
+            <div class="timeline-event">
+                <h3>[Outubro]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_0189.JPG"
+                        alt="Santa Terezinha de Itaipu" class="location-image" title="Santa Terezinha de Itaipu">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346560162888134.jpg"
+                        class="location-image">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_0218-1.jpg"
+                        class="location-image">
+                    
+                </div>
+            </div>
+            <div class="timeline-event">
+                <h3>[Maio]</h3>
+                <div class="timeline-images">
                     <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346560670649086.jpg"
                         alt="Santa Terezinha de Itaipu" class="location-image" title="Santa Terezinha de Itaipu">
-
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_9180.JPG"
+                        class="location-image">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_9482.JPG"
+                        class="location-image">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_9330.JPG"
+                        class="location-image">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_9424.JPG"
+                        class="location-image">
                 </div>
             </div>
         </div>
     </div>
-
+    
     <div id="myModal" class="modal" onclick="closeModal()">
         <div class="modal-content">
             <span class="navigation">
-
-
-
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();"
+                    aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();"
+                    aria-label="Próximo">&#10095;</button>
             </span>
         </div>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
-
-</html
+</html>

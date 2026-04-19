@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Araucária</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Araucária</h1>
+    </header>
+
+    <div class="timeline">
+        <div class="timeline-year" id="year-2026">
+            <h2>2026</h2>
+            <div class="timeline-event">
+                <h3>[Março]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20260315_165338_187.jpg" alt=" 2024" class="location-image">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20260315_182945_663-EDIT.jpg" alt="2024" class="location-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="navigation">
+                <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button>
+                <img id="img01" class="modal-image" />
+                <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button>
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -13,7 +13,6 @@ function preloadImages() {
     });
 }
 
-// Lazy loading para imagens
 function setupLazyLoading() {
     const images = document.querySelectorAll('.location-image[data-src]');
     
@@ -44,6 +43,10 @@ function openModal(src) {
     const images = document.querySelectorAll('.location-image');
     const navigation = document.querySelector('.navigation');
 
+    img.onclick = function(event) {
+        event.stopPropagation();
+    };
+
     modal.style.display = "flex";
     
     if (imageCache.has(src)) {
@@ -53,21 +56,45 @@ function openModal(src) {
         realImg.onload = () => {
             img.src = src;
             imageCache.set(src, realImg);
-            adjustImageSize(modal, img);
         };
         realImg.src = src;
     }
 
     currentIndex = Array.from(images).findIndex(image => (image.src === src || image.dataset.src === src));
+    
     setScale(1);
+    
     img.style.objectFit = 'contain';
 
     preloadAdjacentImages(currentIndex, images);
 
     navigation.style.display = 'flex';
 
-    img.addEventListener('wheel', handleWheel);
     document.addEventListener('keydown', handleKeydown);
+    
+    img.onload = function() {
+        optimizeImageDisplay(img);
+    };
+}
+
+function optimizeImageDisplay(img) {
+    const viewportWidth = window.innerWidth * 0.9;
+    const viewportHeight = window.innerHeight * 0.85;
+    
+    const imgRatio = img.naturalWidth / img.naturalHeight;
+    const viewportRatio = viewportWidth / viewportHeight;
+    
+    if (imgRatio > viewportRatio) {
+        img.style.width = 'auto';
+        img.style.height = 'auto';
+        img.style.maxWidth = '90%';
+        img.style.maxHeight = '85vh';
+    } else {
+        img.style.width = 'auto';
+        img.style.height = 'auto';
+        img.style.maxHeight = '85vh';
+        img.style.maxWidth = '90%';
+    }
 }
 
 function preloadAdjacentImages(currentIndex, images) {
@@ -89,12 +116,6 @@ function preloadAdjacentImages(currentIndex, images) {
 function closeModal() {
     const modal = document.getElementById("myModal");
     modal.style.display = "none";
-
-    const navigation = document.querySelector('.navigation');
-    navigation.style.display = 'none';
-
-    const img = document.getElementById("img01");
-    img.removeEventListener('wheel', handleWheel);
     document.removeEventListener('keydown', handleKeydown);
 }
 
@@ -127,11 +148,13 @@ function updateImageSrc() {
     
     if (imageCache.has(newSrc)) {
         img.src = newSrc;
+        optimizeImageDisplay(img);
     } else {
         const realImg = new Image();
         realImg.onload = () => {
             img.src = newSrc;
             imageCache.set(newSrc, realImg);
+            optimizeImageDisplay(img);
         };
         realImg.src = newSrc;
     }
@@ -139,6 +162,12 @@ function updateImageSrc() {
     setScale(1);
     
     preloadAdjacentImages(currentIndex, images);
+}
+
+function setScale(value) {
+    scale = value;
+    const img = document.getElementById("img01");
+    img.style.transform = `scale(${scale})`;
 }
 
 function handleWheel(event) {
@@ -150,24 +179,29 @@ function handleWheel(event) {
     img.style.transformOrigin = 'center center';
 }
 
-function setScale(value) {
-    scale = value;
-    const img = document.getElementById("img01");
-    img.style.transform = `scale(${scale})`;
-}
-
 function adjustImageSize(modal, img) {
     const modalWidth = modal.clientWidth;
     const modalHeight = modal.clientHeight;
     const imgRatio = img.naturalWidth / img.naturalHeight;
-    const modalRatio = modalWidth / modalHeight;
-
-    img.style.objectFit = (imgRatio > modalRatio) ? 'contain' : 'contain';
+    
     img.style.maxWidth = '90%';
-    img.style.maxHeight = '90%';
+    img.style.maxHeight = '80vh';
+    img.style.objectFit = 'contain';
+    
+    img.style.transform = 'scale(1)';
+    scale = 1;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     preloadImages();
     setupLazyLoading();
+    
+    window.addEventListener('resize', function() {
+        const modal = document.getElementById("myModal");
+        const img = document.getElementById("img01");
+        
+        if (modal.style.display === "flex") {
+            optimizeImageDisplay(img);
+        }
+    });
 });
