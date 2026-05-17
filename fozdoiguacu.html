@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foz do Iguaçu</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="city-styles.css">
 </head>
-<body>
+<body onclick="closeDropdown(event)">
+    <div class="nav-wrap">
+        <button class="nav-main-btn" onclick="toggleDropdown(event)">← Voltar</button>
+        <div class="nav-dropdown" id="navDropdown">
+            <a href="index.html" class="nav-option">Home</a>
+            <a href="maps.html" class="nav-option">Maps</a>
+        </div>
+    </div>
+
     <header>
         <h1>Foz do Iguaçu</h1>
     </header>
@@ -674,8 +682,6 @@
                 <div class="timeline-images">
                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/FB_IMG_16346563236916431.jpg"
                         alt="Rio Paraná" class="location-image" title="Rio Paraná- Foz do Iguaçu">
-                    <img onclick="openModal(this.src)" src="./images/locations/BR/PR/iguazu_falls.jpg" alt="Cataratas"
-                        class="location-image" title="Cataratas do Iguaçu - Foz do Iguaçu">
                     <img onclick="openModal(this.src)" src="./images/locations/BR/PR/marco_das_três_fronteiras_2014.jpg"
                         alt="Marco das 3 Fronteiras" title="Marco das Três Fronteiras - Foz do Iguaçu"
                                                 class="location-image">                   
@@ -735,7 +741,7 @@
 
     <!-- Modal para exibição de imagens -->
     <div id="myModal" class="modal" onclick="closeModal()">
-        <div class="modal-content">
+        <div class="modal-content" onclick="event.stopPropagation()">
             <span class="navigation">
                 <button class="arrow" onclick="prevImage(); event.stopPropagation();"
                     aria-label="Anterior">&#10094;</button>
@@ -747,5 +753,14 @@
     </div>
     
     <script src="script.js"></script>
+    <script>
+        function toggleDropdown(e) {
+            e.stopPropagation();
+            document.getElementById('navDropdown').classList.toggle('open');
+        }
+        function closeDropdown(e) {
+            document.getElementById('navDropdown').classList.remove('open');
+        }
+    </script>
 </body>
 </html>

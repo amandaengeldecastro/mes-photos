@@ -4,13 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>São josé dos Pinhais</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>São José dos Pinhais</title>
+    <link rel="stylesheet" href="city-styles.css">
 </head>
 
-<body>
+<body onclick="closeDropdown(event)">
+
+    <div class="nav-wrap">
+        <button class="nav-main-btn" onclick="toggleDropdown(event)">← Voltar</button>
+        <div class="nav-dropdown" id="navDropdown">
+            <a href="index.html" class="nav-option">Home</a>
+            <a href="maps.html" class="nav-option">Maps</a>
+        </div>
+    </div>
+
     <header>
+        <p class="city-label">Brasil · Paraná</p>
         <h1>São José dos Pinhais</h1>
+        <div class="city-divider"></div>
     </header>
 
     <div class="timeline">
@@ -26,9 +37,11 @@
                     <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG_20260421_172852_665.jpg" class="location-image">
                 </div>
             </div>
-        </div> <div class="timeline-year" id="year-2025">
+        </div>
+
+        <div class="timeline-year" id="year-2025">
             <h2>2025</h2>
-            
+
             <div class="timeline-event">
                 <h3>[Setembro]</h3>
                 <div class="timeline-images">
@@ -47,8 +60,11 @@
                     <img onclick="openModal(this.src)" src="./images/locations/BR/PR/IMG-20250406-WA0007.jpg" alt="SJP" class="location-image">
                 </div>
             </div>
-        </div> </div> <div id="myModal" class="modal" onclick="closeModal()">
-        <div class="modal-content">
+        </div>
+    </div>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
             <span class="navigation">
                 <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button>
                 <img id="img01" class="modal-image" />
@@ -58,5 +74,14 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        function toggleDropdown(e) {
+            e.stopPropagation();
+            document.getElementById('navDropdown').classList.toggle('open');
+        }
+        function closeDropdown(e) {
+            document.getElementById('navDropdown').classList.remove('open');
+        }
+    </script>
 </body>
 </html>

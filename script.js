@@ -4,12 +4,10 @@ let imageCache = new Map();
 
 function preloadImages() {
     const images = document.querySelectorAll('.location-image');
-    images.forEach((img, index) => {
-        if (index < 5) {
-            const preloadImg = new Image();
-            preloadImg.src = img.src || img.dataset.src;
-            imageCache.set(img.src || img.dataset.src, preloadImg);
-        }
+    images.forEach((img) => {
+        const preloadImg = new Image();
+        preloadImg.src = img.src || img.dataset.src;
+        imageCache.set(img.src || img.dataset.src, preloadImg);
     });
 }
 
@@ -17,7 +15,7 @@ function setupLazyLoading() {
     const images = document.querySelectorAll('.location-image[data-src]');
     
     if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
+        const imageObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
@@ -43,12 +41,28 @@ function openModal(src) {
     const images = document.querySelectorAll('.location-image');
     const navigation = document.querySelector('.navigation');
 
-    img.onclick = function(event) {
-        event.stopPropagation();
-    };
-
     modal.style.display = "flex";
-    
+
+    if (!document.getElementById('modalCloseBtn')) {
+        const closeBtn = document.createElement('button');
+        closeBtn.id = 'modalCloseBtn';
+        closeBtn.innerHTML = '✕';
+        closeBtn.setAttribute('aria-label', 'Fechar');
+        closeBtn.style.cssText = [
+            'position:fixed', 'top:16px', 'right:20px', 'z-index:3000',
+            'background:rgba(255,255,255,0.12)', 'border:1px solid rgba(255,255,255,0.25)',
+            'color:#fff', 'font-size:18px', 'width:40px', 'height:40px',
+            'border-radius:50%', 'cursor:pointer', 'display:flex',
+            'align-items:center', 'justify-content:center',
+            'backdrop-filter:blur(8px)', '-webkit-backdrop-filter:blur(8px)',
+            'transition:background 0.2s'
+        ].join(';');
+        closeBtn.onmouseenter = () => closeBtn.style.background = 'rgba(255,255,255,0.25)';
+        closeBtn.onmouseleave = () => closeBtn.style.background = 'rgba(255,255,255,0.12)';
+        closeBtn.onclick = (e) => { e.stopPropagation(); closeModal(); };
+        modal.appendChild(closeBtn);
+    }
+
     if (imageCache.has(src)) {
         img.src = src;
     } else {
@@ -63,11 +77,8 @@ function openModal(src) {
     currentIndex = Array.from(images).findIndex(image => (image.src === src || image.dataset.src === src));
     
     setScale(1);
-    
     img.style.objectFit = 'contain';
-
     preloadAdjacentImages(currentIndex, images);
-
     navigation.style.display = 'flex';
 
     document.addEventListener('keydown', handleKeydown);
@@ -81,26 +92,14 @@ function optimizeImageDisplay(img) {
     const viewportWidth = window.innerWidth * 0.9;
     const viewportHeight = window.innerHeight * 0.85;
     
-    const imgRatio = img.naturalWidth / img.naturalHeight;
-    const viewportRatio = viewportWidth / viewportHeight;
-    
-    if (imgRatio > viewportRatio) {
-        img.style.width = 'auto';
-        img.style.height = 'auto';
-        img.style.maxWidth = '90%';
-        img.style.maxHeight = '85vh';
-    } else {
-        img.style.width = 'auto';
-        img.style.height = 'auto';
-        img.style.maxHeight = '85vh';
-        img.style.maxWidth = '90%';
-    }
+    img.style.maxWidth = `${viewportWidth}px`;
+    img.style.maxHeight = `${viewportHeight}px`;
 }
 
 function preloadAdjacentImages(currentIndex, images) {
     const preloadIndexes = [
-        currentIndex - 1 >= 0 ? currentIndex - 1 : images.length - 1,
-        currentIndex + 1 < images.length ? currentIndex + 1 : 0
+        (currentIndex - 1 + images.length) % images.length,
+        (currentIndex + 1) % images.length
     ];
 
     preloadIndexes.forEach(index => {
@@ -145,57 +144,15 @@ function updateImageSrc() {
     const img = document.getElementById("img01");
     const images = document.querySelectorAll('.location-image');
     const newSrc = images[currentIndex].src || images[currentIndex].dataset.src;
-    
-    if (imageCache.has(newSrc)) {
-        img.src = newSrc;
-        optimizeImageDisplay(img);
-    } else {
-        const realImg = new Image();
-        realImg.onload = () => {
-            img.src = newSrc;
-            imageCache.set(newSrc, realImg);
-            optimizeImageDisplay(img);
-        };
-        realImg.src = newSrc;
-    }
-    
-    setScale(1);
-    
-    preloadAdjacentImages(currentIndex, images);
-}
 
-function setScale(value) {
-    scale = value;
-    const img = document.getElementById("img01");
-    img.style.transform = `scale(${scale})`;
-}
-
-function handleWheel(event) {
-    event.preventDefault();
-    scale *= (event.deltaY < 0) ? 1.1 : 0.9;
-    scale = Math.min(Math.max(0.5, scale), 5);
-    const img = document.getElementById("img01");
-    img.style.transform = `scale(${scale})`;
-    img.style.transformOrigin = 'center center';
-}
-
-function adjustImageSize(modal, img) {
-    const modalWidth = modal.clientWidth;
-    const modalHeight = modal.clientHeight;
-    const imgRatio = img.naturalWidth / img.naturalHeight;
-    
-    img.style.maxWidth = '90%';
-    img.style.maxHeight = '80vh';
-    img.style.objectFit = 'contain';
-    
-    img.style.transform = 'scale(1)';
-    scale = 1;
+    img.src = newSrc;
+    optimizeImageDisplay(img);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     preloadImages();
     setupLazyLoading();
-    
+
     window.addEventListener('resize', function() {
         const modal = document.getElementById("myModal");
         const img = document.getElementById("img01");

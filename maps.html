@@ -10,114 +10,30 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .nav-header {
-      background: #000;
-      padding: 1rem 0;
-      text-align: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1002;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    #map {
+      height: 100vh;
+      width: 100%;
     }
-    
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    
-    .nav-item {
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-      font-family: "DM Sans", sans-serif;
-    }
-    
-    .nav-item:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-    
-    .nav-item.active {
-      background: rgba(255, 255, 255, 0.2);
-    }
-    
-    #map { 
-      height: 100vh; 
-      width: 100%; 
-      padding-top: 80px;
-    }
-    
-    .info-box {
-      top: 100px;
-    }
-    
-    
+
     .info-box-header {
       background: #000000 !important;
-    }
-    
-    
-    
-    
-    @media (max-width: 768px) {
-      .nav {
-        gap: 1rem;
-        padding: 0 1rem;
-        flex-wrap: nowrap;
-      }
-      
-      .nav-item {
-        padding: 0.4rem 0.8rem;
-        font-size: 14px;
-        white-space: nowrap;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .nav {
-        gap: 0.5rem;
-        padding: 0 0.5rem;
-      }
-      
-      .nav-item {
-        padding: 0.3rem 0.6rem;
-        font-size: 13px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .nav-item {
-        padding: 0.3rem 0.4rem;
-        font-size: 12px;
-      }
     }
   </style>
 </head>
 <body class="map-body">
-  <div class="nav-header">
-    <nav class="nav">
-      <a href="home.html" class="nav-item">HOME</a>
-      <a href="maps.html" class="nav-item active">MAPS</a>
-      <a href="music.html" class="nav-item">MUSIC</a>
-      <a href="pets.html" class="nav-item">PETS</a>
-    </nav>
-  </div>
-
   <div class="info-box" id="infoBox">
     <div class="info-box-header">
       <span class="info-box-title">Timeline</span>
       <button class="toggle-button" id="toggleBtn" onclick="toggleInfoBox()">-</button>
     </div>
     <div class="city-list" id="cityList">
+
+      <div class="city-list-group">
+        <span class="city-list-group-label">Navegar</span>
+        <a href="home.html">Home</a>
+        <a href="music.html">Music</a>
+        <a href="pets.html">Pets</a>
+      </div>
 
       <div class="city-list-group">
         <span class="city-list-group-label">2026</span>

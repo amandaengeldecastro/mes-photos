@@ -1,144 +1,368 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pets</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        .nav-header {
-            background: #000;
-            padding: 1rem 0;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .nav-item {
-            text-decoration: none;
-            color: white;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            font-family: "DM Sans", sans-serif;
-        }
-        
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .nav-item.active {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .timeline {
-            margin-top: 80px;
-        }
-        
-    @media (max-width: 768px) {
-      .nav {
-        gap: 1rem;
-        padding: 0 1rem;
-        flex-wrap: nowrap;
-      }
-      
-      .nav-item {
-        padding: 0.4rem 0.8rem;
-        font-size: 14px;
-        white-space: nowrap;
-      }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    @media (max-width: 480px) {
-      .nav {
-        gap: 0.5rem;
-        padding: 0 0.5rem;
+    body {
+      background: #111110;
+      font-family: "DM Sans", sans-serif;
+      min-height: 100vh;
+    }
+
+    /* — Botão flutuante de voltar — */
+    .nav-wrap {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+
+    .nav-main-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.7);
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .nav-main-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    .nav-dropdown {
+      margin-top: 6px;
+      background: rgba(22, 22, 20, 0.97);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .nav-dropdown.open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .nav-option {
+      display: block;
+      width: 100%;
+      padding: 9px 16px;
+      font-family: "DM Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.65);
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-option:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .nav-option + .nav-option {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* — Cabeçalho — */
+    .pets-title-area {
+      text-align: center;
+      padding: 72px 24px 32px;
+    }
+
+    .pets-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.35);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .pets-heading {
+      font-family: "DM Serif Display", serif;
+      font-size: 2.1rem;
+      color: #fff;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    .pets-divider {
+      width: 28px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 16px auto 0;
+    }
+
+    /* — Grade de fotos — */
+    .pets-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      padding: 28px 20px 60px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .pet-card {
+      border-radius: 10px;
+      aspect-ratio: 1;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* gradiente suave para o nome ficar legível */
+    .pet-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .pet-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .pet-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .pet-name {
+      position: absolute;
+      bottom: 9px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+      z-index: 2;
+      letter-spacing: 0.04em;
+    }
+
+    /* — Modal — */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* imagem se enquadra em qualquer tela sem cortar */
+    .modal-image {
+      max-width: 88vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .navigation {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+      padding: 0 16px;
+      z-index: 10;
+    }
+
+    .arrow {
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: auto;
+      flex-shrink: 0;
+      transition: background 0.2s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .arrow:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    /* — Responsivo — */
+    @media (max-width: 600px) {
+      .pets-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+        padding: 20px 14px 48px;
       }
-      
-      .nav-item {
-        padding: 0.3rem 0.6rem;
-        font-size: 13px;
+
+      .pets-heading {
+        font-size: 1.75rem;
+      }
+
+      .modal-image {
+        max-width: 94vw;
+        max-height: 80vh;
+      }
+
+      .arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+      }
+
+      .navigation {
+        padding: 0 8px;
       }
     }
 
     @media (max-width: 360px) {
-      .nav-item {
-        padding: 0.3rem 0.4rem;
-        font-size: 12px;
+      .pets-grid {
+        gap: 4px;
+        padding: 16px 10px 40px;
+      }
+
+      .pets-heading {
+        font-size: 1.4rem;
       }
     }
-        
-    </style>
+  </style>
 </head>
+<body onclick="closeDropdown(event)">
 
-<body>
-    <div class="nav-header">
-        <nav class="nav">
-            <a href="home.html" class="nav-item">HOME</a>
-            <a href="maps.html" class="nav-item">MAPS</a>
-            <a href="music.html" class="nav-item">MUSIC</a>
-            <a href="pets.html" class="nav-item active">PETS</a>
-        </nav>
+  <!-- Botão flutuante de voltar -->
+  <div class="nav-wrap">
+    <button class="nav-main-btn" onclick="toggleDropdown(event)">← Voltar</button>
+    <div class="nav-dropdown" id="navDropdown">
+      <a href="index.html" class="nav-option">Home</a>
+      <a href="maps.html" class="nav-option">Maps</a>
     </div>
+  </div>
 
-    <header>
-        <h1>Pets</h1>
-    </header>
+  <!-- Cabeçalho -->
+  <div class="pets-title-area">
+    <h1 class="pets-heading">Pets</h1>
+    <div class="pets-divider"></div>
+  </div>
 
-    <div class="timeline">
-        <div class="timeline-year" id="year-companheiros">
-            <div class="timeline-event">
-                <div class="timeline-images">
-                    <img onclick="openModal(this.src)" src="./images/pets/IMG-20240415-WA0002_saller.jpg" alt="Saller" class="location-image" title="Saller">
-                    <img onclick="openModal(this.src)" src="./images/pets/IMG_20240912_121704_362_luiggi.jpg" alt="Luiggi" class="location-image" title="Luiggi">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346557123456025.jpg" alt="Meg" class="location-image" title="Meg">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346557196734159.jpg" alt="Olívia" class="location-image" title="Olívia">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346557435246710.jpg" alt="Sheldy" class="location-image" title="Sheldy">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346558938852977.jpg" alt="Pipper" class="location-image" title="Pipper">
-                    <img onclick="openModal(this.src)" src="./images/pets/sheldy_smith.jpeg" alt="Smithr" class="location-image" title="Smith">
-                    <img onclick="openModal(this.src)" src="./images/pets/frida.jpeg" alt="Frida" class="location-image" title="Frida">
-                    <!-- <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346558616159526.jpg" alt="Penny" class="location-image" title="Penny">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346557021396039.jpg" alt="Saller" class="location-image" title="Saller">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346563550619957.jpg" alt="Penny e Pipper" class="location-image" title="Penny e Pipper">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346557290876117.jpg" alt="Frodo" class="location-image" title="Frodo">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346563638502210.jpg" alt="Tesla" class="location-image" title="Tesla">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346556610662722.jpg" alt="Pop" class="location-image" title="Pop">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346557363409567.jpg" alt="Pop" class="location-image" title="Pop">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346557777589142.jpg" alt="Pop" class="location-image" title="Pop">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346557596811511.jpg" alt="Shider" class="location-image" title="Shider">
-                    <img onclick="openModal(this.src)" src="./images/pets/FB_IMG_16346557680951833.jpg" alt="Adam" class="location-image" title="Adam"> -->
-                    
-                  </div>
-            </div>
-        </div>
-
+  <!-- Grade de fotos -->
+  <div class="pets-grid">
+    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
+      <img src="./images/pets/IMG-20240415-WA0002_saller.jpg" alt="Saller" class="location-image" />
+      <span class="pet-name">Saller</span>
     </div>
-
-    <div id="myModal" class="modal" onclick="closeModal()">
-        <div class="modal-content">
-            <span class="navigation">
-                <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button>
-                <img id="img01" class="modal-image" />
-                <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button>
-            </span>
-        </div>
+    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
+      <img src="./images/pets/IMG_20240912_121704_362_luiggi.jpg" alt="Luiggi" class="location-image" />
+      <span class="pet-name">Luiggi</span>
     </div>
+    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
+      <img src="./images/pets/FB_IMG_16346557123456025.jpg" alt="Meg" class="location-image" />
+      <span class="pet-name">Meg</span>
+    </div>
+    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
+      <img src="./images/pets/FB_IMG_16346557196734159.jpg" alt="Olívia" class="location-image" />
+      <span class="pet-name">Olívia</span>
+    </div>
+    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
+      <img src="./images/pets/FB_IMG_16346557435246710.jpg" alt="Sheldy" class="location-image" />
+      <span class="pet-name">Sheldy</span>
+    </div>
+    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
+      <img src="./images/pets/FB_IMG_16346558938852977.jpg" alt="Pipper" class="location-image" />
+      <span class="pet-name">Pipper</span>
+    </div>
+    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
+      <img src="./images/pets/sheldy_smith.jpeg" alt="Smith" class="location-image" />
+      <span class="pet-name">Smith</span>
+    </div>
+    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
+      <img src="./images/pets/frida.jpeg" alt="Frida" class="location-image" />
+      <span class="pet-name">Frida</span>
+    </div>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- Modal -->
+  <div id="myModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="navigation">
+        <button class="arrow" onclick="prevImage(); event.stopPropagation();" aria-label="Anterior">&#10094;</button>
+        <img id="img01" class="modal-image" />
+        <button class="arrow" onclick="nextImage(); event.stopPropagation();" aria-label="Próximo">&#10095;</button>
+      </span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    function toggleDropdown(e) {
+      e.stopPropagation();
+      document.getElementById('navDropdown').classList.toggle('open');
+    }
+
+    function closeDropdown(e) {
+      document.getElementById('navDropdown').classList.remove('open');
+    }
+  </script>
 </body>
 </html>

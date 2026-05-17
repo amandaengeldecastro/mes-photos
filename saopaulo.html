@@ -5,10 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>São Paulo</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="city-styles.css">
 </head>
 
-<body>
+<body onclick="closeDropdown(event)">
+    <div class="nav-wrap">
+        <button class="nav-main-btn" onclick="toggleDropdown(event)">← Voltar</button>
+        <div class="nav-dropdown" id="navDropdown">
+            <a href="index.html" class="nav-option">Home</a>
+            <a href="maps.html" class="nav-option">Maps</a>
+        </div>
+    </div>
+
     <header>
         <h1>São Paulo</h1>
     </header>
@@ -31,7 +39,7 @@
         </div>
 
         <div id="myModal" class="modal" onclick="closeModal()">
-            <div class="modal-content">
+            <div class="modal-content" onclick="event.stopPropagation()">
                 <span class="navigation">
                     <button class="arrow" onclick="prevImage(); event.stopPropagation();"
                         aria-label="Anterior">&#10094;</button>
@@ -43,6 +51,15 @@
         </div>
 
         <script src="script.js"></script>
+    <script>
+        function toggleDropdown(e) {
+            e.stopPropagation();
+            document.getElementById('navDropdown').classList.toggle('open');
+        }
+        function closeDropdown(e) {
+            document.getElementById('navDropdown').classList.remove('open');
+        }
+    </script>
 </body>
 
 </html>
