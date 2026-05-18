@@ -241,6 +241,22 @@ h1 {
     .timeline-images {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .modal-image {
+        max-width: calc(100vw - 100px);
+        max-height: 80vh;
+    }
+
+    .arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+        flex-shrink: 0;
+    }
+
+    .navigation {
+        padding: 0 8px;
+    }
 }
 
 @media (max-width: 360px) {

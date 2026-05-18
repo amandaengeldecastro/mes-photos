@@ -1,5 +1,4 @@
 let currentIndex = 0;
-let scale = 1;
 let imageCache = new Map();
 
 function preloadImages() {
@@ -76,7 +75,6 @@ function openModal(src) {
 
     currentIndex = Array.from(images).findIndex(image => (image.src === src || image.dataset.src === src));
     
-    setScale(1);
     img.style.objectFit = 'contain';
     preloadAdjacentImages(currentIndex, images);
     navigation.style.display = 'flex';
@@ -149,6 +147,16 @@ function updateImageSrc() {
 
     img.src = newSrc;
     optimizeImageDisplay(img);
+}
+
+function toggleDropdown(e) {
+    e.stopPropagation();
+    document.getElementById('navDropdown').classList.toggle('open');
+}
+
+function closeDropdown(e) {
+    const dropdown = document.getElementById('navDropdown');
+    if (dropdown) dropdown.classList.remove('open');
 }
 
 document.addEventListener('DOMContentLoaded', () => {

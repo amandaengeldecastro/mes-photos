@@ -4,100 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="city-styles.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: #111110;
-      font-family: "DM Sans", sans-serif;
-      min-height: 100vh;
-      color: #fff;
-    }
-
-    /* — Botão flutuante de voltar — */
-    .nav-wrap {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 1000;
-    }
-
-    .nav-main-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 0.7);
-      font-family: "DM Sans", sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 7px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      letter-spacing: 0.02em;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
-    }
-
-    .nav-main-btn:hover {
-      background: rgba(255, 255, 255, 0.14);
-      border-color: rgba(255, 255, 255, 0.25);
-      color: #fff;
-    }
-
-    .nav-dropdown {
-      margin-top: 6px;
-      background: rgba(22, 22, 20, 0.97);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 8px;
-      overflow: hidden;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      opacity: 0;
-      transform: translateY(-6px);
-      pointer-events: none;
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-
-    .nav-dropdown.open {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all;
-    }
-
-    .nav-option {
-      display: block;
-      width: 100%;
-      padding: 9px 16px;
-      font-family: "DM Sans", sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.65);
-      background: none;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-      letter-spacing: 0.02em;
-      text-decoration: none;
-      transition: background 0.15s, color 0.15s;
-      white-space: nowrap;
-    }
-
-    .nav-option:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-    }
-
-    .nav-option + .nav-option {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
     /* — Cabeçalho — */
     .music-title-area {
       text-align: center;
@@ -127,7 +35,7 @@
       margin: 16px auto 0;
     }
 
-    /* — Timeline — */
+    /* — Timeline de música (estilo próprio com borda lateral) — */
     .timeline {
       max-width: 800px;
       margin: 0 auto;
@@ -317,19 +225,8 @@
       </div>
     </div>
 
-    
-
   </div>
 
-  <script>
-    function toggleDropdown(e) {
-      e.stopPropagation();
-      document.getElementById('navDropdown').classList.toggle('open');
-    }
-
-    function closeDropdown(e) {
-      document.getElementById('navDropdown').classList.remove('open');
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
