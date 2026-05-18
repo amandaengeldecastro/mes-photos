@@ -89,9 +89,11 @@ function openModal(src) {
 }
 
 function optimizeImageDisplay(img) {
-    const viewportWidth = window.innerWidth * 0.9;
-    const viewportHeight = window.innerHeight * 0.85;
-    
+    const mobile = window.innerWidth <= 600;
+    const arrowSpace = mobile ? 100 : 0;
+    const viewportWidth = window.innerWidth * 0.9 - arrowSpace;
+    const viewportHeight = window.innerHeight * (mobile ? 0.80 : 0.85);
+
     img.style.maxWidth = `${viewportWidth}px`;
     img.style.maxHeight = `${viewportHeight}px`;
 }
