@@ -1,150 +1,318 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amanda Engel de Castro</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      height: 100%;
-      overflow: hidden;
-    }
-    body {
-      font-family: "DM Sans", sans-serif;
-    }
-    .bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-    }
-    .bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: brightness(0.35);
-      object-position: center 60%;
-    }
-    .content {
-      position: fixed;
-      inset: 0;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 32px 24px;
-    }
-    .hero {
-      text-align: center;
-      margin-bottom: 32px;
-    }
-    .hero-name {
-      font-family: "DM Serif Display", serif;
-      font-size: 2.1rem;
-      font-weight: 400;
-      color: #fff;
-      letter-spacing: -0.03em;
-      margin: 0 0 8px;
-    }
-    .hero-sub {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.55);
-      letter-spacing: 0.05em;
-      margin: 0;
-    }
-    .hero-divider {
-      width: 28px;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.35);
-      margin: 18px auto 0;
-    }
-    .cards {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 100%;
-      max-width: 340px;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 10px;
-      padding: 13px 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: #fff;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-    .card:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-    .card-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-    .card-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .card-title {
-      font-size: 13px;
-      font-weight: 500;
-      margin: 0;
-    }
-    @media (max-width: 480px) {
-      .hero-name {
-        font-size: 1.75rem;
-      }
-      .cards {
-        max-width: 100%;
-      }
-    }
-    @media (max-width: 360px) {
-      .hero-name {
-        font-size: 1.4rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Amanda Engel de Castro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Syne:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  height: 100vh;
+  background: #0f0f0f;
+  border-right: 0.5px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 44px 24px 32px;
+  position: relative;
+  z-index: 10;
+  overflow-y: auto;
+}
+.sidebar::-webkit-scrollbar { display: none; }
+
+/* top accent line */
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+}
+
+/* avatar */
+.avatar-wrap {
+  position: relative;
+  margin-bottom: 20px;
+}
+.avatar-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.avatar {
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  background: #1a1a1a;
+}
+
+/* name block */
+.sidebar-name {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.92);
+  text-align: center;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.sidebar-role {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.32);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 6px;
+}
+.sidebar-location {
+  font-size: 10px;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+/* divider */
+.s-rule {
+  width: 28px; height: 0.5px;
+  background: rgba(255,255,255,0.12);
+  margin: 0 auto 28px;
+}
+
+/* nav links */
+.nav { display: flex; flex-direction: column; gap: 4px; width: 100%; }
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 13px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.55);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border: 0.5px solid transparent;
+  transition: all 0.17s ease;
+}
+.nav-link:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.9);
+}
+.nav-link svg {
+  width: 15px; height: 15px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.7;
+}
+.nav-link .arrow { margin-left: auto; font-size: 10px; opacity: 0.3; }
+
+/* stack section */
+.stack-section { width: 100%; margin-top: auto; padding-top: 28px; }
+.stack-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.07);
+}
+.tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tech-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.05);
+  border: 0.5px solid rgba(255,255,255,0.09);
+  border-radius: 5px;
+  padding: 4px 8px;
+  cursor: default;
+  transition: background 0.15s, border-color 0.15s;
+}
+.tech-pill:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.18);
+}
+.tech-pill svg { width: 13px; height: 13px; flex-shrink: 0; }
+.tech-pill span {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.42);
+  letter-spacing: 0.02em;
+}
+
+/* ── MAIN ── */
+.main {
+  flex: 1;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-photo {
+  position: absolute; inset: 0;
+}
+.bg-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.38) saturate(0.85);
+  object-position: center 60%;
+}
+.bg-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.45) 100%);
+}
+
+.main-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 32px;
+}
+
+.main-eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
+  margin-bottom: 20px;
+}
+
+.main-preface {
+  font-family: "Special Elite", monospace;
+  font-size: clamp(0.82rem, 1.3vw, 0.95rem);
+  font-weight: 400;
+  font-style: normal;
+  color: rgba(255,255,255,0.6);
+  line-height: 2;
+  margin-bottom: 28px;
+  max-width: 400px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.main-rule {
+  width: 32px; height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 0 auto 20px;
+}
+
+.main-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* location badge bottom right */
+.location-badge {
+  position: absolute;
+  bottom: 24px;
+  right: 28px;
+  z-index: 2;
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 700px) {
+  html, body { overflow: auto; height: auto; }
+  body { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 32px 20px 24px;
+    border-right: none;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .stack-section { margin-top: 24px; padding-top: 20px; }
+  .main { height: 60vw; min-height: 280px; }
+}
+</style>
 </head>
 <body>
-  <div class="bg">
-    <img src="./images/locations/BR/PR/iguazu_falls.jpg" alt="Cataratas do Iguaçu - Foz do Iguaçu">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="avatar-wrap">
+    <img class="avatar"
+      src="https://avatars.githubusercontent.com/amandaengeldecastro"
+      alt="Amanda Engel de Castro"
+      onerror="this.style.background='#1e1e1e'">
   </div>
-  <div class="content">
-    <div class="hero">
-      <h1 class="hero-name">Amanda Engel de Castro</h1>
-      <p class="hero-sub">Curitiba, Paraná · Brasil</p>
-      <div class="hero-divider"></div>
-    </div>
-    <div class="cards">
-      <a href="maps.html" class="card">
-        <span class="card-icon">🗺️</span>
-        <div class="card-text">
-          <p class="card-title">Maps</p>
-        </div>
-      </a>
-      <a href="https://www.linkedin.com/in/amandaengeldecastro/" target="_blank" class="card">
-        <span class="card-icon">💼</span>
-        <div class="card-text">
-          <p class="card-title">LinkedIn</p>
-        </div>
-      </a>
-    </div>
+
+  <p class="sidebar-name">Amanda Engel<br>de Castro</p>
+  <p class="sidebar-role">IT Analyst</p>
+  <p class="sidebar-location">Curitiba · Brasil</p>
+
+  <div class="s-rule"></div>
+
+  <nav class="nav">
+    <a href="maps.html" class="nav-link">
+      <svg viewBox="0 0 24 24"><path d="M9 20l-5-2V4l5 2m0 14l6-2m-6 2V6m6 12l5 2V6l-5-2m0 14V4"/></svg>
+      Mapa Fotográfico
+      <span class="arrow">→</span>
+    </a>
+    <a href="https://www.linkedin.com/in/amandaengeldecastro/" target="_blank" class="nav-link">
+      <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+      <span class="arrow">↗</span>
+    </a>
+  </nav>
+
+</aside>
+
+<main class="main">
+  <div class="bg-photo">
+    <img src="./images/locations/BR/PR/iguazu_falls.jpg" alt="Cataratas do Iguaçu">
   </div>
+
+  <div class="main-content">
+    <div class="main-rule"></div>
+      <p class="main-preface">
+        Seja bem vindo(a) à minha página.<br>
+        Uma página AINDA sem propósito definido, mas inicialmente usado como repositório de memórias | mapa fotográfico.<br>
+      </p>
+    <div class="main-rule"></div>
+  </div>
+
+
+</main>
+
 </body>
 </html>

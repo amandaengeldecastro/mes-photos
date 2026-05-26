@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -32,7 +31,7 @@
 }
 
 .info-box-header {
-    background: #34495e;
+    background: #000000;
     color: white;
     padding: 15px 20px;
     display: flex;

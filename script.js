@@ -45,19 +45,9 @@ function openModal(src) {
     if (!document.getElementById('modalCloseBtn')) {
         const closeBtn = document.createElement('button');
         closeBtn.id = 'modalCloseBtn';
+        closeBtn.className = 'modal-close-btn';
         closeBtn.innerHTML = '✕';
         closeBtn.setAttribute('aria-label', 'Fechar');
-        closeBtn.style.cssText = [
-            'position:fixed', 'top:16px', 'right:20px', 'z-index:3000',
-            'background:rgba(255,255,255,0.12)', 'border:1px solid rgba(255,255,255,0.25)',
-            'color:#fff', 'font-size:18px', 'width:40px', 'height:40px',
-            'border-radius:50%', 'cursor:pointer', 'display:flex',
-            'align-items:center', 'justify-content:center',
-            'backdrop-filter:blur(8px)', '-webkit-backdrop-filter:blur(8px)',
-            'transition:background 0.2s'
-        ].join(';');
-        closeBtn.onmouseenter = () => closeBtn.style.background = 'rgba(255,255,255,0.25)';
-        closeBtn.onmouseleave = () => closeBtn.style.background = 'rgba(255,255,255,0.12)';
         closeBtn.onclick = (e) => { e.stopPropagation(); closeModal(); };
         modal.appendChild(closeBtn);
     }
@@ -74,16 +64,18 @@ function openModal(src) {
     }
 
     currentIndex = Array.from(images).findIndex(image => (image.src === src || image.dataset.src === src));
-    
+
     img.style.objectFit = 'contain';
     preloadAdjacentImages(currentIndex, images);
     navigation.style.display = 'flex';
 
     document.addEventListener('keydown', handleKeydown);
-    
+
     img.onload = function() {
         optimizeImageDisplay(img);
     };
+
+    if (window.initSocialForPhoto) window.initSocialForPhoto(src);
 }
 
 function optimizeImageDisplay(img) {
@@ -116,6 +108,7 @@ function closeModal() {
     const modal = document.getElementById("myModal");
     modal.style.display = "none";
     document.removeEventListener('keydown', handleKeydown);
+    if (window.cleanupSocial) window.cleanupSocial();
 }
 
 function handleKeydown(event) {
@@ -147,6 +140,7 @@ function updateImageSrc() {
 
     img.src = newSrc;
     optimizeImageDisplay(img);
+    if (window.initSocialForPhoto) window.initSocialForPhoto(newSrc);
 }
 
 function toggleDropdown(e) {

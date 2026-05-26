@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Garuva</title>
     <link rel="stylesheet" href="city-styles.css">
+  <link rel="stylesheet" href="auth-social.css" />
 </head>
 
-<body onclick="closeDropdown(event)">
+<body class="auth-loading" onclick="closeDropdown(event)">
     <div class="nav-wrap">
         <button class="nav-main-btn" onclick="toggleDropdown(event)">← Voltar</button>
         <div class="nav-dropdown" id="navDropdown">
@@ -18,7 +19,26 @@
 
     <header>
         <h1>Garuva</h1>
+        <div class="city-divider"></div>
     </header>
+
+     <div class="timeline">
+        <div class="timeline-year" id="year-2026">
+            <h2>2026</h2>
+      
+            <div class="timeline-event">
+                <h3>[Maio]</h3>
+                <div class="timeline-images">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/WhatsApp Image 2026-05-25 at 2.10.26 PM.jpeg" alt="Garuva" class="location-image">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/WhatsApp Image 2026-05-25 at 2.10.26 PM(1).jpeg" alt="Garuva" class="location-image">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/WhatsApp Image 2026-05-25 at 2.10.25 PM.jpeg" alt="Garuva" class="location-image">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/WhatsApp Image 2026-05-25 at 2.10.25 PM(1).jpeg" alt="Garuva" class="location-image">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/WhatsApp Image 2026-05-25 at 2.10.24 PM(1).jpeg" alt="Garuva" class="location-image">
+                    <img onclick="openModal(this.src)" src="./images/locations/BR/SC/WhatsApp Image 2026-05-25 at 2.10.24 PM.jpeg" alt="Garuva" class="location-image">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="timeline">
         <!-- Ano 2025 -->
@@ -56,5 +76,12 @@
     </div>
 
     <script src="script.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="auth.js"></script>
+  <script src="social.js"></script>
 </body>
 </html>
