@@ -9,10 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Syne:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { height: 100%; overflow: hidden; }
-body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
 
-/* ── SIDEBAR ── */
+body {
+  font-family: "DM Sans", sans-serif;
+  background: #0a0a0a;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
 .sidebar {
   width: 260px;
   flex-shrink: 0;
@@ -28,8 +33,6 @@ body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
   overflow-y: auto;
 }
 .sidebar::-webkit-scrollbar { display: none; }
-
-/* top accent line */
 .sidebar::before {
   content: '';
   position: absolute;
@@ -38,11 +41,7 @@ body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
 }
 
-/* avatar */
-.avatar-wrap {
-  position: relative;
-  margin-bottom: 20px;
-}
+.avatar-wrap { position: relative; margin-bottom: 20px; }
 .avatar-wrap::before {
   content: '';
   position: absolute;
@@ -59,14 +58,11 @@ body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
   background: #1a1a1a;
 }
 
-/* name block */
 .sidebar-name {
   font-family: "DM Serif Display", serif;
   font-size: 1.2rem;
-  font-weight: 400;
   color: rgba(255,255,255,0.92);
   text-align: center;
-  letter-spacing: -0.01em;
   line-height: 1.25;
   margin-bottom: 6px;
 }
@@ -87,16 +83,13 @@ body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
   margin-bottom: 28px;
 }
 
-/* divider */
 .s-rule {
   width: 28px; height: 0.5px;
   background: rgba(255,255,255,0.12);
   margin: 0 auto 28px;
 }
 
-/* nav links */
 .nav { display: flex; flex-direction: column; gap: 4px; width: 100%; }
-
 .nav-link {
   display: flex;
   align-items: center;
@@ -128,47 +121,6 @@ body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
 }
 .nav-link .arrow { margin-left: auto; font-size: 10px; opacity: 0.3; }
 
-/* stack section */
-.stack-section { width: 100%; margin-top: auto; padding-top: 28px; }
-.stack-label {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.2);
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 0.5px solid rgba(255,255,255,0.07);
-}
-.tech-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.tech-pill {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(255,255,255,0.05);
-  border: 0.5px solid rgba(255,255,255,0.09);
-  border-radius: 5px;
-  padding: 4px 8px;
-  cursor: default;
-  transition: background 0.15s, border-color 0.15s;
-}
-.tech-pill:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.18);
-}
-.tech-pill svg { width: 13px; height: 13px; flex-shrink: 0; }
-.tech-pill span {
-  font-size: 10px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.42);
-  letter-spacing: 0.02em;
-}
-
-/* ── MAIN ── */
 .main {
   flex: 1;
   height: 100vh;
@@ -179,9 +131,7 @@ body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
   justify-content: center;
 }
 
-.bg-photo {
-  position: absolute; inset: 0;
-}
+.bg-photo { position: absolute; inset: 0; }
 .bg-photo img {
   width: 100%; height: 100%;
   object-fit: cover;
@@ -200,21 +150,9 @@ body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
   text-align: center;
   padding: 32px;
 }
-
-.main-eyebrow {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.22);
-  margin-bottom: 20px;
-}
-
 .main-preface {
   font-family: "Special Elite", monospace;
   font-size: clamp(0.82rem, 1.3vw, 0.95rem);
-  font-weight: 400;
-  font-style: normal;
   color: rgba(255,255,255,0.6);
   line-height: 2;
   margin-bottom: 28px;
@@ -222,53 +160,118 @@ body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
   text-align: center;
   letter-spacing: 0.02em;
 }
-
 .main-rule {
   width: 32px; height: 1px;
   background: rgba(255,255,255,0.2);
   margin: 0 auto 20px;
 }
 
-.main-sub {
-  font-size: 12px;
-  color: rgba(255,255,255,0.28);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
+.sidebar-info { display: none; }
 
-/* location badge bottom right */
-.location-badge {
-  position: absolute;
-  bottom: 24px;
-  right: 28px;
-  z-index: 2;
-  font-size: 10px;
-  color: rgba(255,255,255,0.2);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* ── MOBILE ── */
 @media (max-width: 700px) {
-  html, body { overflow: auto; height: auto; }
-  body { flex-direction: column; }
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    flex-direction: column;
+    position: relative;
+  }
+
+  
+  .main {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+  }
+  .bg-photo img {
+    filter: brightness(0.32) saturate(0.8);
+    object-position: center 15%;
+  }
+
+  
+  .main-content {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 0 32px;
+    z-index: 5;
+  }
+  .main-preface {
+    font-size: 0.83rem;
+    line-height: 1.9;
+    max-width: 100%;
+    color: rgba(255,255,255,0.65);
+  }
+
+  
   .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     height: auto;
-    padding: 32px 20px 24px;
     border-right: none;
-    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    border-bottom: 0.5px solid rgba(255,255,255,0.1);
+    background: rgba(10,10,10,0.82);
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    padding: 20px 24px 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    z-index: 10;
   }
-  .stack-section { margin-top: 24px; padding-top: 20px; }
-  .main { height: 60vw; min-height: 280px; }
+  .sidebar::before { display: none; }
+
+  
+  .avatar-wrap { margin-bottom: 0; margin-right: 14px; flex-shrink: 0; }
+  .avatar { width: 52px; height: 52px; }
+  .avatar-wrap::before { inset: -3px; }
+
+  
+  .sidebar-info {
+    display: block;
+    flex: 1;
+  }
+  .sidebar-name { font-size: 1rem; text-align: left; margin-bottom: 2px; }
+  .sidebar-role { text-align: left; margin-bottom: 1px; }
+  .sidebar-location { text-align: left; margin-bottom: 0; }
+
+  
+  .sidebar > .sidebar-name,
+  .sidebar > .sidebar-role,
+  .sidebar > .sidebar-location,
+  .sidebar > .s-rule { display: none; }
+
+  
+  .nav {
+    flex-direction: row;
+    width: 100%;
+    margin-top: 14px;
+    gap: 8px;
+  }
+  .nav-link {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 0.5px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.7);
+    gap: 7px;
+  }
+  .nav-link .arrow { display: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
-
   <div class="avatar-wrap">
     <img class="avatar"
       src="https://avatars.githubusercontent.com/amandaengeldecastro"
@@ -276,6 +279,14 @@ body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
       onerror="this.style.background='#1e1e1e'">
   </div>
 
+  
+  <div class="sidebar-info">
+    <p class="sidebar-name">Amanda Engel<br>de Castro</p>
+    <p class="sidebar-role">IT Analyst</p>
+    <p class="sidebar-location">Curitiba · Brasil</p>
+  </div>
+
+  
   <p class="sidebar-name">Amanda Engel<br>de Castro</p>
   <p class="sidebar-role">IT Analyst</p>
   <p class="sidebar-location">Curitiba · Brasil</p>
@@ -294,7 +305,6 @@ body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
       <span class="arrow">↗</span>
     </a>
   </nav>
-
 </aside>
 
 <main class="main">
@@ -304,14 +314,12 @@ body { font-family: "DM Sans", sans-serif; display: flex; background: #0a0a0a; }
 
   <div class="main-content">
     <div class="main-rule"></div>
-      <p class="main-preface">
-        Seja bem vindo(a) à minha página.<br>
-        Uma página AINDA sem propósito definido, mas inicialmente usado como repositório de memórias | mapa fotográfico.<br>
-      </p>
+    <p class="main-preface">
+      Seja bem vindo(a) à minha página.<br>
+      Uma página AINDA sem propósito definido, mas inicialmente usado como repositório de memórias | mapa fotográfico.<br>
+    </p>
     <div class="main-rule"></div>
   </div>
-
-
 </main>
 
 </body>

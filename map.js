@@ -34,7 +34,7 @@ const locations = [
     { coords: [-15.7801, -47.9292], title: "Brasília — DF",       country: "Brasil",   link: "brasilia.html",            years: [2015] },
     { coords: [-26.0250, -48.8519], title: "Garuva — SC",         country: "Brasil",   link: "garuva.html",              years: [2025, 2026] },
     { coords: [-26.1158, -48.6112], title: "Itapoá — SC",         country: "Brasil",   link: "itapoa.html",              years: [2023] },
-    { coords: [-3.1190,  -60.0217], title: "Manaus — AM",         country: "Brasil",   link: "manaus.html",              years: [2016, 2017] },
+    { coords: [-3.1190,  -60.0217], title: "Manaus — AM",         country: "Brasil",   link: "manaus.html",              years: [2016] },
     { coords: [-25.5082, -54.6201], title: "Ciudad del Este — PY", country: "Paraguai", link: "cde.html",               years: [2019] },
     { coords: [-25.5333, -54.6061], title: "Presidente Franco — PY", country: "Paraguai", link: "presidentefranco.html", years: [2013] },
     { coords: [-25.2867, -57.6470], title: "Asunción — PY",       country: "Paraguai", link: "asuncion.html",           years: [2013] },
@@ -66,12 +66,23 @@ function buildTimeline() {
     const sortedYears = Object.keys(visitsByYear).map(Number).sort((a, b) => b - a);
     const cityList = document.getElementById('cityList');
 
-    sortedYears.forEach(year => {
+    sortedYears.forEach((year, index) => {
         const group = document.createElement('div');
         group.className = 'city-list-group';
         group.innerHTML = `<span class="city-list-group-label">${year}</span>` +
             visitsByYear[year].map(visit => `<a href="${visit.link}">${visit.title}</a>`).join('');
         cityList.appendChild(group);
+        setTimeout(() => group.classList.add('visible'), 60 + index * 40);
+    });
+}
+
+function animateOnScroll() {
+    const cityList = document.getElementById('cityList');
+    const listBottom = cityList.getBoundingClientRect().bottom;
+    cityList.querySelectorAll('.city-list-group:not(.visible)').forEach(group => {
+        if (group.getBoundingClientRect().top < listBottom + 20) {
+            group.classList.add('visible');
+        }
     });
 }
 
@@ -80,7 +91,7 @@ function toggleInfoBox() {
     const toggleBtn = document.getElementById('toggleBtn');
     infoBoxVisible = !infoBoxVisible;
     cityList.style.display = infoBoxVisible ? '' : 'none';
-    toggleBtn.textContent = infoBoxVisible ? '-' : '+';
+    toggleBtn.textContent = infoBoxVisible ? '−' : '+';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -111,6 +122,23 @@ document.addEventListener('DOMContentLoaded', () => {
     map.fitBounds(boundsGroup.getBounds().pad(0.1));
 
     document.getElementById('toggleBtn').addEventListener('click', toggleInfoBox);
+    document.getElementById('cityList').addEventListener('scroll', animateOnScroll);
 
     buildTimeline();
 });
+
+function animateGroups() {
+  const list = document.getElementById('cityList');
+  const groups = list.querySelectorAll('.city-list-group');
+  groups.forEach((g, i) => {
+    setTimeout(() => g.classList.add('visible'), 60 + i * 40);
+  });
+  list.addEventListener('scroll', () => {
+    const listBottom = list.getBoundingClientRect().bottom;
+    list.querySelectorAll('.city-list-group:not(.visible)').forEach(g => {
+      if (g.getBoundingClientRect().top < listBottom + 20) g.classList.add('visible');
+    });
+  });
+}
+
+animateGroups();
