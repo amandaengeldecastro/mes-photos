@@ -190,6 +190,10 @@
         max-height: 52vh;
         border-radius: 16px 16px 0 0;
     }
+
+    .city-list {
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
 }
 
 @media (max-width: 480px) {

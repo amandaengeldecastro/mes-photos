@@ -71,22 +71,32 @@
 
     async function toggleLike() {
         if (!window.currentUser || !window._currentPhotoId) return;
+        const btn = document.getElementById('likeBtn');
+        if (btn) btn.disabled = true;
+
         const uid = window.currentUser.uid;
         const ref = db.collection('likes').doc(window._currentPhotoId);
 
-        const doc = await ref.get();
-        const isLiked = doc.exists && doc.data().users && doc.data().users[uid];
+        try {
+            await db.runTransaction(async (transaction) => {
+                const doc = await transaction.get(ref);
+                const data = doc.exists ? doc.data() : {};
+                const isLiked = data.users && data.users[uid];
 
-        if (isLiked) {
-            await ref.update({
-                count: firebase.firestore.FieldValue.increment(-1),
-                [`users.${uid}`]: firebase.firestore.FieldValue.delete()
+                if (isLiked) {
+                    transaction.update(ref, {
+                        count: firebase.firestore.FieldValue.increment(-1),
+                        [`users.${uid}`]: firebase.firestore.FieldValue.delete()
+                    });
+                } else {
+                    transaction.set(ref, {
+                        count: firebase.firestore.FieldValue.increment(1),
+                        [`users.${uid}`]: true
+                    }, { merge: true });
+                }
             });
-        } else {
-            await ref.set({
-                count: firebase.firestore.FieldValue.increment(1),
-                [`users.${uid}`]: true
-            }, { merge: true });
+        } finally {
+            if (btn) btn.disabled = false;
         }
     }
 

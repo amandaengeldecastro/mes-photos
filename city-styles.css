@@ -121,7 +121,7 @@ h1 {
 .timeline {
     max-width: 700px;
     margin: 0 auto;
-    padding: 28px 20px 60px;
+    padding: 28px 20px max(60px, calc(40px + env(safe-area-inset-bottom)));
     display: grid;
     gap: 20px;
 }
