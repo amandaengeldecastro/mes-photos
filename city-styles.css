@@ -23,6 +23,7 @@
     padding: 7px 14px;
     border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
     letter-spacing: 0.02em;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -166,6 +167,23 @@ h1 {
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.2s;
+}
+
+.photo-card {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.photo-card .location-image {
+    flex: 1;
+}
+
+.photo-caption {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.35);
+    text-align: center;
+    letter-spacing: 0.03em;
 }
 
 .location-image:hover {
