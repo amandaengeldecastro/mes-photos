@@ -4,6 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Amanda Engel de Castro</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Syne:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet" />
@@ -315,12 +318,14 @@ body {
   <div class="main-content">
     <div class="main-rule"></div>
     <p class="main-preface">
-      Seja bem vindo(a) a minha página.<br>
-      Uma página AINDA sem propósito definido, mas inicialmente usada como repositório de memórias | mapa fotográfico.<br>
+      Seja bem vindo(a) ao meu repositório de memórias | mapa fotográfico.<br>
     </p>
     <div class="main-rule"></div>
   </div>
 </main>
 
+  <script>
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/mes-photos/sw.js');
+  </script>
 </body>
 </html>
