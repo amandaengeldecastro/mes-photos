@@ -90,14 +90,35 @@ function animateOnScroll() {
 }
 
 function toggleInfoBox() {
+    const infoBox = document.getElementById('infoBox');
     const cityList = document.getElementById('cityList');
     const toggleBtn = document.getElementById('toggleBtn');
     infoBoxVisible = !infoBoxVisible;
-    cityList.style.display = infoBoxVisible ? '' : 'none';
+
+    if (window.innerWidth <= 700) {
+        if (infoBoxVisible) {
+            cityList.style.display = '';
+            setInfoBoxHeight();
+        } else {
+            infoBox.style.maxHeight = document.querySelector('.info-box-header').offsetHeight + 'px';
+        }
+    } else {
+        cityList.style.display = infoBoxVisible ? '' : 'none';
+    }
+
     toggleBtn.textContent = infoBoxVisible ? '−' : '+';
 }
 
+function setInfoBoxHeight() {
+    if (window.innerWidth > 700) return;
+    const infoBox = document.getElementById('infoBox');
+    if (infoBox) infoBox.style.maxHeight = Math.round(window.innerHeight * 0.52) + 'px';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    setInfoBoxHeight();
+    window.addEventListener('resize', setInfoBoxHeight);
+
     const map = L.map('map', {
         center: [-15.0, -55.0],
         zoom: 4,
