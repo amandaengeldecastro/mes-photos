@@ -1,10 +1,10 @@
 const locations = [
     { coords: [-25.5478, -54.5882], title: "Foz do Iguaçu — PR",           country: "Brasil",    link: "fozdoiguacu.html",          years: [[2023,12],[2022,11],[2021,12],[2020,8],[2019,12],[2018,7],[2017,12],[2015,6],[2014,6],[2007,1],[2006,2],[2005,7]], pinOnly: true },
-    { coords: [-25.4284, -49.2733], title: "Curitiba — PR",                 country: "Brasil",    link: "curitiba.html",             years: [[2026,5],[2025,10],[2024,9],[2019,10]] },
+    { coords: [-25.4284, -49.2733], title: "Curitiba — PR",                 country: "Brasil",    link: "curitiba.html",             years: [[2019,10]] },
     { coords: [-24.9969, -54.3049], title: "Itaipulândia — PR",             country: "Brasil",    link: "itaipulandia.html",         years: [[2019,7]] },
     { coords: [-25.8231, -48.5221], title: "Matinhos — PR",                 country: "Brasil",    link: "matinhos.html",             years: [[2025,6]] },
     { coords: [-25.4420, -49.0628], title: "Piraquara — PR",                country: "Brasil",    link: "piraquara.html",            years: [[2025,10]] },
-    { coords: [-25.5272, -49.1922], title: "São José dos Pinhais — PR",     country: "Brasil",    link: "saojosedospinhais.html",    years: [[2026,4],[2025,9]] },
+    { coords: [-25.5272, -49.1922], title: "São José dos Pinhais — PR",     country: "Brasil",    link: "saojosedospinhais.html",    years: [[2026,5],[2026,4],[2025,9]] },
     { coords: [-25.5730, -48.5044], title: "Pontal do Paraná — PR",         country: "Brasil",    link: "pontal.html",               years: [[2026,1],[2025,4]] },
     { coords: [-25.8833, -48.5753], title: "Guaratuba — PR",                country: "Brasil",    link: "guaratuba.html",            years: [[2026,1],[2025,11],[2018,12],[2017,5]] },
     { coords: [-25.2994, -49.1829], title: "Colombo — PR",                  country: "Brasil",    link: "colombo.html",              years: [[2024,9]] },
