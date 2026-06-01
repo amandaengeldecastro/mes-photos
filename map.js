@@ -11,7 +11,12 @@ function buildTimeline(locations) {
             const year  = parseInt(parts[0]);
             const month = parseInt(parts[1]);
             if (!visitsByYear[year]) visitsByYear[year] = [];
-            visitsByYear[year].push({ title: location.title, link: location.link, month });
+            const existing = visitsByYear[year].find(v => v.link === location.link);
+            if (existing) {
+                if (month > existing.month) existing.month = month;
+            } else {
+                visitsByYear[year].push({ title: location.title, link: location.link, month });
+            }
         });
     });
 

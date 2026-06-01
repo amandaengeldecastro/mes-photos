@@ -543,17 +543,26 @@ body.auth-loading {
     text-align: center;
 }
 
+@media (max-width: 700px) {
+    .upload-fab {
+        bottom: 68px;
+    }
+    .upload-panel {
+        bottom: 128px;
+    }
+}
+
 @media (max-width: 480px) {
     .upload-panel {
         right: 0;
         left: 0;
-        bottom: 70px;
+        bottom: 128px;
         width: 100%;
         border-radius: 16px 16px 0 0;
     }
 
     .upload-fab {
-        bottom: 16px;
+        bottom: 68px;
         right: 16px;
     }
 }
