@@ -1,7 +1,7 @@
 {
   "name": "maps",
   "short_name": "maps",
-  "start_url": "/mes-photos/maps.html",
+  "start_url": "/mes-photos/index.html",
   "display": "standalone",
   "background_color": "#0a0a0a",
   "theme_color": "#0a0a0a",

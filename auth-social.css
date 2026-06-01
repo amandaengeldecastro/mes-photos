@@ -354,7 +354,30 @@ body.auth-loading {
     font-family: "DM Sans", sans-serif;
 }
 
-/* ── Upload admin ── */
+.delete-photo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 6px 14px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    cursor: pointer;
+    pointer-events: auto;
+    margin-left: auto;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.delete-photo-btn:hover {
+    background: rgba(200, 50, 50, 0.4);
+    border-color: rgba(200, 50, 50, 0.5);
+    color: #fff;
+}
+
 .upload-fab {
     position: fixed;
     bottom: 28px;

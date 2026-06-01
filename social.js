@@ -18,6 +18,8 @@
         const modalContent = document.querySelector('.modal-content');
         if (!modalContent || document.getElementById('socialBar')) return;
 
+        const isAdmin = window.currentUser && window.currentUser.email === 'amandaengeldecastro@gmail.com';
+
         const bar = document.createElement('div');
         bar.id = 'socialBar';
         bar.className = 'social-bar';
@@ -30,6 +32,7 @@
                 <span>💬</span>
                 <span id="commentsCount">0</span>
             </button>
+            ${isAdmin ? '<button id="deletePhotoBtn" class="delete-photo-btn" title="Excluir foto">🗑</button>' : ''}
         `;
         modalContent.appendChild(bar);
 
@@ -58,6 +61,11 @@
         document.getElementById('commentInput').addEventListener('keydown', e => {
             if (e.key === 'Enter') submitComment();
         });
+        if (isAdmin) {
+            document.getElementById('deletePhotoBtn').addEventListener('click', () => {
+                if (window.deletePhoto) window.deletePhoto();
+            });
+        }
     }
 
     function togglePanel() {

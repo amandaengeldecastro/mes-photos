@@ -33,7 +33,6 @@
     </div>
 
     <script src="gallery.js"></script>
-    <script src="locations-data.js"></script>
     <script>
     (function () {
         var MONTHS = ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho',
@@ -41,16 +40,6 @@
 
         var slug     = new URLSearchParams(window.location.search).get('cidade') || '';
         var cityName = slug;
-
-        function initHeader() {
-            var loc = (typeof locations !== 'undefined') &&
-                locations.find(function(l) {
-                    return l.link === 'city.html?cidade=' + slug;
-                });
-            if (loc) cityName = loc.title.split(' — ')[0];
-            document.getElementById('cityTitle').textContent = cityName;
-            document.title = cityName;
-        }
 
         function buildTimeline(photos) {
             var timeline = document.getElementById('timeline');
@@ -61,7 +50,6 @@
                 return;
             }
 
-            // Group: year → month → eventTitle
             var groups = {};
             photos.forEach(function(p) {
                 var key = p.year + '__' + p.month + '__' + (p.eventTitle || '');
@@ -106,11 +94,12 @@
                     .sort(function(a, b) { return (a.order || 0) - (b.order || 0); })
                     .forEach(function(photo) {
                         var img = document.createElement('img');
-                        img.src       = photo.url;
-                        img.alt       = cityName;
-                        img.title     = photo.title || '';
-                        img.className = 'location-image';
-                        img.onclick   = (function(src) {
+                        img.src              = photo.url;
+                        img.alt              = cityName;
+                        img.title            = photo.title || '';
+                        img.className        = 'location-image';
+                        img.dataset.docId    = photo.id || '';
+                        img.onclick          = (function(src) {
                             return function() { openModal(src); };
                         })(photo.url);
                         imagesDiv.appendChild(img);
@@ -123,14 +112,24 @@
             if (window.setupLazyLoading) setupLazyLoading();
         }
 
-        document.addEventListener('DOMContentLoaded', initHeader);
-
         document.addEventListener('userLoggedIn', function() {
             if (typeof db === 'undefined' || !slug) return;
 
-            db.collection('photos').doc(slug).collection('entries').get()
-                .then(function(snapshot) {
-                    var photos = snapshot.docs.map(function(d) {
+            var cityPromise  = db.collection('cities').doc(slug).get();
+            var photosPromise = db.collection('photos').doc(slug).collection('entries').get();
+
+            Promise.all([cityPromise, photosPromise])
+                .then(function(results) {
+                    var cityDoc       = results[0];
+                    var photosSnapshot = results[1];
+
+                    if (cityDoc.exists) {
+                        cityName = cityDoc.data().name || slug;
+                    }
+                    document.getElementById('cityTitle').textContent = cityName;
+                    document.title = cityName;
+
+                    var photos = photosSnapshot.docs.map(function(d) {
                         return Object.assign({ id: d.id }, d.data());
                     });
                     photos.sort(function(a, b) {

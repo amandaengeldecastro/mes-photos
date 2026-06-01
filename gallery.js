@@ -1,6 +1,11 @@
 let currentIndex = 0;
 let imageCache = new Map();
 
+function storagePathFromUrl(url) {
+    const match = url.match(/\/o\/(.+?)(?:\?|$)/);
+    return match ? decodeURIComponent(match[1]) : null;
+}
+
 function preloadImages() {
     const images = document.querySelectorAll('.location-image');
     images.forEach((img) => {
@@ -12,7 +17,7 @@ function preloadImages() {
 
 function setupLazyLoading() {
     const images = document.querySelectorAll('.location-image[data-src]');
-    
+
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -35,16 +40,16 @@ function setupLazyLoading() {
 }
 
 function openModal(src) {
-    const modal = document.getElementById("myModal");
-    const img = document.getElementById("img01");
-    const images = document.querySelectorAll('.location-image');
+    const modal      = document.getElementById('myModal');
+    const img        = document.getElementById('img01');
+    const images     = document.querySelectorAll('.location-image');
     const navigation = document.querySelector('.navigation');
 
-    modal.style.display = "flex";
+    modal.style.display = 'flex';
 
     if (!document.getElementById('modalCloseBtn')) {
         const closeBtn = document.createElement('button');
-        closeBtn.id = 'modalCloseBtn';
+        closeBtn.id        = 'modalCloseBtn';
         closeBtn.className = 'modal-close-btn';
         closeBtn.innerHTML = '✕';
         closeBtn.setAttribute('aria-label', 'Fechar');
@@ -71,7 +76,7 @@ function openModal(src) {
 
     document.addEventListener('keydown', handleKeydown);
 
-    img.onload = function() {
+    img.onload = function () {
         optimizeImageDisplay(img);
     };
 
@@ -79,23 +84,23 @@ function openModal(src) {
 }
 
 function optimizeImageDisplay(img) {
-    const mobile = window.innerWidth <= 600;
-    const arrowSpace = mobile ? 100 : 0;
-    const viewportWidth = window.innerWidth * 0.9 - arrowSpace;
+    const mobile      = window.innerWidth <= 600;
+    const arrowSpace  = mobile ? 100 : 0;
+    const viewportWidth  = window.innerWidth * 0.9 - arrowSpace;
     const viewportHeight = window.innerHeight * (mobile ? 0.80 : 0.85);
 
-    img.style.maxWidth = `${viewportWidth}px`;
+    img.style.maxWidth  = `${viewportWidth}px`;
     img.style.maxHeight = `${viewportHeight}px`;
 }
 
-function preloadAdjacentImages(currentIndex, images) {
+function preloadAdjacentImages(index, images) {
     const preloadIndexes = [
-        (currentIndex - 1 + images.length) % images.length,
-        (currentIndex + 1) % images.length
+        (index - 1 + images.length) % images.length,
+        (index + 1) % images.length,
     ];
 
-    preloadIndexes.forEach(index => {
-        const imgSrc = images[index].src || images[index].dataset.src;
+    preloadIndexes.forEach(i => {
+        const imgSrc = images[i].src || images[i].dataset.src;
         if (imgSrc && !imageCache.has(imgSrc)) {
             const preloadImg = new Image();
             preloadImg.src = imgSrc;
@@ -105,18 +110,18 @@ function preloadAdjacentImages(currentIndex, images) {
 }
 
 function closeModal() {
-    const modal = document.getElementById("myModal");
-    modal.style.display = "none";
+    const modal = document.getElementById('myModal');
+    modal.style.display = 'none';
     document.removeEventListener('keydown', handleKeydown);
     if (window.cleanupSocial) window.cleanupSocial();
 }
 
 function handleKeydown(event) {
-    if (event.key === "Escape") {
+    if (event.key === 'Escape') {
         closeModal();
-    } else if (event.key === "ArrowRight") {
+    } else if (event.key === 'ArrowRight') {
         nextImage();
-    } else if (event.key === "ArrowLeft") {
+    } else if (event.key === 'ArrowLeft') {
         prevImage();
     }
 }
@@ -134,7 +139,7 @@ function nextImage() {
 }
 
 function updateImageSrc() {
-    const img = document.getElementById("img01");
+    const img    = document.getElementById('img01');
     const images = document.querySelectorAll('.location-image');
     const newSrc = images[currentIndex].src || images[currentIndex].dataset.src;
 
@@ -153,7 +158,34 @@ function closeDropdown(e) {
     if (dropdown) dropdown.classList.remove('open');
 }
 
-const MONTHS_PT = ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+window.deletePhoto = function () {
+    const images     = document.querySelectorAll('.location-image');
+    const currentImg = images[currentIndex];
+    if (!currentImg) return;
+
+    if (!confirm('Excluir esta foto permanentemente?')) return;
+
+    const src   = currentImg.src;
+    const docId = currentImg.dataset.docId;
+    const slug  = new URLSearchParams(window.location.search).get('cidade');
+    const path  = storagePathFromUrl(src);
+
+    const deleteFromFirestore = (docId && slug)
+        ? db.collection('photos').doc(slug).collection('entries').doc(docId).delete()
+        : Promise.resolve();
+
+    const deleteFromStorage = path
+        ? firebase.storage().ref().child(path).delete().catch(() => {})
+        : Promise.resolve();
+
+    Promise.all([deleteFromFirestore, deleteFromStorage]).then(() => {
+        currentImg.remove();
+        closeModal();
+    });
+};
+
+const MONTHS_PT = ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                   'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 
 function citySlugFromPage() {
     var param = new URLSearchParams(window.location.search).get('cidade');
@@ -162,8 +194,8 @@ function citySlugFromPage() {
 }
 
 function getOrCreateYearDiv(year) {
-    const id = `year-${year}`;
-    let div = document.getElementById(id);
+    const id  = `year-${year}`;
+    let div   = document.getElementById(id);
     if (div) return div;
 
     div = document.createElement('div');
@@ -171,8 +203,8 @@ function getOrCreateYearDiv(year) {
     div.id = id;
     div.innerHTML = `<h2>${year}</h2>`;
 
-    const timeline = document.querySelector('.timeline');
-    const allYears = [...timeline.querySelectorAll('.timeline-year')];
+    const timeline   = document.querySelector('.timeline');
+    const allYears   = [...timeline.querySelectorAll('.timeline-year')];
     const insertBefore = allYears.find(el => {
         const y = parseInt(el.querySelector('h2').textContent);
         return y < year;
@@ -186,10 +218,13 @@ function getOrCreateYearDiv(year) {
     return div;
 }
 
-function getOrCreateMonthEvent(yearDiv, month) {
-    const label = `[${MONTHS_PT[month]}]`;
+function getOrCreateMonthEvent(yearDiv, month, eventTitle) {
+    const label = eventTitle
+        ? '[' + MONTHS_PT[month] + '] ' + eventTitle
+        : '[' + MONTHS_PT[month] + ']';
+
     const existing = [...yearDiv.querySelectorAll('.timeline-event h3')]
-        .find(h => h.textContent.startsWith(label));
+        .find(h => h.textContent === label);
     if (existing) return existing.closest('.timeline-event').querySelector('.timeline-images');
 
     const event = document.createElement('div');
@@ -198,7 +233,9 @@ function getOrCreateMonthEvent(yearDiv, month) {
 
     const allEvents = [...yearDiv.querySelectorAll('.timeline-event')];
     const insertBefore = allEvents.find(el => {
-        const m = MONTHS_PT.indexOf(el.querySelector('h3').textContent.replace(/[\[\]]/g, '').split(' ')[0]);
+        const m = MONTHS_PT.indexOf(
+            el.querySelector('h3').textContent.replace(/[\[\]]/g, '').split(' ')[0]
+        );
         return m > 0 && m < month;
     });
 
@@ -211,16 +248,16 @@ function getOrCreateMonthEvent(yearDiv, month) {
 }
 
 window.injectFirestorePhoto = function injectFirestorePhoto(photo) {
-    const yearDiv    = getOrCreateYearDiv(photo.year);
-    const imagesDiv  = getOrCreateMonthEvent(yearDiv, photo.month);
+    const yearDiv   = getOrCreateYearDiv(photo.year);
+    const imagesDiv = getOrCreateMonthEvent(yearDiv, photo.month, photo.eventTitle || '');
 
     const img = document.createElement('img');
-    img.src             = photo.url;
-    img.alt             = photo.title || '';
-    img.title           = photo.title || '';
-    img.className       = 'location-image';
-    img.dataset.photoId = photo.id;
-    img.onclick         = () => openModal(img.src);
+    img.src              = photo.url;
+    img.alt              = photo.title || '';
+    img.title            = photo.title || '';
+    img.className        = 'location-image';
+    img.dataset.docId    = photo.docId || photo.id || '';
+    img.onclick          = () => openModal(img.src);
     imagesDiv.appendChild(img);
     imageCache.set(img.src, img);
 };
@@ -240,11 +277,11 @@ document.addEventListener('DOMContentLoaded', () => {
     preloadImages();
     setupLazyLoading();
 
-    window.addEventListener('resize', function() {
-        const modal = document.getElementById("myModal");
-        const img = document.getElementById("img01");
+    window.addEventListener('resize', function () {
+        const modal = document.getElementById('myModal');
+        const img   = document.getElementById('img01');
 
-        if (modal.style.display === "flex") {
+        if (modal && modal.style.display === 'flex') {
             optimizeImageDisplay(img);
         }
     });
