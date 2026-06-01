@@ -346,3 +346,191 @@ body.auth-loading {
     opacity: 0.4;
     cursor: not-allowed;
 }
+
+.city-loading {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+    padding: 60px 20px;
+    font-family: "DM Sans", sans-serif;
+}
+
+/* ── Upload admin ── */
+.upload-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 20px;
+    z-index: 200;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 0.5px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.upload-fab:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: scale(1.08);
+}
+
+.upload-panel {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    z-index: 201;
+    width: 320px;
+    background: rgba(14, 14, 14, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 0.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    font-family: "DM Sans", sans-serif;
+}
+
+.upload-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.85);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.upload-panel-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+.upload-panel-body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.upload-row {
+    display: flex;
+    gap: 12px;
+}
+
+.upload-panel-body label,
+.upload-label-full {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.4);
+    flex: 1;
+}
+
+.upload-panel-body input[type="number"],
+.upload-panel-body input[type="text"],
+.upload-panel-body select {
+    background: rgba(255,255,255,0.07);
+    border: 0.5px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    color: rgba(255,255,255,0.85);
+    padding: 8px 10px;
+    font-size: 13px;
+    font-family: "DM Sans", sans-serif;
+    outline: none;
+    width: 100%;
+}
+
+.upload-panel-body select option {
+    background: #111;
+}
+
+.upload-file-label {
+    background: rgba(255,255,255,0.05);
+    border: 0.5px dashed rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    align-items: center;
+    transition: background 0.15s;
+}
+
+.upload-file-label:hover {
+    background: rgba(255,255,255,0.09);
+}
+
+.upload-file-label input[type="file"] {
+    display: none;
+}
+
+.upload-file-names {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    word-break: break-all;
+    min-height: 0;
+}
+
+.upload-submit {
+    background: rgba(255,255,255,0.1);
+    border: 0.5px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    color: rgba(255,255,255,0.8);
+    padding: 10px;
+    font-size: 13px;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.upload-submit:hover:not(:disabled) {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+}
+
+.upload-submit:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.upload-status {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    min-height: 16px;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .upload-panel {
+        right: 0;
+        left: 0;
+        bottom: 70px;
+        width: 100%;
+        border-radius: 16px 16px 0 0;
+    }
+
+    .upload-fab {
+        bottom: 16px;
+        right: 16px;
+    }
+}

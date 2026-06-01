@@ -1,0 +1,22 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Fotos migradas — leitura pública (URLs sem token em img tags)
+    match /images/{allPaths=**} {
+      allow read;
+      allow write: if false;
+    }
+
+    // Fotos novas enviadas pelo app — leitura pública
+    match /uploads/{citySlug}/{filename} {
+      allow read;
+      allow create: if request.auth != null
+        && request.auth.token.email == "amandaengeldecastro@gmail.com"
+        && request.resource.size < 20 * 1024 * 1024   // max 20 MB por foto
+        && request.resource.contentType.matches('image/.*');
+      allow delete: if request.auth != null
+        && request.auth.token.email == "amandaengeldecastro@gmail.com";
+    }
+  }
+}

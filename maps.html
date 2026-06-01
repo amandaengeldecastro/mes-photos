@@ -6,7 +6,7 @@
   <title>Maps</title>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#0a0a0a" />
-  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-512.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -16,7 +16,7 @@
 </head>
 <body class="map-body auth-loading">
   <div id="pwaSplash" style="display:none;position:fixed;inset:0;z-index:99999;background:#0a0a0a;">
-    <img src="images/locations/BR/PR/iguazu_falls.jpg"
+    <img src="https://firebasestorage.googleapis.com/v0/b/maps-1464e.firebasestorage.app/o/images%2Flocations%2FBR%2FPR%2Figuazu_falls.jpg?alt=media"
          style="width:100%;height:100%;object-fit:cover;object-position:center;"
          alt="" />
   </div>
@@ -40,8 +40,8 @@
     <div class="city-list" id="cityList">
 
       <div class="city-list-pinned">
-        <a href="fozdoiguacu.html"><span class="pin-icon">🏠</span> Foz do Iguaçu — PR</a>
-        <a href="curitiba.html"><span class="pin-icon">📍</span> Curitiba — PR</a>
+        <a href="city.html?cidade=fozdoiguacu"><span class="pin-icon">🏠</span> Foz do Iguaçu — PR</a>
+        <a href="city.html?cidade=curitiba"><span class="pin-icon">📍</span> Curitiba — PR</a>
         <a href="music.html"><span class="pin-icon">🔊</span> Music</a>
         <a href="pets.html"><span class="pin-icon">🐾</span> Pets</a>
       </div>
@@ -52,10 +52,11 @@
   <div id="map"></div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="locations-data.js"></script>
   <script src="map.js"></script>
   <script>
-    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/mes-photos/sw.js');
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/mes-photos/service-worker.js');
   </script>
-  <script src="app.js"></script>
+  <script src="firebase-loader.js"></script>
 </body>
 </html>

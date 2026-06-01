@@ -1,0 +1,4 @@
+service-account.json
+storage_urls.json
+*-firebase-adminsdk-*.json
+.venv/

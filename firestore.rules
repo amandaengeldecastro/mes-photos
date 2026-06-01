@@ -21,5 +21,19 @@ service cloud.firestore {
       allow read, write: if request.auth != null
         && request.auth.uid == userId;
     }
+
+    match /cities/{citySlug} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+        && request.auth.token.email == "amandaengeldecastro@gmail.com";
+    }
+
+    match /photos/{citySlug}/entries/{photoId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && request.auth.token.email == "amandaengeldecastro@gmail.com";
+      allow delete: if request.auth != null
+        && request.auth.token.email == "amandaengeldecastro@gmail.com";
+    }
   }
 }
