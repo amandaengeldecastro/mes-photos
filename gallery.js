@@ -204,6 +204,8 @@ function getOrCreateYearDiv(year) {
     div.innerHTML = `<h2>${year}</h2>`;
 
     const timeline   = document.querySelector('.timeline');
+    const placeholder = timeline && timeline.querySelector('p');
+    if (placeholder) placeholder.remove();
     const allYears   = [...timeline.querySelectorAll('.timeline-year')];
     const insertBefore = allYears.find(el => {
         const y = parseInt(el.querySelector('h2').textContent);
@@ -290,7 +292,6 @@ window.injectFirestorePhoto = function injectFirestorePhoto(photo) {
 function loadFirestorePhotos(citySlug) {
     if (typeof db === 'undefined' || !citySlug) return;
     db.collection('photos').doc(citySlug).collection('entries')
-        .orderBy('year', 'desc').orderBy('month', 'desc').orderBy('createdAt', 'desc')
         .get()
         .then(snapshot => {
             const loading = document.querySelector('.city-loading');
@@ -301,9 +302,19 @@ function loadFirestorePhotos(citySlug) {
                 if (timeline) timeline.innerHTML = '<p style="color:rgba(255,255,255,0.4);padding:40px 20px">Nenhuma foto encontrada.</p>';
                 return;
             }
-            snapshot.forEach(doc => injectFirestorePhoto({ id: doc.id, ...doc.data() }));
+
+            const photos = snapshot.docs
+                .map(doc => ({ id: doc.id, ...doc.data() }))
+                .sort((a, b) => {
+                    if (b.year  !== a.year)  return b.year  - a.year;
+                    if (b.month !== a.month) return b.month - a.month;
+                    return (b.order || 0) - (a.order || 0);
+                });
+
+            photos.forEach(photo => injectFirestorePhoto(photo));
         })
-        .catch(() => {
+        .catch(err => {
+            console.error('Erro ao carregar fotos:', err);
             const loading = document.querySelector('.city-loading');
             if (loading) loading.textContent = 'Erro ao carregar fotos.';
         });
