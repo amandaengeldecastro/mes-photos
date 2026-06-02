@@ -10,6 +10,7 @@ function buildTimeline(locations) {
             const parts = yearMonth.split('-');
             const year  = parseInt(parts[0]);
             const month = parseInt(parts[1]);
+            if (location.liveFrom && year >= location.liveFrom) return;
             if (!visitsByYear[year]) visitsByYear[year] = [];
             const existing = visitsByYear[year].find(v => v.link === location.link);
             if (existing) {
@@ -101,6 +102,8 @@ document.addEventListener('userLoggedIn', () => {
                 link:       `city.html?cidade=${data.slug}`,
                 yearMonths: data.yearMonths || [],
                 pinOnly:    data.pinOnly || false,
+                liveFrom:   data.liveFrom   || null,
+                subtitle:   data.subtitle   || null,
             };
         });
 
@@ -108,6 +111,7 @@ document.addEventListener('userLoggedIn', () => {
             L.marker(location.coords).addTo(mapInstance).bindPopup(`
                 <div>
                     <h3>${location.title}</h3>
+                    ${location.subtitle ? `<p style="font-size:11px;color:rgba(0,0,0,0.5);margin-top:2px">${location.subtitle}</p>` : ''}
                     <p><em>${location.country}</em></p>
                     <a href="${location.link}">Ver detalhes →</a>
                 </div>

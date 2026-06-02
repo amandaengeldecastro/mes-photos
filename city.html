@@ -35,115 +35,39 @@
     <script src="gallery.js"></script>
     <script>
     (function () {
-        var MONTHS = ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho',
-                      'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-
         var slug     = new URLSearchParams(window.location.search).get('cidade') || '';
         var cityName = slug;
-
-        function buildTimeline(photos) {
-            var timeline = document.getElementById('timeline');
-            timeline.innerHTML = '';
-
-            if (!photos.length) {
-                timeline.innerHTML = '<p style="color:rgba(255,255,255,0.4);padding:40px 20px">Nenhuma foto encontrada.</p>';
-                return;
-            }
-
-            var groups = {};
-            photos.forEach(function(p) {
-                var key = p.year + '__' + p.month + '__' + (p.eventTitle || '');
-                if (!groups[key]) groups[key] = { year: p.year, month: p.month, eventTitle: p.eventTitle || '', photos: [] };
-                groups[key].photos.push(p);
-            });
-
-            var sorted = Object.values(groups).sort(function(a, b) {
-                if (b.year !== a.year) return b.year - a.year;
-                if (b.month !== a.month) return b.month - a.month;
-                return 0;
-            });
-
-            var currentYear = null;
-            var yearDiv = null;
-
-            sorted.forEach(function(group) {
-                if (group.year !== currentYear) {
-                    currentYear = group.year;
-                    yearDiv = document.createElement('div');
-                    yearDiv.className = 'timeline-year';
-                    yearDiv.id = 'year-' + group.year;
-                    yearDiv.innerHTML = '<h2>' + group.year + '</h2>';
-                    timeline.appendChild(yearDiv);
-                }
-
-                var event = document.createElement('div');
-                event.className = 'timeline-event';
-
-                var label = group.eventTitle
-                    ? '[' + MONTHS[group.month] + '] ' + group.eventTitle
-                    : '[' + MONTHS[group.month] + ']';
-
-                var h3 = document.createElement('h3');
-                h3.textContent = label;
-                event.appendChild(h3);
-
-                var imagesDiv = document.createElement('div');
-                imagesDiv.className = 'timeline-images';
-
-                group.photos
-                    .sort(function(a, b) { return (a.order || 0) - (b.order || 0); })
-                    .forEach(function(photo) {
-                        var img = document.createElement('img');
-                        img.src              = photo.url;
-                        img.alt              = cityName;
-                        img.title            = photo.title || '';
-                        img.className        = 'location-image';
-                        img.dataset.docId    = photo.id || '';
-                        img.onclick          = (function(src) {
-                            return function() { openModal(src); };
-                        })(photo.url);
-                        imagesDiv.appendChild(img);
-                    });
-
-                event.appendChild(imagesDiv);
-                yearDiv.appendChild(event);
-            });
-
-            if (window.setupLazyLoading) setupLazyLoading();
-        }
 
         document.addEventListener('userLoggedIn', function() {
             if (typeof db === 'undefined' || !slug) return;
 
-            var cityPromise  = db.collection('cities').doc(slug).get();
-            var photosPromise = db.collection('photos').doc(slug).collection('entries').get();
-
-            Promise.all([cityPromise, photosPromise])
-                .then(function(results) {
-                    var cityDoc       = results[0];
-                    var photosSnapshot = results[1];
-
+            db.collection('cities').doc(slug).get()
+                .then(function(cityDoc) {
                     if (cityDoc.exists) {
                         cityName = cityDoc.data().name || slug;
                     }
                     document.getElementById('cityTitle').textContent = cityName;
                     document.title = cityName;
 
-                    var photos = photosSnapshot.docs.map(function(d) {
-                        return Object.assign({ id: d.id }, d.data());
-                    });
-                    photos.sort(function(a, b) {
-                        if (b.year !== a.year) return b.year - a.year;
-                        if (b.month !== a.month) return b.month - a.month;
-                        return (a.order || 0) - (b.order || 0);
-                    });
-                    buildTimeline(photos);
+                    var editBtn = document.createElement('button');
+                    editBtn.className = 'city-name-edit-btn';
+                    editBtn.innerHTML = '✎';
+                    editBtn.title     = 'Editar nome da cidade';
+                    editBtn.onclick = function() {
+                        var newName = prompt('Nome da cidade:', cityName);
+                        if (newName !== null && newName.trim() && newName.trim() !== cityName) {
+                            db.collection('cities').doc(slug).update({ name: newName.trim() })
+                                .then(function() {
+                                    cityName = newName.trim();
+                                    document.getElementById('cityTitle').textContent = cityName;
+                                    document.title = cityName;
+                                })
+                                .catch(function(err) { alert('Erro ao salvar: ' + err.message); });
+                        }
+                    };
+                    document.getElementById('cityTitle').insertAdjacentElement('afterend', editBtn);
                 })
-                .catch(function(err) {
-                    document.getElementById('timeline').innerHTML =
-                        '<p style="color:rgba(255,100,100,0.8);padding:40px 20px">Erro ao carregar fotos.</p>';
-                    console.error(err);
-                });
+                .catch(function(err) { console.error(err); });
         });
     })();
     </script>

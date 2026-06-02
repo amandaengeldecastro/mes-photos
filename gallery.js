@@ -251,6 +251,9 @@ window.injectFirestorePhoto = function injectFirestorePhoto(photo) {
     const yearDiv   = getOrCreateYearDiv(photo.year);
     const imagesDiv = getOrCreateMonthEvent(yearDiv, photo.month, photo.eventTitle || '');
 
+    const cell = document.createElement('div');
+    cell.className = 'photo-cell';
+
     const img = document.createElement('img');
     img.src              = photo.url;
     img.alt              = photo.title || '';
@@ -258,7 +261,29 @@ window.injectFirestorePhoto = function injectFirestorePhoto(photo) {
     img.className        = 'location-image';
     img.dataset.docId    = photo.docId || photo.id || '';
     img.onclick          = () => openModal(img.src);
-    imagesDiv.appendChild(img);
+
+    const editBtn = document.createElement('button');
+    editBtn.className = 'photo-edit-btn';
+    editBtn.innerHTML = '✎';
+    editBtn.title     = 'Editar legenda';
+    editBtn.onclick = function(e) {
+        e.stopPropagation();
+        const newTitle = prompt('Legenda da foto:', img.title);
+        if (newTitle !== null) {
+            const slug  = citySlugFromPage();
+            const docId = img.dataset.docId;
+            if (slug && docId) {
+                db.collection('photos').doc(slug).collection('entries').doc(docId)
+                    .update({ title: newTitle })
+                    .then(() => { img.title = newTitle; img.alt = newTitle; })
+                    .catch(err => alert('Erro ao salvar: ' + err.message));
+            }
+        }
+    };
+
+    cell.appendChild(img);
+    cell.appendChild(editBtn);
+    imagesDiv.appendChild(cell);
     imageCache.set(img.src, img);
 };
 
@@ -268,9 +293,20 @@ function loadFirestorePhotos(citySlug) {
         .orderBy('year', 'desc').orderBy('month', 'desc').orderBy('createdAt', 'desc')
         .get()
         .then(snapshot => {
+            const loading = document.querySelector('.city-loading');
+            if (loading) loading.remove();
+
+            if (snapshot.empty) {
+                const timeline = document.querySelector('.timeline');
+                if (timeline) timeline.innerHTML = '<p style="color:rgba(255,255,255,0.4);padding:40px 20px">Nenhuma foto encontrada.</p>';
+                return;
+            }
             snapshot.forEach(doc => injectFirestorePhoto({ id: doc.id, ...doc.data() }));
         })
-        .catch(() => {});
+        .catch(() => {
+            const loading = document.querySelector('.city-loading');
+            if (loading) loading.textContent = 'Erro ao carregar fotos.';
+        });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
