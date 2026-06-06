@@ -91,10 +91,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('cityList').addEventListener('scroll', animateOnScroll);
 });
 
+const CITY_OVERRIDES = {
+    curitiba:    { liveFrom: 2024, subtitle: '[2024 ~]' },
+    fozdoiguacu: { subtitle: '[1993 – 2024]' },
+};
+
 document.addEventListener('userLoggedIn', () => {
     db.collection('cities').get().then(snapshot => {
         const locations = snapshot.docs.map(doc => {
-            const data = doc.data();
+            const data     = doc.data();
+            const override = CITY_OVERRIDES[data.slug] || {};
             return {
                 coords:     data.coords,
                 title:      data.name,
@@ -102,8 +108,8 @@ document.addEventListener('userLoggedIn', () => {
                 link:       `city.html?cidade=${data.slug}`,
                 yearMonths: data.yearMonths || [],
                 pinOnly:    data.pinOnly || false,
-                liveFrom:   data.liveFrom   || null,
-                subtitle:   data.subtitle   || null,
+                liveFrom:   override.liveFrom  || data.liveFrom  || null,
+                subtitle:   override.subtitle  || data.subtitle  || null,
             };
         });
 

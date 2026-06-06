@@ -270,6 +270,127 @@ body {
   }
   .nav-link .arrow { display: none; }
 }
+
+/* — Edição inline — */
+.inline-edit-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.2);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 0 0 6px;
+  vertical-align: middle;
+  transition: color 0.15s;
+}
+.inline-edit-btn:hover { color: rgba(255,255,255,0.6); }
+
+.nav-link { position: relative; }
+.link-del-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.18);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.15s;
+  display: none;
+}
+.nav-link:hover .link-del-btn { display: block; }
+.link-del-btn:hover { color: rgba(220,80,80,0.8); }
+
+.nav-add-btn {
+  background: none;
+  border: 0.5px dashed rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.35);
+  font-size: 12px;
+  gap: 8px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  width: 100%;
+  text-align: left;
+  transition: all 0.17s;
+}
+.nav-add-btn:hover {
+  border-color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.7);
+}
+
+.edit-panel {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  width: 320px;
+  background: rgba(14,14,14,0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 0.5px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  font-family: "DM Sans", sans-serif;
+}
+.edit-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.85);
+  font-size: 13px;
+  font-weight: 500;
+}
+.edit-panel-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  font-size: 16px;
+  cursor: pointer;
+}
+.edit-panel-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.edit-panel-body label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.edit-panel-body input,
+.edit-panel-body select {
+  background: rgba(255,255,255,0.06);
+  border: 0.5px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.85);
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  padding: 8px 10px;
+  outline: none;
+}
+.edit-panel-body select option { background: #1a1a1a; }
+.edit-submit {
+  background: rgba(255,255,255,0.1);
+  border: 0.5px solid rgba(255,255,255,0.18);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.85);
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.edit-submit:hover { background: rgba(255,255,255,0.18); }
 </style>
 </head>
 <body>
@@ -284,19 +405,19 @@ body {
 
   
   <div class="sidebar-info">
-    <p class="sidebar-name">Amanda Engel de Castro</p>
+    <p class="sidebar-name" id="profileName2">Amanda Engel de Castro</p>
     <p class="sidebar-role">IT Analyst</p>
     <p class="sidebar-location">Curitiba · Brasil</p>
   </div>
 
   
-  <p class="sidebar-name">Amanda Engel<br>de Castro</p>
-  <p class="sidebar-role">IT Analyst</p>
-  <p class="sidebar-location">Curitiba · Brasil</p>
+  <p class="sidebar-name" id="profileName">Amanda Engel<br>de Castro</p>
+  <p class="sidebar-role" id="profileRole">IT Analyst</p>
+  <p class="sidebar-location" id="profileLocation">Curitiba · Brasil</p>
 
   <div class="s-rule"></div>
 
-  <nav class="nav">
+  <nav class="nav" id="profileNav">
     <a href="maps.html" class="nav-link">
       <svg viewBox="0 0 24 24"><path d="M9 20l-5-2V4l5 2m0 14l6-2m-6 2V6m6 12l5 2V6l-5-2m0 14V4"/></svg>
       Mapa Fotográfico
@@ -317,8 +438,8 @@ body {
 
   <div class="main-content">
     <div class="main-rule"></div>
-    <p class="main-preface">
-      Seja bem vindo(a) ao meu repositório de memórias | mapa fotográfico.<br>
+    <p class="main-preface" id="profileBio">
+      Seja bem vindo(a) ao meu repositório de memórias | mapa fotográfico.
     </p>
     <div class="main-rule"></div>
   </div>
@@ -327,5 +448,6 @@ body {
   <script>
     if ('serviceWorker' in navigator) navigator.serviceWorker.register('/mes-photos/service-worker.js');
   </script>
+  <script src="firebase-loader.js"></script>
 </body>
 </html>

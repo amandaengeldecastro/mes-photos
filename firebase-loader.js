@@ -20,6 +20,8 @@
         })
         .then(function () { return load('firebase-config.js'); })
         .then(function () {
-            return Promise.all([load('auth.js'), load('social.js'), load('upload.js')]);
+            var scripts = [load('auth.js'), load('social.js'), load('upload.js')];
+            if (document.getElementById('profileNav')) scripts.push(load('profile.js'));
+            return Promise.all(scripts);
         });
 })();

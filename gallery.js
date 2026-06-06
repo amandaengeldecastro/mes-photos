@@ -268,6 +268,12 @@ window.injectFirestorePhoto = function injectFirestorePhoto(photo) {
     editBtn.className = 'photo-edit-btn';
     editBtn.innerHTML = '✎';
     editBtn.title     = 'Editar legenda';
+
+    const caption = document.createElement('span');
+    caption.className = 'photo-caption-overlay';
+    caption.textContent = photo.title || '';
+    caption.style.display = photo.title ? '' : 'none';
+
     editBtn.onclick = function(e) {
         e.stopPropagation();
         const newTitle = prompt('Legenda da foto:', img.title);
@@ -277,13 +283,19 @@ window.injectFirestorePhoto = function injectFirestorePhoto(photo) {
             if (slug && docId) {
                 db.collection('photos').doc(slug).collection('entries').doc(docId)
                     .update({ title: newTitle })
-                    .then(() => { img.title = newTitle; img.alt = newTitle; })
+                    .then(() => {
+                        img.title = newTitle;
+                        img.alt   = newTitle;
+                        caption.textContent   = newTitle;
+                        caption.style.display = newTitle ? '' : 'none';
+                    })
                     .catch(err => alert('Erro ao salvar: ' + err.message));
             }
         }
     };
 
     cell.appendChild(img);
+    cell.appendChild(caption);
     cell.appendChild(editBtn);
     imagesDiv.appendChild(cell);
     imageCache.set(img.src, img);
