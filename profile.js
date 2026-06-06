@@ -160,7 +160,6 @@
                 if (doc.exists) {
                     applyProfile(doc.data(), isAdmin);
                 } else if (isAdmin) {
-                    // Primeira vez: cria o documento com os dados atuais da página
                     var nameEl = document.getElementById('profileName');
                     var roleEl = document.getElementById('profileRole');
                     var locEl  = document.getElementById('profileLocation');
@@ -183,15 +182,10 @@
     }
 
     document.addEventListener('userLoggedIn', function (e) {
-        var user    = e.detail;
-        var isAdmin = (user.email === ADMIN_EMAIL);
-        loadProfile(isAdmin);
+        loadProfile(e.detail.email === ADMIN_EMAIL);
     });
 
-    // Carrega perfil mesmo sem login (leitura pública)
-    document.addEventListener('DOMContentLoaded', function () {
-        if (typeof db !== 'undefined') {
-            loadProfile(false);
-        }
-    });
+    if (window.currentUser) {
+        loadProfile(window.currentUser.email === ADMIN_EMAIL);
+    }
 })();
