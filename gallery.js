@@ -269,10 +269,17 @@ window.injectFirestorePhoto = function injectFirestorePhoto(photo) {
     editBtn.innerHTML = '✎';
     editBtn.title     = 'Editar legenda';
 
+    const cityTitle = (document.getElementById('cityTitle') || {}).textContent || '';
+    const normalize = s => s.trim().toLowerCase()
+        .normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/\s*[—–-]\s*\w+$/, ''); // remove " — PR" etc
+    const captionText = photo.title || '';
+    const showCaption = captionText && normalize(captionText) !== normalize(cityTitle);
+
     const caption = document.createElement('span');
     caption.className = 'photo-caption-overlay';
-    caption.textContent = photo.title || '';
-    caption.style.display = photo.title ? '' : 'none';
+    caption.textContent = captionText;
+    caption.style.display = showCaption ? '' : 'none';
 
     editBtn.onclick = function(e) {
         e.stopPropagation();

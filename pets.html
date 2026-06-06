@@ -136,40 +136,7 @@
   </div>
 
   <!-- Grade de fotos -->
-  <div class="pets-grid">
-    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
-      <img src="https://firebasestorage.googleapis.com/v0/b/maps-1464e.firebasestorage.app/o/images%2Fpets%2FIMG-20240415-WA0002_saller.jpg?alt=media" alt="Saller" class="location-image" />
-      <span class="pet-name">Saller</span>
-    </div>
-    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
-      <img src="https://firebasestorage.googleapis.com/v0/b/maps-1464e.firebasestorage.app/o/images%2Fpets%2FIMG_20240912_121704_362_luiggi.jpg?alt=media" alt="Luiggi" class="location-image" />
-      <span class="pet-name">Luiggi</span>
-    </div>
-    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
-      <img src="https://firebasestorage.googleapis.com/v0/b/maps-1464e.firebasestorage.app/o/images%2Fpets%2FFB_IMG_16346557123456025.jpg?alt=media" alt="Meg" class="location-image" />
-      <span class="pet-name">Meg</span>
-    </div>
-    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
-      <img src="https://firebasestorage.googleapis.com/v0/b/maps-1464e.firebasestorage.app/o/images%2Fpets%2FFB_IMG_16346557196734159.jpg?alt=media" alt="Olívia" class="location-image" />
-      <span class="pet-name">Olívia</span>
-    </div>
-    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
-      <img src="https://firebasestorage.googleapis.com/v0/b/maps-1464e.firebasestorage.app/o/images%2Fpets%2FFB_IMG_16346557435246710.jpg?alt=media" alt="Sheldy" class="location-image" />
-      <span class="pet-name">Sheldy</span>
-    </div>
-    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
-      <img src="https://firebasestorage.googleapis.com/v0/b/maps-1464e.firebasestorage.app/o/images%2Fpets%2FFB_IMG_16346558938852977.jpg?alt=media" alt="Pipper" class="location-image" />
-      <span class="pet-name">Pipper</span>
-    </div>
-    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
-      <img src="https://firebasestorage.googleapis.com/v0/b/maps-1464e.firebasestorage.app/o/images%2Fpets%2Fsheldy_smith.jpeg?alt=media" alt="Smith" class="location-image" />
-      <span class="pet-name">Smith</span>
-    </div>
-    <div class="pet-card" onclick="openModal(this.querySelector('img').src)">
-      <img src="https://firebasestorage.googleapis.com/v0/b/maps-1464e.firebasestorage.app/o/images%2Fpets%2Ffrida.jpeg?alt=media" alt="Frida" class="location-image" />
-      <span class="pet-name">Frida</span>
-    </div>
-  </div>
+  <div class="pets-grid" id="petsGrid"></div>
 
   <!-- Modal -->
   <div id="myModal" class="modal" onclick="closeModal()">
@@ -182,7 +149,25 @@
     </div>
   </div>
 
+  <style>
+    .pet-del-btn {
+      position: absolute;
+      top: 6px; right: 6px;
+      background: rgba(0,0,0,0.65);
+      border: none;
+      color: rgba(255,255,255,0.8);
+      font-size: 11px;
+      border-radius: 6px;
+      padding: 3px 7px;
+      cursor: pointer;
+      z-index: 3;
+      display: none;
+    }
+    .pet-card:hover .pet-del-btn { display: block; }
+    .pet-name { cursor: default; }
+  </style>
   <script src="gallery.js"></script>
   <script src="firebase-loader.js"></script>
+  <script src="pets.js"></script>
 </body>
 </html>

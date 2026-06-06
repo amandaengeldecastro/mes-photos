@@ -18,7 +18,7 @@
         const modalContent = document.querySelector('.modal-content');
         if (!modalContent || document.getElementById('socialBar')) return;
 
-        const isAdmin = window.currentUser && window.currentUser.email === 'amandaengeldecastro@gmail.com';
+        const isAdmin = window.currentUser && window.currentUser.email === ADMIN_EMAIL;
 
         const bar = document.createElement('div');
         bar.id = 'socialBar';
@@ -143,7 +143,7 @@
         }
 
         const currentUid = window.currentUser ? window.currentUser.uid : null;
-        const isAdmin = window.currentUser && window.currentUser.email === 'amandaengeldecastro@gmail.com';
+        const isAdmin = window.currentUser && window.currentUser.email === ADMIN_EMAIL;
 
         list.innerHTML = entries.map(entry => `
             <div class="comment-item">

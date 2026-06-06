@@ -1,7 +1,5 @@
 (function () {
-    const ADMIN_EMAIL = 'amandaengeldecastro@gmail.com';
-
-    const MONTHS_PT = ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+const MONTHS_PT = ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho',
                        'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 
     function citySlugFromPage() {

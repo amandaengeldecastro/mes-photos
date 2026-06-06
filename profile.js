@@ -184,7 +184,7 @@
 
     document.addEventListener('userLoggedIn', function (e) {
         var user    = e.detail;
-        var isAdmin = (user.email === 'amandaengeldecastro@gmail.com');
+        var isAdmin = (user.email === ADMIN_EMAIL);
         loadProfile(isAdmin);
     });
 

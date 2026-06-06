@@ -21,7 +21,9 @@
         .then(function () { return load('firebase-config.js'); })
         .then(function () {
             var scripts = [load('auth.js'), load('social.js'), load('upload.js')];
-            if (document.getElementById('profileNav')) scripts.push(load('profile.js'));
             return Promise.all(scripts);
+        })
+        .then(function () {
+            if (document.getElementById('profileNav')) return load('profile.js');
         });
 })();

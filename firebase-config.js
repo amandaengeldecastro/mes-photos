@@ -1,3 +1,5 @@
+const ADMIN_EMAIL = 'amandaengeldecastro@gmail.com';
+
 const firebaseConfig = {
   apiKey: "AIzaSyBL-PL8znRv8IIPjDRC51MgS_moqzULXHg",
   authDomain: "maps-1464e.firebaseapp.com",
