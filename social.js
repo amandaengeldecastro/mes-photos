@@ -3,7 +3,11 @@
     let unsubscribeComments = null;
 
     function photoId(src) {
-        return src.replace(/^\.\//, '').replace(/[/.]/g, '_');
+        var hash = 0;
+        for (var i = 0; i < src.length; i++) {
+            hash = Math.imul(31, hash) + src.charCodeAt(i) | 0;
+        }
+        return 'p' + Math.abs(hash).toString(36);
     }
 
     function escapeHtml(text) {
@@ -122,7 +126,7 @@
             await db.collection('comments').doc(window._currentPhotoId)
                 .collection('entries').add({
                     userId: window.currentUser.uid,
-                    userName: window.currentUser.displayName,
+                    userName: window.currentUser.displayName || 'Anônimo',
                     userPhoto: window.currentUser.photoURL || '',
                     text: text,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()

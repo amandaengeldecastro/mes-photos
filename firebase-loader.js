@@ -21,7 +21,9 @@
         .then(function () { return load('firebase-config.js'); })
         .then(function () {
             var scripts = [load('auth.js'), load('social.js'), load('upload.js')];
-            if (document.getElementById('profileNav')) scripts.push(load('profile.js'));
+            if (document.getElementById('profileNav'))  scripts.push(load('profile.js'));
+            if (document.getElementById('musicTimeline')) scripts.push(load('music.js'));
+            if (document.getElementById('petsGrid'))    scripts.push(load('pets.js'));
             return Promise.all(scripts);
         });
 })();

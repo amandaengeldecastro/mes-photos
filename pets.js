@@ -41,7 +41,8 @@
                 var newName = prompt('Nome:', span.textContent);
                 if (newName !== null && newName.trim()) {
                     db.collection('pets').doc(docId).update({ name: newName.trim() })
-                        .then(function () { span.textContent = newName.trim(); });
+                        .then(function () { span.textContent = newName.trim(); })
+                        .catch(function (err) { alert('Erro ao salvar: ' + err.message); });
                 }
             };
         }

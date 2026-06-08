@@ -106,7 +106,8 @@
     }
 
     function saveProfile(partial) {
-        db.collection('profiles').doc(PROFILE_SLUG).set(partial, { merge: true });
+        db.collection('profiles').doc(PROFILE_SLUG).set(partial, { merge: true })
+            .catch(function (err) { alert('Erro ao salvar: ' + err.message); });
     }
 
     function makeEditable(el, field, multiline) {
@@ -159,7 +160,7 @@
             .then(function (doc) {
                 if (doc.exists) {
                     applyProfile(doc.data(), isAdmin);
-                } else if (isAdmin) {
+                } else {
                     var nameEl = document.getElementById('profileName');
                     var roleEl = document.getElementById('profileRole');
                     var locEl  = document.getElementById('profileLocation');
@@ -174,18 +175,24 @@
                             { type: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/amandaengeldecastro/' },
                         ],
                     };
-                    saveProfile(defaults);
+                    if (isAdmin) saveProfile(defaults);
                     applyProfile(defaults, isAdmin);
                 }
             })
-            .catch(function (err) { console.error('Erro ao carregar perfil:', err); });
+            .catch(function () {
+                applyProfile({}, isAdmin);
+            });
     }
 
+    var loaded = false;
     document.addEventListener('userLoggedIn', function (e) {
+        if (loaded) return;
+        loaded = true;
         loadProfile(e.detail.email === ADMIN_EMAIL);
     });
 
-    if (window.currentUser) {
+    if (window.currentUser && !loaded) {
+        loaded = true;
         loadProfile(window.currentUser.email === ADMIN_EMAIL);
     }
 })();

@@ -246,7 +246,7 @@ const MONTHS_PT = ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho',
             if (index >= fileArray.length) {
                 db.collection('cities').doc(citySlug).update({
                     yearMonths: firebase.firestore.FieldValue.arrayUnion(year + '-' + month),
-                }).catch(function () {});
+                }).catch(function (err) { console.warn('yearMonths não atualizado:', err.message); });
 
                 statusEl.textContent = '✓ ' + done + ' foto(s) adicionada(s)!';
                 setTimeout(function () {

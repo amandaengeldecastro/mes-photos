@@ -170,18 +170,19 @@ window.deletePhoto = function () {
     const slug  = new URLSearchParams(window.location.search).get('cidade');
     const path  = storagePathFromUrl(src);
 
-    const deleteFromFirestore = (docId && slug)
-        ? db.collection('photos').doc(slug).collection('entries').doc(docId).delete()
-        : Promise.resolve();
+    if (!docId || !slug) {
+        alert('Esta foto não pode ser excluída pois não está vinculada ao banco de dados.');
+        return;
+    }
 
-    const deleteFromStorage = path
+    const deleteFromFirestore = db.collection('photos').doc(slug).collection('entries').doc(docId).delete();
+    const deleteFromStorage   = path
         ? firebase.storage().ref().child(path).delete().catch(() => {})
         : Promise.resolve();
 
-    Promise.all([deleteFromFirestore, deleteFromStorage]).then(() => {
-        currentImg.remove();
-        closeModal();
-    });
+    Promise.all([deleteFromFirestore, deleteFromStorage])
+        .then(() => { currentImg.closest('.photo-cell')?.remove() || currentImg.remove(); closeModal(); })
+        .catch(err => alert('Erro ao excluir: ' + err.message));
 };
 
 const MONTHS_PT = ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho',
@@ -288,17 +289,19 @@ window.injectFirestorePhoto = function injectFirestorePhoto(photo) {
         if (newTitle !== null) {
             const slug  = citySlugFromPage();
             const docId = img.dataset.docId;
-            if (slug && docId) {
-                db.collection('photos').doc(slug).collection('entries').doc(docId)
-                    .update({ title: newTitle })
-                    .then(() => {
-                        img.title = newTitle;
-                        img.alt   = newTitle;
-                        caption.textContent   = newTitle;
-                        caption.style.display = newTitle ? '' : 'none';
-                    })
-                    .catch(err => alert('Erro ao salvar: ' + err.message));
+            if (!slug || !docId) {
+                alert('Esta foto não está vinculada ao banco de dados.');
+                return;
             }
+            db.collection('photos').doc(slug).collection('entries').doc(docId)
+                .update({ title: newTitle })
+                .then(() => {
+                    img.title = newTitle;
+                    img.alt   = newTitle;
+                    caption.textContent   = newTitle;
+                    caption.style.display = showCaption && newTitle ? '' : 'none';
+                })
+                .catch(err => alert('Erro ao salvar: ' + err.message));
         }
     };
 
