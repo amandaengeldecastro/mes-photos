@@ -57,9 +57,7 @@
         if (insertBefore) {
             timeline.insertBefore(section, insertBefore);
         } else {
-            var addBtn = document.getElementById('musicAddSection');
-            if (addBtn) timeline.insertBefore(section, addBtn);
-            else timeline.appendChild(section);
+            timeline.appendChild(section);
         }
     }
 

@@ -52,13 +52,10 @@
     function loadPets() {
         db.collection('pets').orderBy('order', 'asc').get()
             .then(function (snapshot) {
-                var grid = document.getElementById('petsGrid');
-                if (grid) grid.innerHTML = '';
                 snapshot.forEach(function (doc) { renderPet(doc.data(), doc.id); });
                 if (isAdmin) addUploadBtn();
             })
             .catch(function () {
-                // Fallback: sem dados ainda, só mostra botão de upload se admin
                 if (isAdmin) addUploadBtn();
             });
     }
