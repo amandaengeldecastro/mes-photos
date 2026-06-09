@@ -92,6 +92,12 @@
             const ipRes = await fetch('https://api.ipify.org?format=json');
             const { ip } = await ipRes.json();
 
+            const waitForEmailjs = (resolve) => {
+                if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY) resolve();
+                else setTimeout(() => waitForEmailjs(resolve), 200);
+            };
+            await new Promise(waitForEmailjs);
+
             await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
                 user_name: user.displayName,
                 user_email: user.email,
@@ -99,7 +105,7 @@
                 access_time: now.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
                 page: pageName
             });
-        } catch (e) {}
+        } catch (e) { console.warn('Erro ao enviar e-mail:', e); }
     }
 
     document.body.classList.add('auth-loading');

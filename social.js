@@ -3,6 +3,11 @@
     let unsubscribeComments = null;
 
     function photoId(src) {
+        var match = src.match(/\/o\/(.+?)(?:\?|$)/);
+        if (match) {
+            var path = decodeURIComponent(match[1]);
+            return path.replace(/[^a-zA-Z0-9]/g, '_').slice(-80);
+        }
         var hash = 0;
         for (var i = 0; i < src.length; i++) {
             hash = Math.imul(31, hash) + src.charCodeAt(i) | 0;
