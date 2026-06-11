@@ -146,8 +146,7 @@
     }
 
     function saveProfile(partial) {
-        if (!uid) return;
-        db.collection('logins').doc(uid).update(partial)
+        db.collection('profiles').doc('amanda').set(partial, { merge: true })
             .catch(function (err) { alert('Erro ao salvar: ' + err.message); });
     }
 
@@ -195,7 +194,7 @@
 
     function loadProfile(user, isAdmin) {
         uid = user.uid;
-        db.collection('logins').doc(uid).get()
+        db.collection('profiles').doc('amanda').get()
             .then(function (doc) {
                 applyProfile(doc.exists ? doc.data() : {}, isAdmin);
             })

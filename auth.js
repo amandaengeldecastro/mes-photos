@@ -108,6 +108,10 @@
         } catch (e) { console.warn('Erro ao enviar e-mail:', e); }
     }
 
+    const isPublicPage = window.location.pathname.endsWith('index.html')
+        || window.location.pathname.endsWith('/')
+        || window.location.pathname === '';
+
     document.body.classList.add('auth-loading');
 
     auth.onAuthStateChanged(user => {
@@ -133,8 +137,8 @@
             window.currentUser = null;
             const btn = document.getElementById('logoutBtn');
             if (btn) btn.remove();
-            createOverlay();
             document.body.classList.remove('auth-loading');
+            if (!isPublicPage) createOverlay();
         }
     });
 })();

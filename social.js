@@ -99,17 +99,16 @@
                 const doc = await transaction.get(ref);
                 const data = doc.exists ? doc.data() : {};
                 const isLiked = data.users && data.users[uid];
+                const currentCount = data.count || 0;
 
                 if (isLiked) {
-                    transaction.update(ref, {
-                        count: firebase.firestore.FieldValue.increment(-1),
-                        [`users.${uid}`]: firebase.firestore.FieldValue.delete()
-                    });
+                    const update = { count: Math.max(0, currentCount - 1) };
+                    update[`users.${uid}`] = firebase.firestore.FieldValue.delete();
+                    transaction.update(ref, update);
                 } else {
-                    transaction.set(ref, {
-                        count: firebase.firestore.FieldValue.increment(1),
-                        [`users.${uid}`]: true
-                    }, { merge: true });
+                    const update = { count: currentCount + 1 };
+                    update[`users.${uid}`] = true;
+                    transaction.set(ref, update, { merge: true });
                 }
             });
         } finally {

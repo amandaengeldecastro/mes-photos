@@ -1,4 +1,4 @@
-const CACHE = 'maps-v2';
+const CACHE = 'maps-v3';
 const STATIC = [
   '/mes-photos/',
   '/mes-photos/maps.html',
