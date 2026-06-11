@@ -6,7 +6,20 @@
         telegram:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
         instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>',
         maps:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-5-2V4l5 2m0 14l6-2m-6 2V6m6 12l5 2V6l-5-2m0 14V4"/></svg>',
+        x:         '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+        youtube:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>',
+        tiktok:    '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>',
+        spotify:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 13.5c2.5-1 5.5-1 8 0M7 10.5c3-1.3 7-1.3 10 0M9 16.5c2-0.7 4-0.7 6 0"/></svg>',
         link:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+    };
+
+    var DOMAIN_TYPE_MAP = {
+        'linkedin.com': 'linkedin', 'github.com': 'github',
+        'wa.me': 'whatsapp', 'whatsapp.com': 'whatsapp',
+        't.me': 'telegram', 'telegram.me': 'telegram',
+        'instagram.com': 'instagram', 'x.com': 'x', 'twitter.com': 'x',
+        'youtube.com': 'youtube', 'youtu.be': 'youtube',
+        'tiktok.com': 'tiktok', 'spotify.com': 'spotify',
     };
 
     var DEFAULT_LINKS = [
@@ -16,7 +29,28 @@
 
     var uid = null;
 
-    function iconFor(type) { return LINK_ICONS[type] || LINK_ICONS.link; }
+    function typeFromUrl(url) {
+        if (!url) return 'link';
+        try {
+            var host = new URL(url).hostname.replace('www.', '');
+            for (var domain in DOMAIN_TYPE_MAP) {
+                if (host === domain || host.endsWith('.' + domain)) return DOMAIN_TYPE_MAP[domain];
+            }
+        } catch (e) {}
+        return 'link';
+    }
+
+    function iconFor(type, url) {
+        if (LINK_ICONS[type]) return LINK_ICONS[type];
+        if (url && url.startsWith('http')) {
+            try {
+                var domain = new URL(url).hostname;
+                return '<img src="https://www.google.com/s2/favicons?domain=' + domain + '&sz=64" style="width:15px;height:15px;border-radius:3px;object-fit:contain;" />';
+            } catch (e) {}
+        }
+        return LINK_ICONS.link;
+    }
+
     function arrowFor(url) { return (url && url.startsWith('http')) ? '↗' : '→'; }
 
     function renderLinks(links, nav, isAdmin) {
@@ -27,7 +61,7 @@
             a.href      = link.url;
             a.className = 'nav-link';
             if (link.url && link.url.startsWith('http')) a.target = '_blank';
-            a.innerHTML = iconFor(link.type) +
+            a.innerHTML = iconFor(link.type, link.url) +
                 '<span>' + link.label + '</span>' +
                 '<span class="arrow">' + arrowFor(link.url) + '</span>';
 
@@ -77,30 +111,33 @@
             '  <button class="edit-panel-close" id="addLinkClose">✕</button>',
             '</div>',
             '<div class="edit-panel-body">',
-            '  <label>Tipo',
-            '    <select id="addLinkType">',
-            '      <option value="link">Link genérico</option>',
-            '      <option value="linkedin">LinkedIn</option>',
-            '      <option value="github">GitHub</option>',
-            '      <option value="whatsapp">WhatsApp</option>',
-            '      <option value="telegram">Telegram</option>',
-            '      <option value="instagram">Instagram</option>',
-            '      <option value="maps">Mapa Fotográfico</option>',
-            '    </select>',
-            '  </label>',
-            '  <label>Label<input type="text" id="addLinkLabel" placeholder="Ex: GitHub" maxlength="40"></label>',
-            '  <label>URL<input type="text" id="addLinkUrl" placeholder="https://..." maxlength="300"></label>',
+            '  <label>URL<input type="text" id="addLinkUrl" placeholder="https://x.com/usuario" maxlength="300"></label>',
+            '  <label>Label<input type="text" id="addLinkLabel" placeholder="Ex: X (Twitter)" maxlength="40"></label>',
+            '  <div id="addLinkPreview" style="display:none;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,0.05);border-radius:8px;font-size:12px;color:rgba(255,255,255,0.6)"></div>',
             '  <button class="edit-submit" id="addLinkSave">Adicionar</button>',
             '</div>',
         ].join('');
         document.body.appendChild(panel);
 
         document.getElementById('addLinkClose').onclick = function () { panel.remove(); };
+
+        document.getElementById('addLinkUrl').oninput = function () {
+            var url     = this.value.trim();
+            var preview = document.getElementById('addLinkPreview');
+            var type    = typeFromUrl(url);
+            if (url.startsWith('http')) {
+                preview.style.display = 'flex';
+                preview.innerHTML = iconFor(type, url) + '<span>' + (new URL(url).hostname.replace('www.','')) + '</span>';
+            } else {
+                preview.style.display = 'none';
+            }
+        };
+
         document.getElementById('addLinkSave').onclick = function () {
-            var type  = document.getElementById('addLinkType').value;
-            var label = document.getElementById('addLinkLabel').value.trim();
             var url   = document.getElementById('addLinkUrl').value.trim();
+            var label = document.getElementById('addLinkLabel').value.trim();
             if (!label || !url) return;
+            var type = typeFromUrl(url);
             links.push({ type: type, label: label, url: url });
             saveProfile({ links: links });
             renderLinks(links, nav, isAdmin);
