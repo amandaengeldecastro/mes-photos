@@ -31,7 +31,7 @@
                 '<span>' + link.label + '</span>' +
                 '<span class="arrow">' + arrowFor(link.url) + '</span>';
 
-            if (isAdmin) {
+            if (isAdmin && link.type !== 'maps') {
                 var del = document.createElement('button');
                 del.className = 'link-del-btn';
                 del.innerHTML = '✕';
@@ -56,6 +56,12 @@
             addBtn.innerHTML = '<span style="font-size:16px;opacity:0.4">+</span><span>Adicionar link</span>';
             addBtn.onclick = function () { openAddLink(links, nav, isAdmin); };
             nav.appendChild(addBtn);
+        }
+
+        if ((links || []).length > 3) {
+            nav.classList.add('icon-only');
+        } else {
+            nav.classList.remove('icon-only');
         }
     }
 

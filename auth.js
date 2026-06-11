@@ -120,9 +120,14 @@
             const sessionKey = 'session_' + user.uid;
             const lastSessionTimestamp = localStorage.getItem(sessionKey);
             const oneDayInMilliseconds = 864e5;
-            if (!lastSessionTimestamp || (Date.now() - parseInt(lastSessionTimestamp)) > oneDayInMilliseconds) {
+            const sessionExpired = !lastSessionTimestamp || (Date.now() - parseInt(lastSessionTimestamp)) > oneDayInMilliseconds;
+
+            if (sessionExpired) {
                 localStorage.setItem(sessionKey, Date.now().toString());
                 onLogin(user);
+            } else {
+                const remaining = oneDayInMilliseconds - (Date.now() - parseInt(lastSessionTimestamp));
+                setTimeout(() => auth.signOut(), remaining);
             }
         } else {
             window.currentUser = null;

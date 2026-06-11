@@ -269,6 +269,10 @@ body {
     gap: 7px;
   }
   .nav-link .arrow { display: none; }
+
+  .nav.icon-only .nav-link span:not(.arrow) { display: none; }
+  .nav.icon-only .nav-link { padding: 10px; flex: 0 0 auto; min-width: 44px; }
+  .nav.icon-only .nav-link svg { opacity: 1; }
 }
 
 /* — Ocultar logout flutuante na home (sidebar já tem contexto de perfil) — */
