@@ -127,7 +127,6 @@ body.auth-loading {
     pointer-events: none;
 }
 
-.like-btn,
 .comments-toggle-btn {
     display: inline-flex;
     align-items: center;
@@ -146,7 +145,6 @@ body.auth-loading {
     -webkit-backdrop-filter: blur(8px);
 }
 
-.like-btn:hover,
 .comments-toggle-btn:hover {
     background: rgba(255, 255, 255, 0.22);
 }

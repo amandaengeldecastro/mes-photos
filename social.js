@@ -1,5 +1,4 @@
 (function () {
-    let unsubscribeLikes = null;
     let unsubscribeComments = null;
 
     function photoId(src) {
@@ -33,10 +32,6 @@
         bar.id = 'socialBar';
         bar.className = 'social-bar';
         bar.innerHTML = `
-            <button id="likeBtn" class="like-btn" title="Curtir">
-                <span id="likeIcon">🤍</span>
-                <span id="likeCount">0</span>
-            </button>
             <button id="commentsToggle" class="comments-toggle-btn" title="Comentários">
                 <span>💬</span>
                 <span id="commentsCount">0</span>
@@ -63,7 +58,6 @@
         `;
         modalContent.appendChild(panel);
 
-        document.getElementById('likeBtn').addEventListener('click', toggleLike);
         document.getElementById('commentsToggle').addEventListener('click', togglePanel);
         document.getElementById('closePanelBtn').addEventListener('click', closePanel);
         document.getElementById('commentSubmitBtn').addEventListener('click', submitComment);
@@ -84,36 +78,6 @@
     function closePanel() {
         const panel = document.getElementById('commentsPanel');
         if (panel) panel.classList.remove('open');
-    }
-
-    async function toggleLike() {
-        if (!window.currentUser || !window._currentPhotoId) return;
-        const btn = document.getElementById('likeBtn');
-        if (btn) btn.disabled = true;
-
-        const uid = window.currentUser.uid;
-        const ref = db.collection('likes').doc(window._currentPhotoId);
-
-        try {
-            await db.runTransaction(async (transaction) => {
-                const doc = await transaction.get(ref);
-                const data = doc.exists ? doc.data() : {};
-                const isLiked = data.users && data.users[uid];
-                const currentCount = data.count || 0;
-
-                if (isLiked) {
-                    const update = { count: Math.max(0, currentCount - 1) };
-                    update[`users.${uid}`] = firebase.firestore.FieldValue.delete();
-                    transaction.update(ref, update);
-                } else {
-                    const update = { count: currentCount + 1 };
-                    update[`users.${uid}`] = true;
-                    transaction.set(ref, update, { merge: true });
-                }
-            });
-        } finally {
-            if (btn) btn.disabled = false;
-        }
     }
 
     async function submitComment() {
@@ -186,19 +150,7 @@
         const pid = photoId(src);
         window._currentPhotoId = pid;
 
-        if (unsubscribeLikes) unsubscribeLikes();
         if (unsubscribeComments) unsubscribeComments();
-
-        unsubscribeLikes = db.collection('likes').doc(pid).onSnapshot(doc => {
-            const data = doc.exists ? doc.data() : {};
-            const count = data.count || 0;
-            const liked = data.users && window.currentUser && data.users[window.currentUser.uid];
-
-            const icon = document.getElementById('likeIcon');
-            const counter = document.getElementById('likeCount');
-            if (icon) icon.textContent = liked ? '❤️' : '🤍';
-            if (counter) counter.textContent = count > 0 ? count : '0';
-        });
 
         unsubscribeComments = db.collection('comments').doc(pid)
             .collection('entries').orderBy('createdAt', 'asc')
@@ -211,7 +163,6 @@
     };
 
     window.cleanupSocial = function () {
-        if (unsubscribeLikes) { unsubscribeLikes(); unsubscribeLikes = null; }
         if (unsubscribeComments) { unsubscribeComments(); unsubscribeComments = null; }
         window._currentPhotoId = null;
         closePanel();
