@@ -92,8 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const CITY_OVERRIDES = {
-    curitiba:    { liveFrom: 2024, subtitle: '[2024 ~]' },
+    curitiba:    { subtitle: '[2024 – 2026]' },
     fozdoiguacu: { subtitle: '[1993 – 2024]' },
+    guaratuba:   { liveFrom: 2024, subtitle: '[2024 ~]' },
 };
 
 document.addEventListener('userLoggedIn', () => {

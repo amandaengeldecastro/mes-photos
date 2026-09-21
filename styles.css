@@ -126,6 +126,13 @@
     text-align: center;
 }
 
+.city-list-pinned .pin-date {
+    margin-left: auto;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 400;
+}
+
 .city-list-group {
     padding: 12px 20px 4px;
     opacity: 0;
