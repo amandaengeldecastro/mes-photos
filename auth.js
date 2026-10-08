@@ -49,7 +49,13 @@
         btn.id = 'logoutBtn';
         btn.className = 'logout-btn';
         btn.title = `Sair (${user.email})`;
-        btn.innerHTML = `<img src="${user.photoURL}" alt="${user.displayName}" /> Sair`;
+
+        const img = document.createElement('img');
+        img.src = user.photoURL || '';
+        img.alt = user.displayName || '';
+        btn.appendChild(img);
+        btn.appendChild(document.createTextNode(' Sair'));
+
         btn.addEventListener('click', () => auth.signOut());
         document.body.appendChild(btn);
     }
